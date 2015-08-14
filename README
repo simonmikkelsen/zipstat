@@ -1,0 +1,51 @@
+ ______ _  _____    __________  _________ 
+|___  /| ||  _  \  /  ____   _|/    _   _|
+   / / | || |_| |  | |___ | | / /| | | |  
+  / /  | ||  ___/  \___  \| |/ / | | | |  
+ / /__ | || |       ___| ||   /==| | | |  
+/_____||_||_|      /_____/|__/   |_| |_|  
+ __    .                         
+ __)   |  __  |    __  |__   __  
+(___ o | (__( |_, |__) |  ) (__( 
+                  |              
+
+This software has freely been made avalible under the terms of Gnu General
+Public License (GPL).
+
+This readme file is very short. Later real documentation will be made.
+Right now I focus on getting some features implemented.
+
+Future features (non particular order):
+* Easy installation.
+* All code translated to english.
+* Easy to translate.
+* Use of templates.
+* Multiple stats for one user account.
+
+ ____________
+/Installation/
+\___________/
+1. Put the files in your web directory.
+2. Create the database - sorry. Currently there is no SQL-files for that, so
+   you are actually a bit lorst here.
+3. Edit the file Stier.php (danish for paths).
+   * Search for 'timeAdjustSec': Use this value to adjust the time ZIP Stat
+     uses relative to the servers time. It is in seconds, so use e.g.
+     3*3600 for plus 3 hours or -2*3600 for minutes 2 hours.
+   * Search for 'DB_database': Set the value of this, DB_username, DB_hostname,
+     and DB_password.
+   * Look at 'decimal_comma' a bit below the above. In Denmark we use , as
+     decimal comma. If you use . set it to that.
+   * Scroll down to the //|URL's|// section. Make sure all the urls are set
+     to your need.
+   * Just below the URL's section you'll find 'urlMain': Set it to your need.
+   * Search for 'base': Set it to the root of the ZIP Stat install on your
+     server (not the web).
+   * Search for 'zipstat_base': If it is not set to something with dirname(__FILE__)
+     set it to your need.
+   * Save the file and make sure it is in proper PHP syntax.
+   * If you can't get it to work or dosn't understand the danish (sorry again)
+     then mail me at zipstat@zip.dk (ask for Simon).
+   * Upload the file, create a user, put the code on your website and you are
+     flying.
+

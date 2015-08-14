@@ -1,0 +1,6 @@
+Standard;;Almindelige farver
+zipstat;;background-color: #3399CC; border-bottom: thin solid black; font-size: 14px; text-align: center;
+zipstatlink;;color: black;text-decoration: none;
+zstabel;;border: thin black solid; background-color: white; color: black; font-size : 12px; font-family: sans-serif; text-align: left;
+tal;;text-align: right;
+zipstatlink2;;color: black;

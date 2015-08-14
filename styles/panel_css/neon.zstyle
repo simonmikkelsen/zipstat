@@ -1,0 +1,6 @@
+Neon;;Skrigende neonfarver
+zipstat;;background-color: Lime; border-bottom: thin solid Yellow; font-size : 14px; text-align: center;
+zipstatlink;;color: Fuchsia; text-decoration: none;
+zstabel;;border: thin Yellow solid; background-color: Aqua; color: Blue; font-size : 12px; font-family: sans-serif; text-align: left;
+tal;;text-align: right;
+zipstatlink2;;color: Blue;

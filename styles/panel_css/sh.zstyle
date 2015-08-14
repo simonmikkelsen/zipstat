@@ -1,0 +1,6 @@
+Sort/hvid;;Sort og hvid
+zipstat;;background-color: black; border-bottom: thin solid back; font-size : 14px; text-align: center;
+zipstatlink;;color: white; text-decoration: none;
+zstabel;;border: thin black solid; background-color: white; color: black; font-size: 12px; font-family: sans-serif; text-align: left;
+tal;;text-align: right;
+zipstatlink2;;color: black;

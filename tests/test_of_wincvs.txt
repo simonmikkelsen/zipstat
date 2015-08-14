@@ -1,0 +1,7 @@
+This is a
+simple test of
+WinCVS someting something
+made to demonstrate
+how commit somethingelse
+update and merge
+works.

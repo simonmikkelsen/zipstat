@@ -1,0 +1,6 @@
+Dark;;Mørke, uhyggelige farver.
+zipstat;;background-color: black; border-bottom: thin solid Teal; font-size : 14px; text-align: center;
+zipstatlink;;color: Teal;text-decoration: none;
+zstabel;;border: thin Teal solid; background-color: Maroon; color: Red; font-size : 12px; font-family: sans-serif; text-align: left;
+tal;;text-align: right;
+zipstatlink2;;color: Red;
