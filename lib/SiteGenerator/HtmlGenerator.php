@@ -897,7 +897,7 @@ class HtmlFormWrapper extends FormWrapper {
 			$code .= ' method="'.htmlentities($this->getMethod()).'"';
 		}
 		
-		$code .= ' />';
+		$code .= '>';
 		
 		$wrapped = $this->getWrapped();
 		$code .= $wrapped->getCode();
