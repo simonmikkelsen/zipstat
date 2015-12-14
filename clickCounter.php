@@ -11,23 +11,23 @@ $options = new Stier();
 $in = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
 
 //Validates the username.
-$datafile = DataSource::createInstance($in['brugernavn'],&$options);
+$datafile = DataSource::createInstance($in['brugernavn'],$options);
 
 //Creates the standard library.
-$lib = new Html(&$in,&$datafile);
+$lib = new Html($in,$datafile);
 
 //Instantiates the SiteContext-objecet.
-$siteContext = new SiteContext(&$lib, &$options, &$in, 'da');
+$siteContext = new SiteContext($lib, $options, $in, 'da');
 
 //Fetches the users data.
 $res = $datafile->hentFil();
 
-$lib->setSiteContext(&$siteContext);
+$lib->setSiteContext($siteContext);
 
-$lib->setStier(&$options);
+$lib->setStier($options);
 
 //Sets the code lib in the site context.
-$siteContext->setCodeLib(&$lib);
+$siteContext->setCodeLib($lib);
 
 if ($res === -2)
 	$errMsg .= "Din datafil er desvrre blevet beskadiet, og der kan derfor ikke registreres statistikker. Kontakt ".$options->getOption('name_of_service')."'s administrator via e-mail-adressen nederst p siden.";
