@@ -238,11 +238,15 @@ class Html
 	 */
 	function setPostOrGetVars($HTTP_POST_VARS, $HTTP_GET_VARS)
 	{
-		if (sizeof($HTTP_GET_VARS) > 0)
+		if (sizeof($HTTP_GET_VARS) > 0) {
 			$HTTP_VARS = $HTTP_GET_VARS;
-		else
+		} elseif (sizeof($HTTP_GET_VARS)) {
 			$HTTP_VARS = $HTTP_POST_VARS;
-		//$this->setHTTPVars($HTTP_VARS);
+                } elseif (isset($_POST) and sizeof($_POST) > 0) {
+                        $HTTP_VARS = $_POST;
+                } elseif (isset($_GET) and sizeof($_GET)) {
+                        $HTTP_VARS = $_GET;
+                }
 		return $HTTP_VARS;
 	}
 

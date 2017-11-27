@@ -51,7 +51,7 @@ require_once(dirname(__FILE__))."/lib/StatMail.php";
 //Program
 $stier = new Stier();
 
-$ind = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+$ind = Html::setPostOrGetVars(array(), array());
 
 Html::outputNoCacheHeaders();
 
