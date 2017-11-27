@@ -43,6 +43,7 @@ Future features (non particular order):
      server (not the web).
    * Search for 'zipstat_base': If it is not set to something with dirname(__FILE__)
      set it to your need.
+   * In the file redir.php, insert all variations of your domain, see the zipstat.dk examples.
    * Save the file and make sure it is in proper PHP syntax.
    * If you can't get it to work or dosn't understand the danish (sorry again)
      then mail me at zipstat@zip.dk (ask for Simon).
