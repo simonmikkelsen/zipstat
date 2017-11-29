@@ -32,20 +32,20 @@ function Stier()
 	
 	/* The password for the database.
 	*/
-	$this->options['DB_password'] = "zipstat"; // TODO Change before release!
+	$this->options['DB_password'] = "Lj0p2ayVzK5c?lzh";
 
 	/** The web address to the folder where files such as zipstat.php
 	 *  and stats.php can be found. There must be no / in the end.
 	 */
-	$this->options['urlMain'] = 'http://localhost/zipstat'; // TODO Change before release!
+	$this->options['urlMain'] = 'https://zipstat.dk/test';
 
 	/** The web address all links to the front page must point to.
 	 */
-	$this->options['ZSHomePage'] = "http://localhost/"; // TODO Change before release!
+	$this->options['ZSHomePage'] = "https://zipstat.dk/";
 	
 	/** The web address all links to the contact page must point to.
 	 */
-	$this->options['urlContact'] = 'http://www.zip.dk/zipstat/kontakt.shtml';
+	$this->options['urlContact'] = 'https://www.zip.dk/zipstat/kontakt.shtml';
 
 	/** The e-mail address of the administrator - probably yours.
 	 */
@@ -62,7 +62,7 @@ function Stier()
 	/** The domain you are hosting ZIP Stat on. IMPORTANT: Only put your
 	 *  domain, and skip any www etc. E.g. zipstat.dk
 	 */
-	$this->options['domain'] = "localhost"; // TODO Change before release!
+	$this->options['domain'] = "zipstat.dk";
 	
 	/** The full (absolute) path to the web root of your domain. Note
 	 *  that this  path is on your domain. If you don't knows the path you
@@ -89,7 +89,7 @@ function Stier()
 	  problem this value may be set to 0.
 	  This feature is required for the hits for domains and top domains.
 	  */
-	$this->options['look_up_domains'] = 1; //Values: 0 or 1.
+	$this->options['look_up_domains'] = 1; //Values: 0 or 1 or 2.
 
 	/*Send an e-mail with a users stats, if the user requests it.
 	  The primary reason to disable this feature is, if the mail function
@@ -104,7 +104,7 @@ function Stier()
 	*/
 	$this->options['always_pro'] = 0; //Values: 0 or 1.
 
-	/*States if users with a pro account also shall have limitations. If ou
+	/*States if users with a pro account also shall have limitations. If ýou
 	  do not have problems with users who e.g. uses the stats for the latest
 	  visits as a log file, you should disable this. The limits are defined
 	  in the file Html.php in the function pro in the array $maxvalue.

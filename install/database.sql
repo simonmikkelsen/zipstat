@@ -40,6 +40,7 @@ CREATE TABLE `zs20_main` (
   `username` varchar(64) character set latin1 collate latin1_bin default NULL,
   `data` text character set latin1 NOT NULL,
   `date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `hash` varchar(255) character set latin1 collate latin1_bin default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_danish_ci;
