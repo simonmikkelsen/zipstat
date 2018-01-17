@@ -129,7 +129,7 @@ class SiteContext
 	 * @return String the option corresponding to the given key.
 	 * @see Stier
 	 */
-	function &getOption($option)
+	function getOption($option)
 	{
 		return $this->options->getOption($option);
 	}
@@ -224,7 +224,7 @@ class SiteContext
 	 * @param $key the key which represents the wanted urlbuilder.
 	 * @return UrlBuilder the wanted <code>UrlBuilder</code>.
 	 */
-	function &getUrlBuilder($key)
+	function getUrlBuilder($key)
 	{
 		$key = strtolower($key);
 		if ($key === "statsite")

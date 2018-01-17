@@ -337,16 +337,16 @@ if ($stier->getOption('collective') === 1) {
  * @return void
  */
 function zipcount($coltype,$stier,$ind,$datafil) {
-	if (($ind['taelnr'] > 0) and ($ind['etael'] === "") and ($ind['ntael'] === "")) {
+	if (isset($ind['taelnr']) and  $ind['taelnr'] > 0 and (! isset($ind['etael']) or $ind['etael'] === "") and (! isset($ind['ntael']) or $ind['ntael'] === "")) {
 		$tmp = explode("::",$datafil->getLine(37));
 		$ind['taelnr'] = round($ind['taelnr']);
 		$counter = $tmp[$ind['taelnr']] + 1;
 	}
-	elseif ($ind['etael'])
+	elseif (isset($ind['etael']))
 		$counter = $datafil->getLine(13) + 1 + $datafil->getLine(82);
-	elseif ($ind['ntael'])
+	elseif (isset($ind['ntael']))
 		$counter = $datafil->getLine(7) + 1 + $datafil->getLine(82);
-	elseif ($ind['taelnavn'])
+	elseif (isset($ind['taelnavn']))
 	{
 		$tmp = explode("::",$datafil->getLine(38));
 		$i = 0;
