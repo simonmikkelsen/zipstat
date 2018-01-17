@@ -7,6 +7,9 @@ class AuthorizeDAOMySQL {
     $this->authTable = $authTable;
     $this->credField = $credField;
     $this->userIdField = $userIdField;
+
+    $this->typePwReset = 'passwordreset';
+    $this->requestTable = 'zs20_change_requests';
   }
 
   function getCredentialHash($userId) {
@@ -20,9 +23,30 @@ class AuthorizeDAOMySQL {
   }
 
   function storeCredentials($userId, $hash) {
-    echo "Store credentials: $userId, $hash";
     $stmt = $this->mysqli->prepare("UPDATE $this->authTable SET $this->credField = ? WHERE $this->userIdField = ?"); 
     $stmt->bind_param("ss", $hash, $userId);
+    $stmt->execute();
+  }
+
+  function createPwResetRequest($userId, $token, $expiresUnixtime) {
+    $stmt = $this->mysqli->prepare("INSERT INTO $this->requestTable (username, uuid, type, expires) VALUES (?, ?, ?, FROM_UNIXTIME(?))"); 
+    $stmt->bind_param("ssss", $userId, $token, $this->typePwReset, $expiresUnixtime);
+    $stmt->execute();
+  }
+
+  function getRequestByToken($token) {
+    $stmt = $this->mysqli->prepare("SELECT username, type, UNIX_TIMESTAMP(expires) as expires FROM ".$this->requestTable." WHERE uuid = ?"); 
+    $stmt->bind_param("s", $token);
+    $stmt->execute();
+    $stmt->bind_result($userId, $type, $expires);
+    $stmt->fetch();
+    $stmt->close();
+    return array('username' => $userId, 'type' => $type, 'expires' => $expires);
+  }
+  
+  function invalidateToken($token) {
+    $stmt = $this->mysqli->prepare("DELETE FROM $this->requestTable WHERE uuid = ?"); 
+    $stmt->bind_param("s", $token);
     $stmt->execute();
   }
 }
@@ -50,6 +74,7 @@ class Authorize {
   function Authorize($authDAO) {
     $this->authDAO = $authDAO;
     $this->algo = PASSWORD_DEFAULT;
+    $this->resetTokenValidSeconds = 3600;
   } 
 
   /**
@@ -88,6 +113,23 @@ class Authorize {
       }
       $this->authDAO->storeCredentials($userId, $newHash);
       return TRUE;
+  }
+
+  function createPwResetRequest($userId, $token) {
+    $this->authDAO->createPwResetRequest($userId, $token, time() + $this->resetTokenValidSeconds);
+  }
+ 
+  function invalidateToken($token) {
+    $this->authDAO->invalidateToken($token);
+  }
+
+ function isPasswordResetTokenValid($token) {
+    $req = $this->authDAO->getRequestByToken($token);
+    if (! is_array($req) or $req['type'] !== 'passwordreset' or $req['expires'] < time()) {
+      return null;
+    }
+
+    return $req['username'];
   }
 }
 

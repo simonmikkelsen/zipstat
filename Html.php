@@ -5680,9 +5680,11 @@ class PersistenceMgr extends DataSource {
 	 */
 	function &createDataSourceByKey($key, $username, &$settings) {
 		if ($key === 'mysql.20') {
-			return new DatabaseMysqlSource($username, $settings);
+			$d = new DatabaseMysqlSource($username, $settings);
+                        return $d;
 		} else if ($key === 'textfile') {
-			return new DataFileSource($username, $settings);
+			$d = new DataFileSource($username, $settings);
+                        return $d;
 		} else {
 			echo "Unknown data source key ($key) given to PersistenceMgr::createDataSourceByKey.";
 			exit;
