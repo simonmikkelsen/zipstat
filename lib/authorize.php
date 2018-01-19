@@ -29,13 +29,13 @@ class AuthorizeDAOMySQL {
   }
 
   function createPwResetRequest($userId, $token, $expiresUnixtime) {
-    $stmt = $this->mysqli->prepare("INSERT INTO $this->requestTable (username, uuid, type, expires) VALUES (?, ?, ?, FROM_UNIXTIME(?))"); 
+    $stmt = $this->mysqli->prepare("INSERT INTO $this->requestTable (username, token, type, expires) VALUES (?, ?, ?, FROM_UNIXTIME(?))"); 
     $stmt->bind_param("ssss", $userId, $token, $this->typePwReset, $expiresUnixtime);
     $stmt->execute();
   }
 
   function getRequestByToken($token) {
-    $stmt = $this->mysqli->prepare("SELECT username, type, UNIX_TIMESTAMP(expires) as expires FROM ".$this->requestTable." WHERE uuid = ?"); 
+    $stmt = $this->mysqli->prepare("SELECT username, type, UNIX_TIMESTAMP(expires) as expires FROM ".$this->requestTable." WHERE token = ?"); 
     $stmt->bind_param("s", $token);
     $stmt->execute();
     $stmt->bind_result($userId, $type, $expires);
@@ -45,7 +45,7 @@ class AuthorizeDAOMySQL {
   }
   
   function invalidateToken($token) {
-    $stmt = $this->mysqli->prepare("DELETE FROM $this->requestTable WHERE uuid = ?"); 
+    $stmt = $this->mysqli->prepare("DELETE FROM $this->requestTable WHERE token = ?"); 
     $stmt->bind_param("s", $token);
     $stmt->execute();
   }

@@ -114,6 +114,7 @@ class HtmlSite
 		$mainSite->setWrapped($this->getHtml());
 		$sg->addElement($mainSite);
 
+                header('Content-Type: text/html; charset=utf-8'); //TODO: Put in a nicer location, but this works for now.
 		return $sg->getSite();
 	}
 

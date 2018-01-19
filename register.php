@@ -119,7 +119,7 @@ class Registrer
 		$datasource->setLine(3, $in['url']);
 		$datasource->setLine(4, $in['titel']);
 		$datasource->setLine(5, $lib->kortdato());
-		$datasource->setLine(6, $in['pwd1']);
+		$datasource->setLine(6, ''); //Old way of storing password, no longer used.
 		$in['kodeord'] = $in['pwd1'];
 		$datasource->setLine(7, "0");
 		$datasource->setLine(8, $lib->kortdato() . "");
@@ -278,6 +278,9 @@ class Registrer
 		if (! $errors->isOccured()) {
 			$datasource->createUser();
 			$datasource->gemFil();
+                        $authFactory = new AuthorizeFactory($this->siteContext->getOptions());
+                        $auth = $authFactory->create();
+                        $auth->updatePasswordHash($in['brugernavn'], $in['pwd1']);
 		} else {
 			$this->displayErrors($errors);
 		}
@@ -285,6 +288,7 @@ class Registrer
 	if (Html::okmail($in['e-mail'])) {
 			$this->doSendEmail($simpelt_avan);
 		}
+//TODO: Get the following html into using e.g. view.php to get proper formatting and headers.
 ?>
 <div class=forside>
 <h1><?php echo $this->siteContext->getLocale('regYouAreRegistered');?></h1>
@@ -325,7 +329,7 @@ class Registrer
 		$email = sprintf($this->siteContext->getLocale('regConfirmationEmail'),
 		$this->siteContext->getOption('name_of_service'),
 		$in['brugernavn'],
-		$in['pwd1'],
+		'', // Never send password in clear text again.
 		$this->siteContext->getOption('ZSHomePage'),
 		$this->siteContext->getOption('adminName'),
 		$this->siteContext->getOption('name_of_service'),

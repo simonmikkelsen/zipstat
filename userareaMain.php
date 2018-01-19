@@ -109,7 +109,7 @@ if ($gotoSite === 'rtaellere') {
 } else if ($gotoSite === 'dlbackup') {
 	download_backup($utils, $siteContext);
 } else {
-	$utils->showMessage("Vlg funktion","Vlg funktion i menuen til venstre. Husk at benytte Gem-knapperne i bunden af siderne for at gemme dine ndringer. De bliver ikke gemt hvis du forladerne siderne via menuerne eller hvis du skifter mellem simpelt og avanceret brug.");
+	$utils->showMessage("V√lg funktion","V√¶lg funktion i menuen til venstre. Husk at benytte Gem-knapperne i bunden af siderne for at gemme de ndringer. De bliver ikke gemt hvis du forladerne siderne via menuerne eller hvis du skifter mellem simpelt og avanceret brug.");
 }
 exit(0);
 
@@ -144,10 +144,10 @@ function show_backup(&$utils, &$siteContext) {
 	$utils->echoSiteHead("Backup", 0);
 ?>
 <div class=forside>
-<p><cite>Rigtige mnd tager ikke backup...</cite></p>
+<p><cite>Rigtige m√¶nd tager ikke backup...</cite></p>
 <h2>Intro</h2>
-<p>ZIP Stat tager ikke dine data som gidsel: Du kan nr som helst <a target="_blank" href="http://zipstat.org/">downloade ZIP Stat</a> og kre det hos dig selv. Du kan endda starte en konkurerende service!</p>
-<p>ZIP Stat benytter databasen MySQL og de data du kan downloade er formateret til at blive brugt af den. Benyt kun disse data til nyeste version af ZIP Stat. ZIP Stat kan automatisk opgradere et ldre dataformat, men en gammel version af ZIP Stat kan ikke bruge nyere data.</p>
+<p>ZIP Stat tager ikke dine data som gidsel: Du kan n√•r som helst <a target="_blank" href="http://zipstat.org/">downloade ZIP Stat</a> og √re det hos dig selv. Du kan endda starte en konkurerende service!</p>
+<p>ZIP Stat benytter databasen MySQL (eller de frie alternativer s√som MariaDB) og de data du kan downloade er formateret til at blive brugt af den. Benyt kun disse data til nyeste version af ZIP Stat. ZIP Stat kan nogle gange automatisk opgradere et √¶ldre dataformat, men en gammel version af ZIP Satat kan ikke bruge nyere data.</p>
 <h2>Download dine data</h2>
 <p><a href="<?php
 	echo htmlentities($_SERVER["SCRIPT_NAME"])
@@ -204,15 +204,15 @@ function r_taellere(&$utils, &$siteContext) {
 		else
 			$pro_tekst = "<a href=\"".$siteContext->getOption('urlUserAreaMain')."?$qs&amp;navneloese=skjul\">Skjul navnelse tllere...</A><br>\n";
 
-		$pro_tekst .= "Antal tllere <input type=text name=\"pro_taellere\" value=\"".$lib->pro(5)."\" size=3>\n";
-		$pro_tekst .= "<a href=\"JAVAscript: alert('Som standard har du 50 tllere, men hvis du har brug for flere ellere frre, kan du indtaste antallet her. Du br dog ikke stte tallet til mere end nogle hundrede, da mange tllere dels vil gre din statistik mere uoverskuelig, men selve statistikken bliver ogs langsommere, nr der skal holder styr p store mngder data.');\"><img src=\"".$siteContext->getPath('zipstat_icons')."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til antal tllere...\"></a><br>\n";
+		$pro_tekst .= "Antal t√¶llere <input type=text name=\"pro_taellere\" value=\"".$lib->pro(5)."\" size=3>\n";
+		$pro_tekst .= "<a href=\"JAVAscript: alert('Som standard har du 50 t√¶llere, men hvis du har brug for flere ellere √rre, kan du indtaste antallet her. Du b√∏r dog ikke stte tallet til mere end nogle hundrede, da mange √llere dels vil g√∏re din statistik mere uoverskuelig, men selve statistikken bliver o√ langsommere, n√•r der skal holder styr √ store m√¶ngder data.');\"><img src=\"".$siteContext->getPath('zipstat_icons')."/stegn2.gif\" width=9 height=14 border=0 alt=\"√lp til antal t√¶llere...\"></a><br>\n";
 	} else {
 		$pro_tekst = '';
 	}
 
 ?>
 <div class=forside>
-<p>Hvis du vil ndre eller slette dens navn, s gr det i kassen ud for tlleren. Hvis du vil nulstille en tller, s st kryds i kassen ud for den respektive tller.</p>
+<p>Hvis du vil √¶ndre eller slette dens navn, √ g√∏r det i kassen ud for √lleren. Hvis du vil nulstille en t√¶ller, √ s√¶t kryds i kassen ud for den espektive t√¶ller.</p>
 <?php echo $pro_tekst; ?>
 <form action="<?php echo $siteContext->getOption('urlUserAreaMain'); ?>" method=POST>
 <table border=1>
@@ -301,7 +301,7 @@ function r_spoer(&$utils, &$siteContext) {
 	$ind = $lib->getHTTPVars();
 	$datafile = &$lib->getDatafil();
 
-	$utils->echoSiteHead("Sprgsml", 0);
+	$utils->echoSiteHead("Sp√gsm√•l", 0);
 
 	echo "<form action=\"".$siteContext->getOption('urlUserAreaMain')."\" method=post>";
 
@@ -332,7 +332,7 @@ function r_spoer(&$utils, &$siteContext) {
 	for ($i = 0;$i < $visAntalSp; $i++) {
 		$dy = $i + 1;
 		?>
-		<a href="JAVAscript: alert('Hvis du vil ndre p et sprgsml, skal du skrive ndringen i den verste boks.\nHvis du vil ndre svarene, skal du skrive ndringerne i de\nmindre bokse.\nDu kan nulstille antal svar (hits) hvert svar har fet, ved at\nstte kryds i den lille kasse.\nHvis du ikke skriver noget i et svarfelt, vil svaret ikke blive givet som svarmulighed.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til rediger sprgsml..."></a>
+		<a href="JAVAscript: alert('Hvis du vil √¶ndre √ et sp√∏rgs√l, skal du skrive √¶ndringen i den vnrsre boks.\nHvis du vil √¶ndre svarene, skal du skriv√ndringerne i de\nmindre bokse.\nDu kan nulstille antal svar (hits) hvert svar har fet, ved at\ns√¶tte kryds i den lille kasse.\nHvis du ikke skriver noget i et svarfelt, vil svaret ikke blive givet som svarmulighed.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="√lp til rediger sp√rgsm√•l..."></a>
 		<p align=center><table border=1 class=forside><caption>Hvis du ikke skriver noget i et svarfelt, vil svaret ikke blive vist.</caption>
 		<tr><td colspan=3>
 		<big align=center>Sprgsml <?php echo $dy; ?></big>

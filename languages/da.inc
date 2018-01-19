@@ -16,27 +16,27 @@ function getLocals()
 	$locale['minuteShort'] = 'min.';
 
 	//Low bandwidth mode
-	$locale['lowBandwidthStatsite'] = 'Der er begrænset båndbredde til rådighed, så for at tingene ikke kommer til at gå alt for langsomt kan der derfor kun ses %1$s statistikker på én gang, på statistiksiden. Brug statistikvælgeren som er nederst på statistiksiden til at vælge de statistikker du vil se (vælgeren findes kun i html-udgaven af statistiksiden).';
-	$locale['statsiteWhyGettingMail'] = 'Framelding.'."\n".'Du har modtaget denne e-mail fordi du eller en anden har tilmeldt dig ZIP Stat og bedt om at få tilsendt disse mails.'."\n".'Du kan slette den pågældende konto ved at logge ind på brugerområdet på www.zipstat.dk (med brugernavn %1$s og kodeord %2$s) og følge instruktionerne nederst på siden "Oplysninger". På siden "Mail stats" kan du evt. nøjes med at slå disse e-mails fra.';
+	$locale['lowBandwidthStatsite'] = 'Der er begrÃ¦nset bÃ¥ndbredde til rÃ¥dighed, sÃ¥ for at tingene ikke kommer til at gÃ¥ alt for langsomt kan der derfor kun ses %1$s statistikker pÃ¥ Ã©n gang, pÃ¥ statistiksiden. Brug statistikvÃ¦lgeren som er nederst pÃ¥ statistiksiden til at vÃ¦lge de statistikker du vil se (vÃ¦lgeren findes kun i html-udgaven af statistiksiden).';
+	$locale['statsiteWhyGettingMail'] = 'Framelding.'."\n".'Du har modtaget denne e-mail fordi du eller en anden har tilmeldt dig ZIP Stat og bedt om at fÃ¥ tilsendt disse mails.'."\n".'Du kan slette den pÃ¥gÃ¦ldende konto ved at logge ind pÃ¥ brugeromrÃ¥det pÃ¥ www.zipstat.dk (med brugernavn %1$s og kodeord %2$s) og fÃ¸lge instruktionerne nederst pÃ¥ siden "Oplysninger". PÃ¥ siden "Mail stats" kan du evt. nÃ¸jes med at slÃ¥ disse e-mails fra.';
 	
 	
 	//The days of the week
-	$locale['sunday'] = 'søndag';
+	$locale['sunday'] = 'sÃ¸ndag';
 	$locale['monday'] = 'mandag';
 	$locale['tuesday'] = 'tirsdag';
 	$locale['wednesday'] = 'onsdag';
 	$locale['thursday'] = 'torsdag';
 	$locale['friday'] = 'fredag';
-	$locale['saturday'] = 'lørdag';
+	$locale['saturday'] = 'lÃ¸rdag';
 	
 	//The days of the week - short
-	$locale['shortSunday'] = 'søn';
+	$locale['shortSunday'] = 'sÃ¸n';
 	$locale['shortMonday'] = 'man';
 	$locale['shortTuesday'] = 'tirs';
 	$locale['shortWednesday'] = 'ons';
 	$locale['shortThursday'] = 'tors';
 	$locale['shortFriday'] = 'fre';
-	$locale['shortSaturday'] = 'lør';
+	$locale['shortSaturday'] = 'lÃ¸r';
 	
 	/*Set to 0 if Sunday is the first day og the week, 1 if Monday is first*/
 	$locale['weekStarts'] = 1;
@@ -115,14 +115,14 @@ function getLocals()
 	$locale['languages']['cs'] = "tjekkisk";
 	$locale['languages']['cy'] = "walisisk";
 	$locale['languages']['dz'] = "Bhutani";
-	$locale['languages']['el'] = "græsk";
+	$locale['languages']['el'] = "grÃ¦sk";
 	$locale['languages']['eo'] = "esperanto";
 	$locale['languages']['et'] = "estisk";
 	$locale['languages']['eu'] = "baskisk";
 	$locale['languages']['fa'] = "persisk";
 	$locale['languages']['fi'] = "finsk";
 	$locale['languages']['fj'] = "fiji";
-	$locale['languages']['fo'] = "færøsk";
+	$locale['languages']['fo'] = "fÃ¦rÃ¸sk";
 	$locale['languages']['fr'] = "fransk";
 	$locale['languages']['fy'] = "frisisk";
 	$locale['languages']['ga'] = "irsk";
@@ -147,7 +147,7 @@ function getLocals()
 	$locale['languages']['jw'] = "javanesisk";
 	$locale['languages']['ka'] = "georgisk";
 	$locale['languages']['kk'] = "Kazakh";
-	$locale['languages']['kl'] = "grønlandsk";
+	$locale['languages']['kl'] = "grÃ¸nlandsk";
 	$locale['languages']['km'] = "cambodjansk";
 	$locale['languages']['kn'] = "Kannada";
 	$locale['languages']['ko'] = "koreansk";
@@ -182,7 +182,7 @@ function getLocals()
 	$locale['languages']['qu'] = "Quechua";
 	$locale['languages']['rm'] = "Rhaeto-Romance";
 	$locale['languages']['rn'] = "Kirundi";
-	$locale['languages']['ro'] = "rumænsk";
+	$locale['languages']['ro'] = "rumÃ¦nsk";
 	$locale['languages']['ru'] = "russisk";
 	$locale['languages']['rw'] = "Kinyarwanda";
 	$locale['languages']['sa'] = "sanskrit";
@@ -238,8 +238,8 @@ function getLocals()
 	$locale['dateTime'] = '\\k\\l. H:i';
 	$locale['dateDate'] = '\\d. d-m Y';
 	
-	//Basic stats/Enkeltstående statistikker
-	$locale['basicStats'] = 'Enkeltstående statistikker';
+	//Basic stats/EnkeltstÃ¥ende statistikker
+	$locale['basicStats'] = 'EnkeltstÃ¥ende statistikker';
 	$locale['basicStatsType'] = 'Type';
 	$locale['basicStatsData'] = 'Data';
 	$locale['basicStatsDate'] = 'Dato';
@@ -248,32 +248,32 @@ function getLocals()
 	$locale['basicSUniq'] = 'Heraf unikke';
 	$locale['basicSHitsPrUser'] = 'Hits pr. bruger';
 	$locale['basicSMaxHitsDay'] = 'Max hits pr. dag';
-	$locale['basicSMaxHitsMonth'] = 'Max hits på en måned';
-	$locale['basicSMaxUniqHDay'] = 'Max unikke hits på en dag';
-	$locale['basicSMaxUniqHMonth'] = 'Max unikke hits på en måned';
+	$locale['basicSMaxHitsMonth'] = 'Max hits pÃ¥ en mÃ¥ned';
+	$locale['basicSMaxUniqHDay'] = 'Max unikke hits pÃ¥ en dag';
+	$locale['basicSMaxUniqHMonth'] = 'Max unikke hits pÃ¥ en mÃ¥ned';
 	$locale['basicSUniqHToday'] = 'Unikke hits idag';
-	$locale['baticSUIniqHThisMonth'] = 'Unikke hits denne måned';
+	$locale['baticSUIniqHThisMonth'] = 'Unikke hits denne mÃ¥ned';
 	$locale['basicSUniqPerDay'] = 'Unikke hits pr. dag';
 	$locale['basicSUniqPerHour'] = 'Unikke hits pr. time';
 	$locale['basicSHitsDay'] = 'Hits pr. dag';
 	$locale['basicSHitsHour'] = 'Hits pr. time';
-	$locale['basicSVisitorsNow'] = 'Personer på siden nu (beregnet)';
+	$locale['basicSVisitorsNow'] = 'Personer pÃ¥ siden nu (beregnet)';
 	$locale['basicSeSiteSeen'] = 'Hver side ses';
 	
 	//Projections
 	$locale['proj'] = 'Prognoser';
-	$locale['projTheText'] = 'Eftersom %1$s af sidens hits plejer at komme før %2$s, vil der komme ca. %3$s hits mere, hvilket bringer siden op på %4$s hits i dag. Yderligere, vil der komme ca. %5$s hits mere i denne måned, hvilket bringer siden op på i alt %6$s i denne måned.';
+	$locale['projTheText'] = 'Eftersom %1$s af sidens hits plejer at komme fÃ¸r %2$s, vil der komme ca. %3$s hits mere, hvilket bringer siden op pÃ¥ %4$s hits i dag. Yderligere, vil der komme ca. %5$s hits mere i denne mÃ¥ned, hvilket bringer siden op pÃ¥ i alt %6$s i denne mÃ¥ned.';
 	
 	//Stats with graphs
 	$locale['hits'] = 'hits';
 	$locale['percent'] = 'procent';
 	$locale['graph'] = 'graf';
 	
-	$locale['sgMonthStat'] = 'Pr. måned i et år';
-	$locale['sgMonthDesc'] = 'Denne måned er markeret';
-	$locale['month'] = 'måned';
+	$locale['sgMonthStat'] = 'Pr. mÃ¥ned i et Ã¥r';
+	$locale['sgMonthDesc'] = 'Denne mÃ¥ned er markeret';
+	$locale['month'] = 'mÃ¥ned';
 	
-	$locale['sgDayStat'] = 'Pr. dag i en måned';
+	$locale['sgDayStat'] = 'Pr. dag i en mÃ¥ned';
 	$locale['sgDayDesc'] = 'Dagen i dag er markeret';
 	$locale['day'] = 'dag';
 	
@@ -285,13 +285,13 @@ function getLocals()
 	$locale['sgWeekDesc'] = 'Denne uge er markeret';
 	$locale['week'] = 'uge';
 	
-	$locale['sgTopdomainStat'] = "Topdomæner";
+	$locale['sgTopdomainStat'] = "TopdomÃ¦ner";
 	$locale['sgTopdomainDesc'] = "";
 	$locale['topdomain'] = "topdom.";
 
-	$locale['sgDomainStat'] = "Domæner";
+	$locale['sgDomainStat'] = "DomÃ¦ner";
 	$locale['sgDomainDesc'] = "";
-	$locale['domain'] = "domæne";
+	$locale['domain'] = "domÃ¦ne";
 
 	$locale['sgBrowserStat'] = "Browsere";
 	$locale['sgBrowserDesc'] = "";
@@ -311,66 +311,66 @@ function getLocals()
 	$locale['sgLangDesc'] = "";
 	$locale['lang'] = "sprog";
 	
-	$locale['sgResStat'] = "Opløsninger";
+	$locale['sgResStat'] = "OplÃ¸sninger";
 	$locale['sgResDesc'] = "";
-	$locale['resolution'] = "opløsning";
+	$locale['resolution'] = "oplÃ¸sning";
 
 	$locale['sgColoursStat'] = "Antal farver (i bit)";
 	$locale['sgColoursDesc'] = "Tip: 4 bit = 16 farver - 8 bit = 256 farver - 16 bit = 65.536 farver - 24 bit = 16.777.216 farver - 32 bit = 4.294.967.296 farver";
 	$locale['colours'] = "farver";
 
 	$locale['sgJavaStat'] = "JAVA-support";
-	$locale['sgJavaDesc'] = "Ja betyder at den besøgende har slået JAVA (ikke JAVA-script) til. Nej betyder at browseren ikke understøtter det, eller det er slået fra. Ved ikke, betyder at browseren ikke ville opgive det, og så understøtter den det nok ikke.";
-	$locale['enabledJava'] = "Slået til";
+	$locale['sgJavaDesc'] = "Ja betyder at den besÃ¸gende har slÃ¥et JAVA (ikke JAVA-script) til. Nej betyder at browseren ikke understÃ¸tter det, eller det er slÃ¥et fra. Ved ikke, betyder at browseren ikke ville opgive det, og sÃ¥ understÃ¸tter den det nok ikke.";
+	$locale['enabledJava'] = "SlÃ¥et til";
 
-	$locale['sgCountersStat'] = "Tællere";
-	$locale['sgCountersDesc'] = "Tælleren %1\$s tælles op når der ikke er nogle af de øvrige tællere der kan tælles op, fordi der ikke er flere ledige tællere.";
-	$locale['counters'] = "Tæller";
+	$locale['sgCountersStat'] = "TÃ¦llere";
+	$locale['sgCountersDesc'] = "TÃ¦lleren %1\$s tÃ¦lles op nÃ¥r der ikke er nogle af de Ã¸vrige tÃ¦llere der kan tÃ¦lles op, fordi der ikke er flere ledige tÃ¦llere.";
+	$locale['counters'] = "TÃ¦ller";
 	$locale['sgStdCounter'] = "Div.";
 
 	$locale['sgJavaScriptStat'] = "JAVA-script support";
-	$locale['sgJavaScriptDesc'] = "Sorteret.\nJa betyder at den besøgende har slået JAVA-script til. Nej betyder at browseren ikke understøtter det, eller det er slået fra. Ved ikke, betyder at browseren ikke ville opgive det, og så understøtter den det nok ikke.";
-	$locale['enabledJavaScript'] = "Slået til";
+	$locale['sgJavaScriptDesc'] = "Sorteret.\nJa betyder at den besÃ¸gende har slÃ¥et JAVA-script til. Nej betyder at browseren ikke understÃ¸tter det, eller det er slÃ¥et fra. Ved ikke, betyder at browseren ikke ville opgive det, og sÃ¥ understÃ¸tter den det nok ikke.";
+	$locale['enabledJavaScript'] = "SlÃ¥et til";
 
 	$locale['sgRefererStat'] = "Seneste referencesider";
-	$locale['sgRefererDesc'] = "Der registreres hvor mange besøgende du har fået fra de enkelte refererencesider. Der registreres dog kun et begrænset antal forskellige referencesider, så når der ikke er mere plads til flere referencesider, bliver den side, der ikke har været referenceside i længst tid, slettet fra listen. Links åbner i et nyt vindue.";
+	$locale['sgRefererDesc'] = "Der registreres hvor mange besÃ¸gende du har fÃ¥et fra de enkelte refererencesider. Der registreres dog kun et begrÃ¦nset antal forskellige referencesider, sÃ¥ nÃ¥r der ikke er mere plads til flere referencesider, bliver den side, der ikke har vÃ¦ret referenceside i lÃ¦ngst tid, slettet fra listen. Links Ã¥bner i et nyt vindue.";
 
 	$locale['sgEntryStat'] = "Indgangssider";
-	$locale['sgEntryDesc'] = "De sider folk først kommer ind på.";
+	$locale['sgEntryDesc'] = "De sider folk fÃ¸rst kommer ind pÃ¥.";
 	$locale['sgEntryUrl'] = "Side";
 	
 	$locale['sgExitStat'] = "Udgangssider";
 	$locale['sgExitDesc'] = "De sider folk forlader siden fra.";
 	$locale['sgExitUrl'] = "Side";
 
-	$locale['sgMoveStat'] = "Bevægelser";
-	$locale['sgMoveDesc'] = "Der vises hvilke sider folk bevæger sig imellem. Siden til venstre for -> er den folk kom fra, og den til højre er den de kom til. Står der ikke noget til venstre, er personen lige kommet ind på siden.";
+	$locale['sgMoveStat'] = "BevÃ¦gelser";
+	$locale['sgMoveDesc'] = "Der vises hvilke sider folk bevÃ¦ger sig imellem. Siden til venstre for -> er den folk kom fra, og den til hÃ¸jre er den de kom til. StÃ¥r der ikke noget til venstre, er personen lige kommet ind pÃ¥ siden.";
 	$locale['sgMovePages'] = "Sider";
 
-	$locale['sgClickCountStat'] = "Kliktællere";
+	$locale['sgClickCountStat'] = "KliktÃ¦llere";
 	$locale['sgClickCountDesc'] = "";
 	$locale['sgClicks'] = "Nr/navn";
-	$locale['sgNoName'] = "Navneløs";
+	$locale['sgNoName'] = "NavnelÃ¸s";
 
-	$locale['sgSearchWordStat'] = "Søgeord";
-	$locale['sgSearchWordDesc'] = "Disse ord er ord folk har søgt på når de er kommet ind på din hjemmeside via en af de søgemaskiner ZIP Stat understøtter.";
-	$locale['sgSearchWord'] = "Søgeord";
+	$locale['sgSearchWordStat'] = "SÃ¸geord";
+	$locale['sgSearchWordDesc'] = "Disse ord er ord folk har sÃ¸gt pÃ¥ nÃ¥r de er kommet ind pÃ¥ din hjemmeside via en af de sÃ¸gemaskiner ZIP Stat understÃ¸tter.";
+	$locale['sgSearchWord'] = "SÃ¸geord";
 
-	$locale['sgSearchEngineStat'] = "Søgemaskiner";
-	$locale['sgSearchEngineDesc'] = "Der vises hvilke søgemaskiner (der er understøttet af ZIP stat) folk, har fundet siden med.";
-	$locale['sgSearchEngine'] = "Søgemaskine";
+	$locale['sgSearchEngineStat'] = "SÃ¸gemaskiner";
+	$locale['sgSearchEngineDesc'] = "Der vises hvilke sÃ¸gemaskiner (der er understÃ¸ttet af ZIP stat) folk, har fundet siden med.";
+	$locale['sgSearchEngine'] = "SÃ¸gemaskine";
 
 	$locale['sgVoteStat'] = "Afstemninger";
-	$locale['sgQuestion'] = "Spørgsmål";
+	$locale['sgQuestion'] = "SpÃ¸rgsmÃ¥l";
 	$locale['sgNoVotes'] = "Der er ikke oprettet nogle afstemninger.";
 
-	$locale['sgLatestStat'] = "Seneste besøgende";
-	$locale['sgLatestDesc'] = "Links åbner i et nyt vindue.";
+	$locale['sgLatestStat'] = "Seneste besÃ¸gende";
+	$locale['sgLatestDesc'] = "Links Ã¥bner i et nyt vindue.";
 	$locale['sgLatestTime'] = "Tid";
 	$locale['sgLatestBrowser'] = "Brow.";
 	$locale['sgLatestOs'] = "OS";
 	$locale['sgLatestIp'] = "IP-adr";
-	$locale['sgLatestDomain'] = "Domæne";
+	$locale['sgLatestDomain'] = "DomÃ¦ne";
 	$locale['sgLatestRes'] = "Opl.";
 	$locale['sgLatestColours'] = "Frv.";
 	$locale['sgLatestLang'] = "Spr.";
@@ -383,7 +383,7 @@ function getLocals()
 	$locale['sgSeriesBrowser'] = "Browsere";
 
 	//The stat selector box on the stat page
-	$locale['sgNext'] = "Næste";
+	$locale['sgNext'] = "NÃ¦ste";
 	$locale['sgPrevious'] = "Forrige";
 	$locale['sgAll'] = "Alle";
 	$locale['sgRest'] = "Resten";
@@ -395,138 +395,137 @@ function getLocals()
 	$locale['sgTypeText'] = "Vis siden som";
 
 	//The HtmlSite class
-	$locale['htmlsHelpFor'] = "Hjælp til";
+	$locale['htmlsHelpFor'] = "HjÃ¦lp til";
 	
 	
 	//The registration page
 	$locale['regHeadline'] = "Tilmeld";
 	$locale['regXOfY'] = "Side %1\$s af %2\$s...";
-	$locale['regWelcomePart1'] = "Velkommen til ZIP stat. Udfyld nedenstående skema, tryk på &quot;Tilmeld&quot;, og sæt den kode du får ind på din hjemmeside. Så er du oppe at køre.<br>Tryk på ";
-	$locale['regWelcomePart2'] = " for ekstra hjælp.";
-	$locale['regHelpHelp'] = "hjælp";
-	$locale['regHelpHText'] = "Når du trykker på de blå spørgsmålstegn,\nfår du lidt ekstra hjælp.";
-	$locale['regWithLegal'] = "Det med småt";
-	$locale['regWithLegalTxt'] = "ZIP Stat er en gratis service, og kan derfor ikke på nogen måde gøres ansvarlig for tab eller skade der måttet være opstået i forbindelse med brug eller afbenyttelse. Jeg gør mit bedste for at lave en god stabil statistik, men skulle der glippe noget, vil jeg ikke resikere at skulle ud og tømme min uddannelsesopsparing for at udbetale erstatinger.</P><p>Hvis der er noget der driller, kan du prøve at kigge på <a href=\"hjaelp.shtml\">hjælpesiden</a> og i de <a href=\"oss.shtml\">Ofte Stillede Spørgsmål</a>, men hjælper dette ikke, må du gerne <a href=\"http://www.zip.dk/zipstat/kontakt.shtml\">skrive</a>, hvilket du også er velkommen til, hvis du har ris, ros eller kommentarer.";
+	$locale['regWelcomePart1'] = "Velkommen til ZIP stat. Udfyld nedenstÃ¥ende skema, tryk pÃ¥ &quot;Tilmeld&quot;, og sÃ¦t den kode du fÃ¥r ind pÃ¥ din hjemmeside. SÃ¥ er du oppe at kÃ¸re.<br>Tryk pÃ¥ ";
+	$locale['regWelcomePart2'] = " for ekstra hjÃ¦lp.";
+	$locale['regHelpHelp'] = "hjÃ¦lp";
+	$locale['regHelpHText'] = "NÃ¥r du trykker pÃ¥ de blÃ¥ spÃ¸rgsmÃ¥lstegn,\nfÃ¥r du lidt ekstra hjÃ¦lp.";
+	$locale['regWithLegal'] = "Det med smÃ¥t";
+	$locale['regWithLegalTxt'] = "ZIP Stat er en gratis service, og kan derfor ikke pÃ¥ nogen mÃ¥de gÃ¸res ansvarlig for tab eller skade der mÃ¥ttet vÃ¦re opstÃ¥et i forbindelse med brug eller afbenyttelse. Jeg gÃ¸r mit bedste for at lave en god stabil statistik, men skulle der glippe noget, vil jeg ikke resikere at skulle ud og tÃ¸mme min uddannelsesopsparing for at udbetale erstatinger.</P><p>Hvis der er noget der driller, kan du prÃ¸ve at kigge pÃ¥ <a href=\"hjaelp.shtml\">hjÃ¦lpesiden</a> og i de <a href=\"oss.shtml\">Ofte Stillede SpÃ¸rgsmÃ¥l</a>, men hjÃ¦lper dette ikke, mÃ¥ du gerne <a href=\"http://www.zip.dk/zipstat/kontakt.shtml\">skrive</a>, hvilket du ogsÃ¥ er velkommen til, hvis du har ris, ros eller kommentarer.";
 	$locale['regName'] = "Navn";
 	$locale['regNameHelp'] = "Skriv dit navn i boksen.";
 	$locale['regNameEx'] = "f.eks. Hans Jensen";
 	$locale['regEmail'] = "E-mail";
-	$locale['regEmailHelp'] = "Skriv din e-mail adresse i boksen.\nHvis den er lidt speciel kan det være der bliver meldt at den er forkert.\nDet er lavet af sikkerhedsgrunde, og der er ikke andet at gøre end enten\nat skrive en falsk adresse, eller få en anden (evt. et alias).";
+	$locale['regEmailHelp'] = "Skriv din e-mail adresse i boksen.\nHvis den er lidt speciel kan det vÃ¦re der bliver meldt at den er forkert.\nDet er lavet af sikkerhedsgrunde, og der er ikke andet at gÃ¸re end enten\nat skrive en falsk adresse, eller fÃ¥ en anden (evt. et alias).";
 	$locale['regEmailEx'] = "f.eks. hans_jensen@worldonline.dk";
 	$locale['regUrl'] = "Sidens adresse";
-	$locale['regUrlHelp'] = "Skriv titlen på din hjemmeside i boksen.";
+	$locale['regUrlHelp'] = "Skriv titlen pÃ¥ din hjemmeside i boksen.";
 	$locale['regUrlEx'] = "f.eks. http://www.worldonline.dk/~hans_jensen/";
 	$locale['regTitle'] = "Sidens titel";
-	$locale['regTitleHelp'] = "Skriv titlen på din hjemmeside i boksen.";
+	$locale['regTitleHelp'] = "Skriv titlen pÃ¥ din hjemmeside i boksen.";
 	$locale['regTitleEx'] = "f.eks. Hans Jensens hjemmeside";
-	$locale['regUsername'] = "Ønsket brugernavn";
-	$locale['regUsernameHelp'] = "Skriv det brugernavn du gerne vil have, i boksen til højre.\nDet kan kun indeholde bogstaverne a-z, tallene 0-9 samt - og _.\n\nVIGTIGT: Modsat alt andet på ZIP Stat, kan du ikke ændre\ndit brugernavn uden at tilmelde dig igen (og dermed slette alle\ndine statistikker), så vælg det med omtanke.";
+	$locale['regUsername'] = "Ã˜nsket brugernavn";
+	$locale['regUsernameHelp'] = "Skriv det brugernavn du gerne vil have, i boksen til hÃ¸jre.\nDet kan kun indeholde bogstaverne a-z, tallene 0-9 samt - og _.\n\nVIGTIGT: Modsat alt andet pÃ¥ ZIP Stat, kan du ikke Ã¦ndre\ndit brugernavn uden at tilmelde dig igen (og dermed slette alle\ndine statistikker), sÃ¥ vÃ¦lg det med omtanke.";
 	$locale['regUsernameEx'] = "f.eks. hans_jensen";
-	$locale['regPassword'] = "Ønsket kodeord";
-	$locale['regPasswordHelp'] = "Du skal skrive det kodeord du ønsker i boksen til højre.\nDet skal du bruge når du f.eks. vil ændredine oplysninger - så\nandre ikke kan gøre det. Det må kun indeholde tegnene a-z samt\ntallene 0-9, og husk at der er forskel på store og små bogstaver!\n\nNår du skriver det, vil du kun kunne se nogle stjerner - det er for\nandre ikke kan aflure det, men det du taster ind bliver tilmeldt.";
+	$locale['regPassword'] = "Ã˜nsket kodeord";
+	$locale['regPasswordHelp'] = "Du skal skrive det kodeord du Ã¸nsker i boksen til hÃ¸jre.\nDet skal du bruge nÃ¥r du f.eks. vil Ã¦ndredine oplysninger - sÃ¥\nandre ikke kan gÃ¸re det. Det mÃ¥ kun indeholde tegnene a-z samt\ntallene 0-9, og husk at der er forskel pÃ¥ store og smÃ¥ bogstaver!\n\nNÃ¥r du skriver det, vil du kun kunne se nogle stjerner - det er for\nandre ikke kan aflure det, men det du taster ind bliver tilmeldt.";
 	$locale['regPasswordEx'] = "f.eks. uD67G6yuftf";
 	$locale['regPassword2'] = "Skriv det igen";
-	$locale['regPassword2Help'] = "Her skal du skrive præcis det samme kodeord som du skrev\ni boksen for oven. Da du ikke kan se, hvad du skrev, er dette\nmåden du er sikker på ikke at have lavet en slåfejl.";
-	$locale['regPassword2Ex'] = "som ovenstående, dvs. f.eks. uD67G6yuftf";
-	$locale['regUserAreaHelp'] = "Den side hvorfra du administrere din statistik indeholder mange funktioner,\nså derfor er der lavet en simpel udgave, som kun har de vigtigste, så det\nhele bliver lettere at finde rundt i.\nDu kan altid skifte brugerflade når du vil, uden at det på nogen måde\npåvirker din statistik.";
+	$locale['regPassword2Help'] = "Her skal du skrive prÃ¦cis det samme kodeord som du skrev\ni boksen for oven. Da du ikke kan se, hvad du skrev, er dette\nmÃ¥den du er sikker pÃ¥ ikke at have lavet en slÃ¥fejl.";
+	$locale['regPassword2Ex'] = "som ovenstÃ¥ende, dvs. f.eks. uD67G6yuftf";
+	$locale['regUserAreaHelp'] = "Den side hvorfra du administrere din statistik indeholder mange funktioner,\nsÃ¥ derfor er der lavet en simpel udgave, som kun har de vigtigste, sÃ¥ det\nhele bliver lettere at finde rundt i.\nDu kan altid skifte brugerflade nÃ¥r du vil, uden at det pÃ¥ nogen mÃ¥de\npÃ¥virker din statistik.";
 	$locale['regUserArea'] = "brugerflade";
 	$locale['regUserAreaWich'] = "Hvilken brugerflade vil du gerne bruge?";
 	$locale['regUserAreaSimple'] = "Den simple";
 	$locale['regUserAreaAdvanced'] = "Den avancerede";
-	$locale['regForKidsHelp'] = "Hvis din side indeholder materiale, der normalt ikke bør ses af børn og\nunge under 18 år, skal du svare \'Ja\'. Dette bevirker bl.a. at folk får en\nadvarsel, før de går ind på din side fra toplisten.\n\nEnvidre får dit link på toplisten også en speciel farve, så folk ikke\nkommer til at gå ind på siden ved et uheld. Dette medfører samtidig, at\nfolk der f.eks. er ude efter erotiske sider, lettere kan finde dem.";
+	$locale['regForKidsHelp'] = "Hvis din side indeholder materiale, der normalt ikke bÃ¸r ses af bÃ¸rn og\nunge under 18 Ã¥r, skal du svare \'Ja\'. Dette bevirker bl.a. at folk fÃ¥r en\nadvarsel, fÃ¸r de gÃ¥r ind pÃ¥ din side fra toplisten.\n\nEnvidre fÃ¥r dit link pÃ¥ toplisten ogsÃ¥ en speciel farve, sÃ¥ folk ikke\nkommer til at gÃ¥ ind pÃ¥ siden ved et uheld. Dette medfÃ¸rer samtidig, at\nfolk der f.eks. er ude efter erotiske sider, lettere kan finde dem.";
 	$locale['regForKidsHelpFor'] = "valg af indholdstype";
-	$locale['regForKids'] = "Indeholder din side noget der ikke bør ses af børn og unge under 18 år?";
+	$locale['regForKids'] = "Indeholder din side noget der ikke bÃ¸r ses af bÃ¸rn og unge under 18 Ã¥r?";
 	$locale['regForKidsYes'] = "Ja";
 	$locale['regForKidsNo'] = "Nej";
 	$locale['regNext'] = "Registrer...";
 	
-	$locale['regUASimple'] = "Du valgte under registreringen at benytte det simple brugerområde. Dette\nhar færre funktioner end det avancerede, men er enklere og mere\noverskueligt at benytte. Du kan skifte mellem det simple og avancerede\nbrugerområdet så ofte du vil, i menuen \"Indstillinger\" på brugerområdet.";
-	$locale['regUAAdvanced'] = "Du valgte under registreringen at benytte det avancerede brugerområde. Dette\nhar flere funktioner end det simple, men er sværer og mere\nuoverskueligt at benytte. Du kan skifte mellem det simple og avancerede\nbrugerområdet så ofte du vil, i menuen \"Indstillinger\" på brugerområdet.";
+	$locale['regUASimple'] = "Du valgte under registreringen at benytte det simple brugeromrÃ¥de. Dette\nhar fÃ¦rre funktioner end det avancerede, men er enklere og mere\noverskueligt at benytte. Du kan skifte mellem det simple og avancerede\nbrugeromrÃ¥det sÃ¥ ofte du vil, i menuen \"Indstillinger\" pÃ¥ brugeromrÃ¥det.";
+	$locale['regUAAdvanced'] = "Du valgte under registreringen at benytte det avancerede brugeromrÃ¥de. Dette\nhar flere funktioner end det simple, men er svÃ¦rer og mere\nuoverskueligt at benytte. Du kan skifte mellem det simple og avancerede\nbrugeromrÃ¥det sÃ¥ ofte du vil, i menuen \"Indstillinger\" pÃ¥ brugeromrÃ¥det.";
 	//The registration confirmation e-mail
 			$email = "";
 		$email .= "Du er nu tilmeldt hos %1\$s\n";
 		$email .= "Dit brugernavn er: %2\$s\n";
-		$email .= "Dit kodeord    er: %3\$s\n";
 		$email .= "\n";
 		$email .= "Gem disse oplysninger et sted hvor du altid kan finde dem.\n";
 		$email .= "\n";
-		$email .= "Hvis du vil ændre dine oplysninger, så gå til %4\$s ,\n";
-		$email .= "log ind på brugerområdet og vælge punktet \"Oplysninger\" i menuen til venstre.\n";
-		$email .= "Fra brugerområdet vil du fx. også kunne oprette spørgsmål, tællere mm., men\n";
-		$email .= "vigtigst af alt, kan du få vist den kode du skal sætte på din hjemmeside,\n";
-		$email .= "for at få ZIP Stat til at virke. Denne finder du under \"Obligatorisk kode\".\n";
+		$email .= "Hvis du vil Ã¦ndre dine oplysninger, sÃ¥ gÃ¥ til %4\$s ,\n";
+		$email .= "log ind pÃ¥ brugeromrÃ¥det og vÃ¦lge punktet \"Oplysninger\" i menuen til venstre.\n";
+		$email .= "Fra brugeromrÃ¥det vil du fx. ogsÃ¥ kunne oprette spÃ¸rgsmÃ¥l, tÃ¦llere mm., men\n";
+		$email .= "vigtigst af alt, kan du fÃ¥ vist den kode du skal sÃ¦tte pÃ¥ din hjemmeside,\n";
+		$email .= "for at fÃ¥ ZIP Stat til at virke. Denne finder du under \"Obligatorisk kode\".\n";
 		$email .= "\n";
-		$email .= "På brugerområdet (log ind via ZIP Stats forside), kan du envidere sætte\n";
-		$email .= "mere avancerede funktioner igang, f.eks. en funktion så du ikke selv\n";
-		$email .= "bliver registreret af statistikken, men du kan også på selvvalgte tidspunkter\n";
-		$email .= "få tilsendt dine statistikker med e-mail, eller hente dem i en udgave så de\n";
+		$email .= "PÃ¥ brugeromrÃ¥det (log ind via ZIP Stats forside), kan du envidere sÃ¦tte\n";
+		$email .= "mere avancerede funktioner igang, f.eks. en funktion sÃ¥ du ikke selv\n";
+		$email .= "bliver registreret af statistikken, men du kan ogsÃ¥ pÃ¥ selvvalgte tidspunkter\n";
+		$email .= "fÃ¥ tilsendt dine statistikker med e-mail, eller hente dem i en udgave sÃ¥ de\n";
 		$email .= "let kan importeres i ethvert regneark.\n";
 		$email .= "\n";
-		$email .= "På siden \"Indstillinger\", på brugerområdet, kan du selv vælge, hvilke\n";
-		$email .= "e-mails du ønsker at modtage. Du kan f.eks. vælge aldrig at få e-mails\n";
-		$email .= "fra ZIP Stat, men du kan også få e-mails, lige så snart der sker den\n";
-		$email .= "mindste ændring.\n";
+		$email .= "PÃ¥ siden \"Indstillinger\", pÃ¥ brugeromrÃ¥det, kan du selv vÃ¦lge, hvilke\n";
+		$email .= "e-mails du Ã¸nsker at modtage. Du kan f.eks. vÃ¦lge aldrig at fÃ¥ e-mails\n";
+		$email .= "fra ZIP Stat, men du kan ogsÃ¥ fÃ¥ e-mails, lige sÃ¥ snart der sker den\n";
+		$email .= "mindste Ã¦ndring.\n";
 		$email .= "\n";
 		$email .= "%7\$s";
 		$email .= "\n";
-		$email .= "God fornøjelse!\n";
+		$email .= "God fornÃ¸jelse!\n";
 		$email .= "-- \n";
 		$email .= "Mvh. %5\$s, %6\$s\n";
 		$email .= "\n";
-		$email .= "Husk også www.ZIP.dk - alt godt til hjemmesiden...\n";
-		$email .= "  Og hvis du vil have en gæstebog, er det www.ZIP.dk/gaeste/\n";
-		$email .= "    Det hele er på dansk og gratis.\n";
+		$email .= "Husk ogsÃ¥ www.ZIP.dk - alt godt til hjemmesiden...\n";
+		$email .= "  Og hvis du vil have en gÃ¦stebog, er det www.ZIP.dk/gaeste/\n";
+		$email .= "    Det hele er pÃ¥ dansk og gratis.\n";
 	$locale['regConfirmationEmail'] = $email;
 	$locale['regConfirmationEmailSubj'] = "Du er nu tilmeldt...";
 	$locale['regYouAreRegistered'] = "Du er nu registreret";
 	$locale['regCongRegistered'] = "Tillykke! Du er nu ZIP Stat bruger.";
 	$locale['regNowOnlyMissing'] = "Du mangler nu kun...";
-	$locale['regGenCode1'] = "Du skal nu sætte noget <em>HTML-kode</em> ind på din hjemmeside. Denne HTML-kode kaldes &quot;Obligatorisk kode&quot;, og du kan";
+	$locale['regGenCode1'] = "Du skal nu sÃ¦tte noget <em>HTML-kode</em> ind pÃ¥ din hjemmeside. Denne HTML-kode kaldes &quot;Obligatorisk kode&quot;, og du kan";
 	$locale['regGenCode2'] = "generere den lige her";
-	$locale['regGenCode3'] = "Du skal bare <em>kopier</em> koden der bliver genereret ind på din hjemmeside, og så virker det! <br>Hvis du bruger <em>FrontPage</em>, eller et lignende program, skal du huske at indsætte koden som HTML, da den ellers bare vil blive vist på siden.";
-	$locale['regGenCodeAgain'] = "Hvis du får brug for at <em>generere</em> denne kode <em>igen</em>, skal du gå ind på &quot;Brugerområdet&quot;, via &quot;Log ind&quot; formularen på <em>forsiden</em> af %1\$s. På &quot;Brugerområdet&quot; skal du vælge linket &quot;Obligatorisk kode&quot;, som findes i menuen til venstre, og her kan du få genereret den nødvendige <em>kode</em>.</p> <i>Held og lykke!</i>";
-	$locale['regAboutHelp'] = "Hjælp";
-	$locale['regAboutHelpText'] = "Under menupunktet &quot;%1\$s&quot; finder du	en <em>manual</em> der grundigt beskriver alle ZIP Stats funktioner. På &quot;Brugerområdet&quot; finder du endvidre nogle blå <em>spørgsmålstegn</em>. Når du klikker på dem, kommer der en <em>hjælpetekst</em>	frem, til det punkt, spørgsmålstegnet er ved siden af.";
+	$locale['regGenCode3'] = "Du skal bare <em>kopier</em> koden der bliver genereret ind pÃ¥ din hjemmeside, og sÃ¥ virker det! <br>Hvis du bruger <em>FrontPage</em>, eller et lignende program, skal du huske at indsÃ¦tte koden som HTML, da den ellers bare vil blive vist pÃ¥ siden.";
+	$locale['regGenCodeAgain'] = "Hvis du fÃ¥r brug for at <em>generere</em> denne kode <em>igen</em>, skal du gÃ¥ ind pÃ¥ &quot;BrugeromrÃ¥det&quot;, via &quot;Log ind&quot; formularen pÃ¥ <em>forsiden</em> af %1\$s. PÃ¥ &quot;BrugeromrÃ¥det&quot; skal du vÃ¦lge linket &quot;Obligatorisk kode&quot;, som findes i menuen til venstre, og her kan du fÃ¥ genereret den nÃ¸dvendige <em>kode</em>.</p> <i>Held og lykke!</i>";
+	$locale['regAboutHelp'] = "HjÃ¦lp";
+	$locale['regAboutHelpText'] = "Under menupunktet &quot;%1\$s&quot; finder du	en <em>manual</em> der grundigt beskriver alle ZIP Stats funktioner. PÃ¥ &quot;BrugeromrÃ¥det&quot; finder du endvidre nogle blÃ¥ <em>spÃ¸rgsmÃ¥lstegn</em>. NÃ¥r du klikker pÃ¥ dem, kommer der en <em>hjÃ¦lpetekst</em>	frem, til det punkt, spÃ¸rgsmÃ¥lstegnet er ved siden af.";
 	$locale['regErrorNoName'] = "Du har ikke skrevet dit navn.";
-	$locale['regErrorBadEmail'] = "Du har ikke skrevet din e-mailadresse, eller også mangler den et @ og/eller et punktum. Begge dele skal være tilstede i en korrekt e-mailadresse.";
-	$locale['regErrorBadUrl'] = "Du har ikke skrevet sidens adresse, eller også starter den ikke med <tt>http://</tt> eller også indeholder den ikke et punktum. Begge dele er nødvendig for en korrekt internetadresse.";
+	$locale['regErrorBadEmail'] = "Du har ikke skrevet din e-mailadresse, eller ogsÃ¥ mangler den et @ og/eller et punktum. Begge dele skal vÃ¦re tilstede i en korrekt e-mailadresse.";
+	$locale['regErrorBadUrl'] = "Du har ikke skrevet sidens adresse, eller ogsÃ¥ starter den ikke med <tt>http://</tt> eller ogsÃ¥ indeholder den ikke et punktum. Begge dele er nÃ¸dvendig for en korrekt internetadresse.";
 	$locale['regErrorNoTitle'] = "Du har ikke skrevet sidens titel.";
-	$locale['regBadUsername'] = "Du har ikke skrevet et ønsket brugernavn, eller også har du brugt andre tegn end bogstaverne a-z (store og små), tallene 0-9, en bindestreg ( - ) og en understregning ( _ ).";
-	$locale['regTakenUsername'] = "Det brugernavn du har valgt er desværre optaget. Vælg et nyt.";
-	$locale['regBadPassword'] = "Du har ikke skrevet dit kodeord to gange, eller også har du skrevet det forkert den ene gang.";
+	$locale['regBadUsername'] = "Du har ikke skrevet et Ã¸nsket brugernavn, eller ogsÃ¥ har du brugt andre tegn end bogstaverne a-z (store og smÃ¥), tallene 0-9, en bindestreg ( - ) og en understregning ( _ ).";
+	$locale['regTakenUsername'] = "Det brugernavn du har valgt er desvÃ¦rre optaget. VÃ¦lg et nyt.";
+	$locale['regBadPassword'] = "Du har ikke skrevet dit kodeord to gange, eller ogsÃ¥ har du skrevet det forkert den ene gang.";
 
 	//$locale[''] = "";
 	//$locale[''] = "";
 
 	//Stat site passwords
 	$locale['siteEnterPwdHead'] = "Indtast kodeord";
-	$locale['siteEnterPwd'] = "Det kræver et kodeord for at se denne statistikside. Hvis du ikke har et, skal du kontakte sidens ejer, for at få et tildelt.";
-	$locale['siteEnterUsername'] = "Indtast brugernavnet til den statistik du ønsker at se. Kodeordet skal kun indtastes hvis der er kodeord på statistiksiden.";
+	$locale['siteEnterPwd'] = "Det krÃ¦ver et kodeord for at se denne statistikside. Hvis du ikke har et, skal du kontakte sidens ejer, for at fÃ¥ et tildelt.";
+	$locale['siteEnterUsername'] = "Indtast brugernavnet til den statistik du Ã¸nsker at se. Kodeordet skal kun indtastes hvis der er kodeord pÃ¥ statistiksiden.";
 	$locale['username'] = "Brugernavn";
 	$locale['password'] = "Kodeord";
-	$locale['loginNotText'] = "Login er desværre ikke til stede i ren tekst. Log i stedet ind via en anden brugergrænseflade (den almindelige i HTML).";
+	$locale['loginNotText'] = "Login er desvÃ¦rre ikke til stede i ren tekst. Log i stedet ind via en anden brugergrÃ¦nseflade (den almindelige i HTML).";
 	$locale['login'] = "Log ind";
 	$locale['forgottenPwd'] = "Glemt brugernavn eller kodeord...";
 
 	//Users area
 	$locale['uaEnterPwd'] = "Indtast dit brugernavn og din adgangskode.";
-	$locale['uaEnterPwdWrong'] = "Brugernavnet og adgangskoden passer desværre ikke sammen. Det er nok bare en slåfejl, så prøv igen. Hvis det ikke hjælper, så tjek om CAPS LOCK er slået til.";
+	$locale['uaEnterPwdWrong'] = "Brugernavnet og adgangskoden passer desvÃ¦rre ikke sammen. Det er nok bare en slÃ¥fejl, sÃ¥ prÃ¸v igen. Hvis det ikke hjÃ¦lper, sÃ¥ tjek om CAPS LOCK er slÃ¥et til.";
 	
 	//General error messages
 	$locale['errAnErrorOccured'] = 'Der opstod en fejl';
-	$locale['errDamagedDatasource'] = 'Din datafil er desværre blevet beskadiet, og der kan derfor ikke registreres statistikker. Kontakt %1$s\'s administrator via e-mail-adressen nederst på siden.';
-	$locale['errDatasourceInaccessible'] = 'Datafilen kunne ikke hentes. Enten er det et problem på %1$s eller også har du skrevet det forkerte brugernavn - det kan indeholder tegn der ikke er tilladt - prøv at generere den obligatoriske kode igen.';
-	$locale['errDatasourceNotSaved'] = 'Der opstod en fejl der betyder at dine data <b>ikke er gemt</b>. Prøv evt. igen senere, men hvis fejlen ikke forsvinder kan du kontakte administratoren via e-mail-adressen nederst på siden.'; 
+	$locale['errDamagedDatasource'] = 'Din datafil er desvÃ¦rre blevet beskadiet, og der kan derfor ikke registreres statistikker. Kontakt %1$s\'s administrator via e-mail-adressen nederst pÃ¥ siden.';
+	$locale['errDatasourceInaccessible'] = 'Datafilen kunne ikke hentes. Enten er det et problem pÃ¥ %1$s eller ogsÃ¥ har du skrevet det forkerte brugernavn - det kan indeholder tegn der ikke er tilladt - prÃ¸v at generere den obligatoriske kode igen.';
+	$locale['errDatasourceNotSaved'] = 'Der opstod en fejl der betyder at dine data <b>ikke er gemt</b>. PrÃ¸v evt. igen senere, men hvis fejlen ikke forsvinder kan du kontakte administratoren via e-mail-adressen nederst pÃ¥ siden.'; 
 
 	//Collective stats
 	$locale['collHeadline'] = 'Samlet statistik';
 	$locale['collTimespan'] = "Statistik fra %1\$s til %2\$s.";
 	$locale['collDay'] = "Statistik for %s.";
 	$locale['collGeneratingHeadline'] = "Siden genereres...";
-	$locale['collGeneratingText'] = "Sidens indhold genereres. Hvis siden ikke opdateres automatisk efter nogle sekunder, så tryk venligst på din browsers Opdater-knap.";
+	$locale['collGeneratingText'] = "Sidens indhold genereres. Hvis siden ikke opdateres automatisk efter nogle sekunder, sÃ¥ tryk venligst pÃ¥ din browsers Opdater-knap.";
 	
 	$locale['collIndexHeadline'] = "Samlede statistikker";
-	$locale['collIndexDesc'] = "Tryk på en af de viste datoer for at se samlede statistikker for denne dato. De samlede statistikker er anonymiseret, så ingen data kan føres tilbage til en enkelt bruger eller en gruppe af brugere.";
+	$locale['collIndexDesc'] = "Tryk pÃ¥ en af de viste datoer for at se samlede statistikker for denne dato. De samlede statistikker er anonymiseret, sÃ¥ ingen data kan fÃ¸res tilbage til en enkelt bruger eller en gruppe af brugere.";
 	$locale['collIndexLinkDateFormat'] = 'd-m-Y, \u\g\e W';
 	$locale['colCalWeek'] = "uge";
 	$locale['collIndex'] = "";

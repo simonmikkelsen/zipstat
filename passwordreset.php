@@ -27,8 +27,6 @@ $ind = $_REQUEST;
 
 if (isset($ind['username'])) {
   $lib = new Html($ind, $datafil);
-  $datafil = DataSource::createInstance($ind['username'],$stier);
-  $res = $datafil->hentFil();
 } else {
   $nop = '';
   $lib = new Html($ind, $nop);
@@ -50,6 +48,10 @@ if (isset($ind['token'])) {
        } else {
          $auth->updatePasswordHash($username, $ind['pwd1']);
          $auth->invalidateToken($token);
+         $datafil = DataSource::createInstance($username,$stier);
+         $res = $datafil->hentFil();
+         $datafil->dataArray[6] = ""; // Remove old cleartext password
+         $datafil->gemFil();
        }
        $side = new HtmlSite($siteContext, "Opdater kodeord");
        $message = "Dit kodeord er opdateret.";
