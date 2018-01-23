@@ -25,13 +25,15 @@ class AuthenticationDAOMySQL {
   function storeCredentials($userId, $hash) {
     $stmt = $this->mysqli->prepare("UPDATE $this->authTable SET $this->credField = ? WHERE $this->userIdField = ?"); 
     $stmt->bind_param("ss", $hash, $userId);
-    $stmt->execute();
+    $res = $stmt->execute();
+    $stmt->close();
   }
 
   function createPwResetRequest($userId, $token, $expiresUnixtime) {
     $stmt = $this->mysqli->prepare("INSERT INTO $this->requestTable (username, token, type, expires) VALUES (?, ?, ?, FROM_UNIXTIME(?))"); 
     $stmt->bind_param("ssss", $userId, $token, $this->typePwReset, $expiresUnixtime);
     $stmt->execute();
+    $stmt->close();
   }
 
   function getRequestByToken($token) {
@@ -98,7 +100,6 @@ class Authenticate {
         return FALSE;
       }
     }
-
     if (password_needs_rehash($hash, $this->algo)) {
       $this->updatePasswordHash($userId, $password);
     }

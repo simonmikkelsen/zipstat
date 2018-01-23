@@ -285,6 +285,7 @@ class UsersAreaUtils {
 			$this->siteContext->getOption('adminName'),            //Admin name
 			$this->siteContext->getOption('name_of_service')      //Name of the service (e.g. ZIP Stat)
 		);
+                header('Content-Type: text/html; charset=utf-8'); //TODO: Put in a nicer location, but this works for now.
 		echo str_replace($keys, $vals, $localTpl);
 	}
 

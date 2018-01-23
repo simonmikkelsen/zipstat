@@ -2962,7 +2962,8 @@ class DatabaseMysqlSource extends DataSource
                      if ($rpassword !== NULL and $rpassword !== "") {
                        $this->hentFil();
                        $this->dataArray[6] = "";
-                       //$this->gemFil(); Commented out during initial migration to new password solution.
+echo "Reset old password";
+                       $this->gemFil();
                      }
                    return TRUE; 
                 }

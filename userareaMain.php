@@ -480,15 +480,14 @@ else #Hvis man ikke har pro
 
 	if (isset($pro_kode)) 
 		echo $pro_kode;	
-	echo "<div class=forside><h3>Kodeord p statistiksiden</h3>\n<p>St kodeord p statistiksiden <input type=checkbox name=simpel_pwd$chk></p>\n";
-	echo "<p>Hvis du afkrydser ovenstende boks, vil du blive bedt om at indtaste dit kodeord nr du vil se din statistikside og dermed kan andre ikke se den. Du skal bruge det kodeord du benytter til brugeromrdet.</p></div>";
+	echo "<div class=forside><h3>Kodeord på statistiksiden</h3>\n<pKodeord p� statistiksiden kan kun sl�s til via det avancerede brugeromr�de. Du kan skifte til det nederst i menuen til venstre.</p>\n";
 
 	?>
 
 	<div class=forside>
 	<h3>Bliv ikke selv talt med</h3>
-	<p><input type=checkbox name="ikkeop"<?php echo $ikopchek; ?>> Tl aldrig mig med i min statistik</P>
-	<p>OBS. Hvis du skifter til en anden computer eller en anden internet-browser, skal du g ind p denne side og krydse af igen.</p>
+	<p><input type=checkbox name="ikkeop"<?php echo $ikopchek; ?>> Tæl aldrig mig med i min statistik</P>
+	<p>OBS. Hvis du skifter til en anden computer eller en anden internet-browser, skal du gå ind åp denne side og krydse af igen.</p>
 	</div>
 
 	<br>
@@ -781,14 +780,14 @@ function r_oplysninger(&$utils, &$siteContext) {
 	<hr>
 	<div class=forside>
 	<h1>Slette konto</h1>
-	<p>Hvis du nsker at slette denne ZIP Stat konto skal du udfylde nedenstende skema, og trykke p den meget lange knap. Det er lidt besvrligt, men det er for at sikre du ikke kommer til at gre det ved en fejltalelse.</p>
-	<p>Nr kontoen er slettet kan du <em>ikke</em> fortryde p nogen mde - jeg har ganske vist backups der kan vre ca. en uge gamle, s hvis det er helt katastrofalt kan jeg godt kopiere den seneste kopi ind, men hvis jeg skal bruge for meget tid p dette stopper jeg med denne service, s misbrug det ikke.</p>
+        <p>Hvis du &oslash;nsker at slette denne ZIP Stat konto, skal du udfylde nedenstående skema og trykke på den meget lange knap.</p>
+	<p>Når kontoen er slettet kan du <em>ikke</em> fortryd!</p>
 	<h2>Sletning af konto</h2>
 
 	<form action="<?php echo $siteContext->getOption('urlUserAreaMain'); ?>" method=POST target="_top">
 	Brugernavn: <input type=text name="brugernavn_slet"><br>
 	Kodeord: <input type=password name="kodeord_slet"><br>
-	<input type=checkbox name=sletvirkelig> Jeg nsker at slette min ZIP Stat konto, og ved at nr jeg har trykket p knappen &quot;Slet denne ZIP Stat konto - alle mine statistikker bliver slettet!&quot; er mine statistikker slettet for altid.<br>
+	<input type=checkbox name=sletvirkelig> Jeg ønsker at slette min ZIP Stat konto, og ved atnår jeg har trykket på knappen &quot;Slet denne ZIP Stat konto - alle mine statistikker bliver slettet!&quot; er mine statistikker slettet for altid.<br>
 
 	<input type="hidden" name="type" value="slet_konto">
 	<input type="hidden" value="<?php echo htmlentities($ind['password']); ?>" name="password">
@@ -1320,13 +1319,7 @@ function gem_indstillinger(&$utils, &$siteContext) {
 	}
 
 	if (isset($ind['simpelgem'])) {
-		#Hvis man vil have et kodeord, og der ikke er gemt et
-		if (isset($ind['simpel_pwd']) and strlen($datafile->getLine(57)) === 0) {
-			$datafile->setLine(57, $datafile->getLine(6));
-		} #Hvis man ikke vil have noget kodeord.
-		else if (! isset($ind['simpel_pwd'])) {
-			$datafile->setLine(57, '');
-		}
+            // This functionality is disabled due to the new password management.
 	} else {
 		#Gemmer brugerkodeord
 		$tmp = isset($ind['brugerkodeord']) ? $ind['brugerkodeord'] : '';
@@ -1572,7 +1565,9 @@ function slet_konto(&$utils, &$siteContext) {
 		exit;
 	}
 
-	if ($ind['password'] !== $ind['kodeord_slet']) {
+        $authFactory = new AuthenticationFactory($siteContext->getOptions());
+        $auth = $authFactory->create();
+        if (! $auth->doAuthenticate($username, $ind['kodeord_slet'])) {
 		$utils->echoSiteHead("Forkert kodeord");
 		echo "<div class=forside>\n<h1>Forkert kodeord</h1>\n<p>Det kodeord du indtastede er forkert. Tryk p din browsers &quot;tilbage&quot;-knap og ret det.</p></div>";
 		$utils->echoSiteEnd();
@@ -1595,14 +1590,9 @@ function slet_konto(&$utils, &$siteContext) {
 
 	if ($datafile->deleteUser()) {
 		$utils->echoSiteHead("Din konto er slettet");
-		echo "<div class=forside>\n<p>Din ZIP Stat konto er nu slettet. Tak fordi du valgte at bruge ZIP Stat indtil nu. Jeg hber du vlger at komme tilbage.<br>Mvh. ".$siteContext->getOption('adminName').", ".$siteContext->getOption('name_of_service')."</p></div>";
-		$utils->echoSiteEnd();
-	} else {
-		$utils->echoSiteHead("Din konto er <em>ikke</em> slettet");
-		echo "<div class=forside>\n<p>Af ukendte rsager blev din konto ikke slettet. Prv evt. igen, og hvis det ikke virker er du velkommen til at sende en mail.<br>Mvh. ".$siteContext->getOption('adminName').", ".$siteContext->getOption('name_of_service')."</p></div>";
+		echo "<div class=forside>\n<p>Din ZIP Stat konto er nu slettet. Tak fordi du valgte at bruge ZIP Stat indtil nu. Jeg håber du �lger at komme tilbage.<br>Mvh. ".$siteContext->getOption('adminName').", ".$siteContext->getOption('name_of_service')."</p></div>";
 		$utils->echoSiteEnd();
 	}
-
 	exit;
 }
 
@@ -1839,25 +1829,20 @@ function gem_kodeord(&$utils, &$siteContext) {
 	$ind = $lib->getHTTPVars();
 	$datafile = &$lib->getDatafil();
 
-if (isset($ind['pwd1']) and isset($ind['pwd2']) and $ind['pwd1'] === $ind['pwd2']) {
-	$datafile->setLine(6, $ind['pwd1']);
-	$saveRes = $datafile->gemFil();
-	if ($saveRes) {
-		header('Location: '.$siteContext->getOption('urlUserArea').'?username='.urlencode($ind['username']).'&password='.urlencode($ind['pwd1']).'&start_type=adminmain&start=gemkodeord_ok');
-	} else {
-		$utils->echoSiteHead("Kodeord <b>ikke</b> opdateret");
-		echo $saveRes."Af ukendte rsager blev dit <b>kodeord ikke opdateret</b>. Du skal alts fortsat <b>bruge dit gamle kodeord</b>. Prv igen, og hjlper det ikke s prv igen om nogle timer. Hjlper det heller ikke m du meget gerne skrive (se kontaktsiden).";
-		$utils->echoSiteEnd();
-	}
-	exit;
+         if (isset($ind['pwd1']) and isset($ind['pwd2']) and $ind['pwd1'] === $ind['pwd2'] and trim($ind['pwd1']) !== '') {
+            $authFactory = new AuthenticationFactory($siteContext->getOptions());
+            $auth = $authFactory->create();
+            $auth->updatePasswordHash($ind['username'], $ind['pwd1'], '');
+            header('Location: '.$siteContext->getOption('urlUserArea').'?username='.urlencode($ind['username']).'&password='.urlencode($ind['pwd1']).'&start_type=adminmain&start=gemkodeord_ok');
+	    exit;
 	} else if (isset($ind['pwd1']) or isset($ind['pwd2'])) {
 		$utils->echoSiteHead("Fejl");
-		echo "Dit <em>kodeord</em> blev <em>ikke</em> opdateret, da du ikke havde skrevet det samme i de to bokse. Du skal derfor fortsat bruge dit <em>gamle kodeord</em>!<BR>Tryk p din browsers &quot;Tilbage&quot;-knap og skrive dit nye kodeord to gange.";
+		echo "Dit <em>kodeord</em> blev <em>ikke</em> opdateret, da du ikke havde skrevet det samme i de to bokse. Du skal derfor fortsat bruge dit <em>gamle kodeord</em>!<BR>Tryk p&aring; din browsers &quot;Tilbage&quot;-knap og skrive dit nye kodeord to gange.";
 		$utils->echoSiteEnd();
 		exit;
 	} else {
 		$utils->echoSiteHead("Intet kodeord");
-		echo "Du skrev intet kodeord i nogle af boksene - du er <em>nd</em> til at have et kodeord, s andre ikke nulstiller dine statistikker i utide, eller ndre dine oplysninger. Du skal alts fortsat bruge dit gamle kodeord! Tryk p din browsers &quot;Tilbage&quot;-knap, for at ndre dit kodeord, eller for at benytte brugeromrdet.";
+		echo "Du skrev intet kodeord i nogle af boksene - du er <em>n&oslash;d</em> til at have et kodeord. Du skal alts fortsat bruge dit gamle kodeord! Tryk p&aring; din browsers &quot;Tilbage&quot;-knap, for at &aelig;ndre dit kodeord, eller for at benytte brugeromrdet.";
 		$utils->echoSiteEnd();
 		exit;
 	}
@@ -1872,8 +1857,8 @@ if (isset($ind['pwd1']) and isset($ind['pwd2']) and $ind['pwd1'] === $ind['pwd2'
  * @public
  */
 function gemkodeord_ok(&$utils, &$siteContext) {
-	$utils->echoSiteHead("Kodeord ndret", 0);
-	echo "Dit kodeord er nu ndret - du skal alts i fremtiden benytte dit <em>nye</em> kodeord for at logge ind.<br>God fornjelse.";
+	$utils->echoSiteHead("Kodeord &aelig;ndret", 0);
+	echo "Dit kodeord er nu &aelig;ndret.";
 	$utils->echoSiteEnd();
 	exit;
 }

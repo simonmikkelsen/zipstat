@@ -110,7 +110,10 @@
 	{
 		$pwds = explode("::", $datafil->getLine(57));
 		//Is a valid password given?
-		if (strlen($ind['brugerkodeord']) === 0 or (! in_array($ind['brugerkodeord'], $pwds) and $ind['brugerkodeord'] !== $datafil->getLine(6)))
+                $authFactory = new AuthenticationFactory($stier);
+                $auth = $authFactory->create();
+                $mainPwOK = $auth->doAuthenticate($ind['brugernavn'], $ind['brugerkodeord']);
+		if (strlen($ind['brugerkodeord']) === 0 or (! in_array($ind['brugerkodeord'], $pwds) and ! $mainPwOK))
 		{
 			require_once "lib/SiteGenerator/SiteGenerator.php";
 			require_once "lib/StatGenerator.php";
