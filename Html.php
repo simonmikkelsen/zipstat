@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__)."/lib/authorize.php");
+require_once(dirname(__FILE__)."/lib/authenticate.php");
 
 class Html
 {
@@ -2956,20 +2956,17 @@ class DatabaseMysqlSource extends DataSource
 		$data = explode("\n", $res[0]['data']);
 		$rpassword = stripslashes(str_replace(array("\n", "\r"), "", $data[6]));
                 
-                $authFactory = new AuthorizeFactory($this->path);
+                $authFactory = new AuthenticationFactory($this->path);
                 $auth = $authFactory->create();
-                if ($auth->doAuthorize($username, $password, $rpassword)) {
+                if ($auth->doAuthenticate($username, $password, $rpassword)) {
                      if ($rpassword !== NULL and $rpassword !== "") {
                        $this->hentFil();
                        $this->dataArray[6] = "";
-                       $this->gemFil();
+                       //$this->gemFil(); Commented out during initial migration to new password solution.
                      }
                    return TRUE; 
-                } else {
-                   return FALSE;
                 }
-                
-		return $rpassword === $password;
+                return FALSE;
 	}
 
 	/**

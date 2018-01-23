@@ -14,7 +14,7 @@ usleep(rand(80, 150) * 1000); // Make automation more painfull.
 #Variable
 require "lib/SiteGenerator/SiteGenerator.php";
 require "lib/SiteContext.php";
-require "lib/authorize.php";
+require "lib/authenticate.php";
 require "Stier.php";
 require "Html.php";
 require "view.php";
@@ -34,7 +34,7 @@ if (isset($ind['username'])) {
 $siteContext = new SiteContext($lib, $stier, $ind, 'da');
 if (isset($ind['token'])) {
   $token = $ind['token'];
-  $authFactory = new AuthorizeFactory($stier);
+  $authFactory = new AuthenticationFactory($stier);
   $auth = $authFactory->create();
   $username = $auth->isPasswordResetTokenValid($token);
   if ($username !== null and $username !== "") {
@@ -109,7 +109,7 @@ if ($res === -2 or ! $res) {
 $b = openssl_random_pseudo_bytes(128);
 $token = base64_encode($b);
 
-$authFactory = new AuthorizeFactory($stier);
+$authFactory = new AuthenticationFactory($stier);
 $auth = $authFactory->create();
 $auth->createPwResetRequest($username, $token);
 

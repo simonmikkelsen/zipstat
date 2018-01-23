@@ -954,7 +954,7 @@ class HtmlLoginForm extends LoginForm
 					"</td><td><input type=password name=\"".htmlentities($this->getKeyPassword())."\"></td></tr>\n";
 		//Can we send mail?
 		if ($this->siteContext->getOption('send_mail') == "1") {
-			$out .= "	<tr><td></td><td><a href=\"mailpwd.php?username=".htmlentities($this->getUsername())."\">".htmlentities($this->siteContext->getLocale("forgottenPwd"))."</a></td></tr>\n";
+			$out .= "	<tr><td></td><td><a href=\"passwordreset.php\">".htmlentities($this->siteContext->getLocale("forgottenPwd"))."</a></td></tr>\n";
 		}
 		$out .= "	<tr><td></td><td><input type=submit value=\"".htmlentities($this->siteContext->getLocale("login"))."\"></td></tr>";
 		$out .= "</table>\n";

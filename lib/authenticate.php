@@ -1,7 +1,7 @@
 <?php
 
-class AuthorizeDAOMySQL {
-  function AuthorizeDAOMySQL($host, $database, $user, $password, $authTable, $credField, $userIdField) {
+class AuthenticationDAOMySQL {
+  function AuthenticationDAOMySQL($host, $database, $user, $password, $authTable, $credField, $userIdField) {
     $this->mysqli = new mysqli($host, $user, $password, $database);
     $this->mysqli->set_charset('utf8');
     $this->authTable = $authTable;
@@ -51,8 +51,8 @@ class AuthorizeDAOMySQL {
   }
 }
 
-class AuthorizeFactory {
-  function AuthorizeFactory(&$options) {
+class AuthenticationFactory {
+  function AuthenticationFactory(&$options) {
     $this->options = &$options;
   }
 
@@ -65,13 +65,13 @@ class AuthorizeFactory {
     $credField = 'hash';
     $userIdField = 'username';
 
-    $dao = new AuthorizeDAOMySQL($host, $db, $user, $passwd, $authTable, $credField, $userIdField);
-    return new Authorize($dao);
+    $dao = new AuthenticationDAOMySQL($host, $db, $user, $passwd, $authTable, $credField, $userIdField);
+    return new Authenticate($dao);
   }
 }
 
-class Authorize {
-  function Authorize($authDAO) {
+class Authenticate {
+  function Authenticate($authDAO) {
     $this->authDAO = $authDAO;
     $this->algo = PASSWORD_DEFAULT;
     $this->resetTokenValidSeconds = 3600;
@@ -87,18 +87,17 @@ class Authorize {
    * returned true, you must delete your plain text password as it is
    * no longer needed and just poses a security thread.
    */
-  function doAuthorize($userId, $password, $legacyPasswordSaved = '') {
+  function doAuthenticate($userId, $password, $legacyPasswordSaved = '') {
     if ($legacyPasswordSaved !== NULL and $legacyPasswordSaved !== '') {
       if ($password !== $legacyPasswordSaved) {
         return FALSE;
       }
-      $password = $legacyPasswordSaved;
     } else {
       $hash = $this->authDAO->getCredentialHash($userId);
       if (! password_verify($password, $hash)) {
         return FALSE;
       }
-    } 
+    }
 
     if (password_needs_rehash($hash, $this->algo)) {
       $this->updatePasswordHash($userId, $password);

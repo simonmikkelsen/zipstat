@@ -278,7 +278,7 @@ class Registrer
 		if (! $errors->isOccured()) {
 			$datasource->createUser();
 			$datasource->gemFil();
-                        $authFactory = new AuthorizeFactory($this->siteContext->getOptions());
+                        $authFactory = new AuthenticationFactory($this->siteContext->getOptions());
                         $auth = $authFactory->create();
                         $auth->updatePasswordHash($in['brugernavn'], $in['pwd1']);
 		} else {
