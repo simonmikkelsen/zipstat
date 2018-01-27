@@ -1,8 +1,8 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+ï»¿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html lang=dk>
 <head>
 	<title>%title%</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Title" content="%title%">
 	<meta http-equiv="expires" content="sat, 01 jan 1980 12:35:00 gmt">
 	<meta http-equiv="pragma" content="no-cache">
@@ -19,9 +19,9 @@
 		<div class=menu>
 		<a target="_top" href="%frontpage_url%">Forside</A> | 
 		<a target="_top" href="%signup_url%" title="Opret en ny statistik til din hjemmeside">Tilmeld</A> | 
-		<a target="_top" href="%userarea_url%" title="Her kan du ændre indstillingerne for din statistik mm.">Brugerområde</A> | 
+		<a target="_top" href="%userarea_url%" title="Her kan du Ã¦ndre indstillingerne for din statistik mm.">BrugeromrÃ¥de</A> | 
 		<a target="_top" href="%contact_url%" title="Kontakt samt giv ris og ros.">Kontakt</A> | 
-		<a target="_top" href="%help_url%" title="Manualen til %service_name% og svar på Ofte Stillede Spørgsmål">Hjælp</A>
+		<a target="_top" href="%help_url%" title="Manualen til %service_name% og svar pÃ¥ Ofte Stillede SpÃ¸rgsmÃ¥l">HjÃ¦lp</A>
 		</div>
 	</td><td>
 		<div class=menulogo>%service_name%</div>
@@ -34,7 +34,7 @@
 
 <hr>
 <p align=center>Administrator: <a href="mailto:%service_email%">%admin_name%</A><br />
-<a href="http://mikkelsen.tv/simon/">Simon Mikkelsen</a> &copy; 1998-2006</p>
+<a href="http://mikkelsen.tv/simon/">Simon Mikkelsen</a> &copy; 1998-2018</p>
 
 </body>
 </html>

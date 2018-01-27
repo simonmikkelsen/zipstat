@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 	require "Html.php";
 	require "Stier.php";
@@ -51,9 +51,6 @@
 	{
 		$uaUtils->doLoginForm($lib, $stier, $ind, $siteContext, 1);
 		exit;
-	} else if (!$datafil->authenticate($username, $password)) {
-		$uaUtils->doLoginForm($lib, $stier, $ind, $siteContext, 2);
-		exit;
 	} else if ($errors->isOccured()) {
 		//$uaUtils = new UsersAreaUtils($siteContext);
 		$uaUtils->showErrors($errors);
@@ -67,7 +64,7 @@
 		$targetTop = " target=\"main\"";
 	} else {
 		$brugerkodeord = '';
-		$statside_offentlig = "Statistiksiden er offentlig <a href=\"javascript:alert('Din statistikside er lige nu offentlig for alle.\\nDu kan dog stte kodeord p den,\\ns kun du kan se den.\\nDette gres p siden Indstillinger\\nher p brugeromrdet.');\">Ls mere</a>";
+		$statside_offentlig = "Statistiksiden er offentlig <a href=\"javascript:alert('Din statistikside er lige nu offentlig for alle.\\nDu kan dog sætte kodeord på den,\\nså kun du kan se den.\\nDette gøres på siden Indstillinger\\nher på brugeromrdet.');\">Læs mere</a>";
 		$targetTop = " target=\"_top\"";
 	}
 
@@ -98,7 +95,7 @@ if ($simpel)
 <html lang=dk>
 <head>
 	<title>Administrationsmenu</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Title" CONTENT="Administrationsmenu">
 	<meta name="robots" content="none,noindex,follow">
 	<meta http-equiv="expires" content="sat, 01 jan 1980 12:35:00 gmt">
@@ -113,7 +110,7 @@ if ($simpel)
 	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=roplysninger"; ?>" target="main">Oplysninger</A><br>
 	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rindstillinger"; ?>" target="main">Indstillinger</A><br>
 	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=remailstats"; ?>" target="main">Mail stats</A><br>
-	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rtaellere"; ?>" target="main">Tllere</A><br>
+	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rtaellere"; ?>" target="main">Tællere</A><br>
 	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rnulstil"; ?>" target="main">Nulstil</A><br>
 </div>
 <p>
@@ -142,7 +139,7 @@ else //If advanced
 <html lang=dk>
 <head>
 	<title>Administrationsmenu</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Title" CONTENT="Administrationsmenu">
 	<meta name="robots" content="none,noindex,follow">
 	<meta http-equiv="expires" content="sat, 01 jan 1980 12:35:00 gmt">
@@ -156,17 +153,17 @@ else //If advanced
 	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=roplysninger"; ?>" target="main">Oplysninger</A><br>
 	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rindstillinger"; ?>" target="main">Indstillinger</A><br>
 	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=remailstats"; ?>" target="main">Mail stats</A><br>
-	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rzipklik"; ?>" target="main">Kliktllere</A><br>
-	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rtaellere"; ?>" target="main">Tllere</A><br>
-	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rspoergsmaal"; ?>" target="main">Sprgsml</A><br>
+	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rzipklik"; ?>" target="main">Kliktællere</A><br>
+	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rtaellere"; ?>" target="main">Tællere</A><br>
+	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rspoergsmaal"; ?>" target="main">Spørgsmål</A><br>
 	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rnulstil"; ?>" target="main">Nulstil</A><br>
 	<a href="<?php echo $stier->getOption('urlUserAreaMain')."?username=$username&amp;password=$password&amp;type=rkodeord"; ?>" target="main">Kodeord</A><br />
 </div>
 <p>
 <div class=forside><h3>Lav kode</h3>
 	<a href="<?php echo $stier->getOption('urlUserAreaCodegen')."?username=$username&amp;password=$password&amp;type=Obligatorisk+kode"; ?>" target="main">Obligatorisk</A><br>
-	<a href="<?php echo $stier->getOption('urlUserAreaCodegen')."?username=$username&amp;password=$password&amp;type=Sprgsml+kode"; ?>" target="main">Sprgsml</A><br>
-	<a href="<?php echo $stier->getOption('urlUserAreaCodegen')."?username=$username&amp;password=$password&amp;type=zipklik_vis"; ?>" target="main">Kliktller</A><br>
+	<a href="<?php echo $stier->getOption('urlUserAreaCodegen')."?username=$username&amp;password=$password&amp;type=Sprgsml+kode"; ?>" target="main">Spørgsmål</A><br>
+	<a href="<?php echo $stier->getOption('urlUserAreaCodegen')."?username=$username&amp;password=$password&amp;type=zipklik_vis"; ?>" target="main">Kliktæller</A><br>
 	<a href="<?php echo $stier->getOption('urlUserAreaCodegen')."?username=$username&amp;password=$password&amp;type=vis_js_kode"; ?>" target="main">JavaScript-stats</A><br>
 	<a href="<?php echo $stier->getOption('urlUserAreaCodegen')."?username=$username&amp;password=$password&amp;type=Statistik-panel+kode"; ?>" target="main">Ministatistik</A><br>
 </div>
@@ -180,7 +177,7 @@ else //If advanced
 </div>
 <p>
 <div class=underh>[Avanceret visning]<br>
-<a href="<?php echo $stier->getOption('urlUserAreaLeftmenu')."?username=$username&amp;password=$password&amp;skift=simpel"; ?>" class=underh>Skift til simpelt visning</a>
+<a href="<?php echo $stier->getOption('urlUserAreaLeftmenu')."?username=$username&amp;password=$password&amp;skift=simpel"; ?>" class=underh>Skift til simpel visning</a>
 </div>
 
 </body>
