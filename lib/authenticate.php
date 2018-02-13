@@ -90,7 +90,8 @@ class Authenticate {
    * no longer needed and just poses a security thread.
    */
   function doAuthenticate($userId, $password, $legacyPasswordSaved = '') {
-    if ($legacyPasswordSaved !== NULL and $legacyPasswordSaved !== '') {
+    $hash = $this->authDAO->getCredentialHash($userId);
+    if (($hash === NULL or trim($hash) === '') and $legacyPasswordSaved !== NULL and $legacyPasswordSaved !== '') {
       if ($password !== $legacyPasswordSaved) {
         return FALSE;
       }

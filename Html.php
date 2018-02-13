@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__)."/lib/authenticate.php");
+require_once(dirname(__FILE__)."/lib/session.php");
 
 class Html
 {
@@ -2946,8 +2947,21 @@ class DatabaseMysqlSource extends DataSource
 	 * @return boolean if the user can be authenticated.
 	 * @param $username the username to authenticate.
 	 * @param $password the password to authenticate.
+         * @param $requiredPermission the permission the user must have.
+         * @param $getOnLogin the permissions the user must be on successfull login.
 	 */
-	function authenticate($username, $password) {
+	function authenticate($username, $password = NULL, $requiredPermission, $getOnLogin) {
+                $sessionFactory = new SessionFactory($this->path);
+                $session = $sessionFactory->create();
+                $permissions = $session->getSessionPermissions($username);
+                if ($permissions !== NULL and in_array($requiredPermission, $permissions)) {
+                  return TRUE;
+                }
+                $session->closeSession();
+                if ($password === NULL) {
+                  return FALSE;
+                }
+
 		$sql = "SELECT * FROM ".$this->getTableName()." WHERE username=\"".$this->db->secureSlashes($this->brugernavn)."\"";
 		$res = $this->db->runQuery($sql);
 		if (sizeof($res) === 0) {
@@ -2962,9 +2976,10 @@ class DatabaseMysqlSource extends DataSource
                      if ($rpassword !== NULL and $rpassword !== "") {
                        $this->hentFil();
                        $this->dataArray[6] = "";
-echo "Reset old password";
-                       $this->gemFil();
+                       //$this->gemFil();
                      }
+                   $newPermission = is_array($getOnLogin) ? $getOnLogin : array($getOnLogin);
+		   $session->createNewSession($username, $newPermission, FALSE);
                    return TRUE; 
                 }
                 return FALSE;
@@ -3479,6 +3494,7 @@ class DataFileSource extends DataSource {
 	 * @param $password the password to authenticate.
 	 */
 	function authenticate($username, $password) {
+                        die("This login method is no longer supported.");
 			return ( ($this->getUsername() === $username) and ($this->getLine(6) === $password) );
 	}
 
@@ -5914,15 +5930,17 @@ class PersistenceMgr extends DataSource {
 	 * @return boolean if the user can be authenticated.
 	 * @param $username the username to authenticate.
 	 * @param $password the password to authenticate.
+         * @param $requiredPermission the permission the user must have.
+         * @param $getOnLogin the permissions the user must be on successfull login.
 	 */
-	function authenticate($username, $password) {
+	function authenticate($username, $password, $requiredPermission, $getOnLogin) {
 		//Todo: Maby this should just use the reader, but it is the safest
 		//to use the writer now.
 		$dataSource = &$this->getWriter();
 		if ($dataSource === NULL) {
 			return false;
 		}
-		return $dataSource->authenticate($username, $password);
+		return $dataSource->authenticate($username, $password, $requiredPermission, $getOnLogin);
 	}
 
 	/**

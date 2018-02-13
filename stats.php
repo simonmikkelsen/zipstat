@@ -16,7 +16,7 @@
 	$ind = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
 
 	//Maps old to new parameters
-	$statSiteMapper = new StatSiteLegacyMapper();
+	$statSiteMapper = new StatSiteLegacyMapper(); // todo: This seems to be not used anymore.
 	//$ind = $statSiteMapper->applyMapping(array_merge($varsForStatSite, $ind));
 
 	if (!isset($ind['brugernavn'])) {
@@ -110,10 +110,9 @@
 	{
 		$pwds = explode("::", $datafil->getLine(57));
 		//Is a valid password given?
-                $authFactory = new AuthenticationFactory($stier);
-                $auth = $authFactory->create();
-                $mainPwOK = $auth->doAuthenticate($ind['brugernavn'], $ind['brugerkodeord']);
-		if (strlen($ind['brugerkodeord']) === 0 or (! in_array($ind['brugerkodeord'], $pwds) and ! $mainPwOK))
+                $mainPwOK = $datafil->authenticate($ind['brugernavn'], $ind['brugerkodeord'], 'statsite', 'statsite');
+
+		if ((strlen($ind['brugerkodeord']) === 0 or ! in_array($ind['brugerkodeord'], $pwds)) and ! $mainPwOK)
 		{
 			require_once "lib/SiteGenerator/SiteGenerator.php";
 			require_once "lib/StatGenerator.php";
@@ -134,8 +133,8 @@
 			$login->setSubmitMethod("POST");
 			$login->setUsername($ind["brugernavn"]);
 			$sg->addElement($login);
-			
-			echo $sg->getSite();
+
+                        echo $sg->getSite();
 			exit;
 		}
 	}

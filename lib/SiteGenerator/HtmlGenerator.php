@@ -147,6 +147,7 @@ class HtmlGenerator extends SiteGenerator
 		                '%userarea_url%'  => $this->siteContext->getOption('urlUserArea'),
 		                '%contact_url%'   => $this->siteContext->getOption('urlContact'),
 		                '%help_url%'      => $this->siteContext->getOption('urlHelp'),
+		                '%logout_url%'    => $this->siteContext->getOption('urlLogout'),
 		                '%service_email%' => $this->siteContext->getOption('adminEMail'),
 		                '%admin_name%'    => $this->siteContext->getOption('adminName'),
 		                '%service_name%'  => $this->siteContext->getOption('name_of_service'),

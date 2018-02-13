@@ -213,6 +213,7 @@ class UsersAreaUtils {
 			'%userarea_url%',
 			'%contact_url%',
 			'%help_url%',
+                        '%logout_url%',
 			'%service_email%',
 			'%admin_name%',
 			'%service_name%');
@@ -229,6 +230,7 @@ class UsersAreaUtils {
 			$this->siteContext->getOption('urlUserArea'),					//userarea_url
 			$this->siteContext->getOption('urlContact'),					//contact_url
 			$this->siteContext->getOption('urlHelp'),							//help_url
+                        $this->siteContext->getOption('urlLogout'),
 			$this->siteContext->getOption('adminEMail'), 					//E-mail
 			$this->siteContext->getOption('adminName'),            //Admin name
 			$this->siteContext->getOption('name_of_service')      //Name of the service (e.g. ZIP Stat)
@@ -266,6 +268,7 @@ class UsersAreaUtils {
 			'%userarea_url%',
 			'%contact_url%',
 			'%help_url%',
+                        '%logout_url%',
 			'%service_email%',
 			'%admin_name%',
 			'%service_name%');
@@ -282,6 +285,7 @@ class UsersAreaUtils {
 			$this->siteContext->getOption('urlUserArea'),					//userarea_url
 			$this->siteContext->getOption('urlContact'),					//contact_url
 			$this->siteContext->getOption('urlHelp'),							//help_url
+                        $this->siteContext->getOption('urlLogout'),
 			$this->siteContext->getOption('adminEMail'), 					//E-mail
 			$this->siteContext->getOption('adminName'),            //Admin name
 			$this->siteContext->getOption('name_of_service')      //Name of the service (e.g. ZIP Stat)

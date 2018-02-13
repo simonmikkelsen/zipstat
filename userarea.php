@@ -43,11 +43,11 @@
 
 	$lib->setStier($stier);
 
-	if ((! isset($ind)) or (! isset($password)) or (! isset($username))) {
+	if ((! isset($ind)) or (! isset($username))) {
 		$uaUtils = new UsersAreaUtils($siteContext);
 		$uaUtils->doLoginForm(1, $stier->getOption('urlUserArea'));
 		exit;
-	} else if (!$datafil->authenticate($username, $password)) {
+	} else if (!$datafil->authenticate($username, $password, 'admin', array('admin', 'statsite'))) {
 		$uaUtils = new UsersAreaUtils($siteContext);
 		$uaUtils->doLoginForm(2, $stier->getOption('urlUserArea'));
 		exit;
@@ -60,13 +60,13 @@
 	//Find out what page to start with
 	if (isset($ind['start']) and isset($ind['start_type'])) {
 		if ($ind['start_type'] === "adminmain")
-			$main = $stier->getOption('urlUserAreaMain')."?username=".$username."&amp;password=".$password."&amp;type=".$ind['start'];
+			$main = $stier->getOption('urlUserAreaMain')."?username=".$username."&amp;type=".$ind['start'];
 		elseif ($ind['start_type'] === "kodegen")
-			$main = $stier->getOption('urlUserAreaCodegen')."?username=".$username."&amp;password=".$password."&amp;type=".$ind['start'];
+			$main = $stier->getOption('urlUserAreaCodegen')."?username=".$username."&amp;type=".$ind['start'];
 		else
-			$main = $stier->getOption('urlUserAreaMain')."?username=".$username."&password=".$password;
+			$main = $stier->getOption('urlUserAreaMain')."?username=".$username;
 	}	else {
-		$main = $stier->getOption('urlStatsite')."?brugernavn=".$username."&amp;brugerkodeord=".$password."&amp;enkeltstat=vis&amp;prognoser=vis&amp;menu=hide&amp;tabelWidth=100%25&amp;show%5B0%5D=BasicStats&amp;show%5B0%5D=Projection";
+		$main = $stier->getOption('urlStatsite')."?brugernavn=".$username."&amp;enkeltstat=vis&amp;prognoser=vis&amp;menu=hide&amp;tabelWidth=100%25&amp;show%5B0%5D=BasicStats&amp;show%5B0%5D=Projection";
 	}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"

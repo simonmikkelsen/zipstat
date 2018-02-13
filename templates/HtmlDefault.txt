@@ -20,9 +20,10 @@
 		<div class=menu>
 		<a target="_top" href="%frontpage_url%">Forside</A> | 
 		<a target="_top" href="%signup_url%" title="Opret en ny statistik til din hjemmeside">Tilmeld</A> | 
-		<a target="_top" href="%userarea_url%" title="Her kan du ændre indstillingerne for din statistik mm.">Brugerområde</A> | 
+		<a target="_top" href="%userarea_url%" title="Her kan du &aelig;ndre indstillingerne for din statistik mm.">Brugeromr&aring;de</a> | 
 		<a target="_top" href="%contact_url%" title="Kontakt samt giv ris og ros.">Kontakt</A> | 
-		<a target="_top" href="%help_url%" title="Manualen til %service_name% og svar på Ofte Stillede Spørgsmål">Hjælp</A>
+		<a target="_top" href="%help_url%" title="Manualen til %service_name% og svar p&aring; Ofte Stillede Sp&oslash;rgsm&aring;l">Hj&aelig;lp</a> |
+		<a target="_top" href="%logout_url%" title="Log ud af %service_name%">Log ud</A>
 		</div>
 	</td><td>
 		<div class=menulogo>%service_name%</div>
@@ -32,7 +33,7 @@
 %end_menu%%mainSite%%start_footer%
 <hr>
 <p align=center>Administrator: <a href="mailto:%service_email%">%admin_name%</A><br />
-<a href="http://mikkelsen.tv/simon/">Simon Mikkelsen</a> &copy; 1998-201et </p>
+<a href="http://mikkelsen.tv/simon/">Simon Mikkelsen</a> &copy; 1998-2018</p>
 %end_footer%
 </body>
 </html>

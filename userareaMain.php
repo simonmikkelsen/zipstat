@@ -45,11 +45,11 @@
 	
 	$utils = new UsersAreaUtils($siteContext);
 
-	if ((! isset($ind)) or (! isset($password)) or (! isset($ind)) or (! isset($username)))
+	if ((! isset($ind)) or (! isset($ind)) or (! isset($username)))
 	{
 		$utils->doLoginForm(1, $siteContext->getOption('urlUserAreaMain'));
 		exit;
-	} else if (!$datafil->authenticate($username, $password)) {
+	} else if (!$datafil->authenticate($username, $password, 'admin', array('admin', 'statsite'))) {
 		$utils->doLoginForm(2, $siteContext->getOption('urlUserAreaMain'));
 		exit;
 	} else if ($errors->isOccured()) {
@@ -153,8 +153,7 @@ function show_backup(&$utils, &$siteContext) {
 	echo htmlentities($_SERVER["SCRIPT_NAME"])
 	      ."/zipstat_backup_".date($siteContext->getOption('dateformat_backup'))
 	      ."_".htmlentities($ind['username'])
-	      .".sql?type=dlbackup&amp;username=".htmlentities($ind['username'])
-	      ."&amp;password=".htmlentities($ind['password']);
+	      .".sql?type=dlbackup&amp;username=".htmlentities($ind['username']);
 ?>">download dine data</a>.</p>
 
 </div>
@@ -196,7 +195,7 @@ function r_taellere(&$utils, &$siteContext) {
 		#$qs = $ENV{'QUERY_STRING'};
 		#$qs =~ s/\&navneloese\=skjul//ig;
 		#$qs =~ s/\&navneloese\=vis//ig;
-		$qs = "password=".$ind['password']."&amp;username=".$ind['username']."&amp;type=rtaellere";
+		$qs = "username=".$ind['username']."&amp;type=rtaellere";
 
 		#$pro_tekst = "<p>Du kan forge eller formindse antallet af tllere p siden &quot;Indstillinger&quot; (brug linket i menuen til hjre)</P>.\n";
 		if ($ind['navneloese'] === "skjul")
@@ -252,7 +251,6 @@ function r_taellere(&$utils, &$siteContext) {
 
 </div>
 
-<input type="hidden" value="<?php echo htmlentities($ind['password']); ?>" name="password">
 <input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
 <input type="submit" value="   Gem   "> <input type="reset" value="Nulstil formular">
 </form>
@@ -373,7 +371,6 @@ function r_spoer(&$utils, &$siteContext) {
 
 	echo "<input type=hidden value=\"$visAntalSv\" name=antalVistSv>\n";
 	echo "<input type=hidden value=\"$visAntalSp\" name=antalVistSp>\n";
-	echo "<input type=hidden value=\"".$ind['password']."\" name=password>\n";
 	echo "<input type=hidden value=\"".$ind['username']."\" name=username>\n";
 	echo "<input type=hidden value=\"gem_spoers\" name=\"type\">\n";
 	echo "<input type=submit value=\"   Gem   \"> <input type=reset value=\"Nulstil formular\">\n";
@@ -492,7 +489,6 @@ else #Hvis man ikke har pro
 
 	<br>
 
-	<input type="hidden" value="<?php echo $ind['password']; ?>" name="password">
 	<input type="hidden" value="<?php echo $ind['username']; ?>" name="username">
 	<input type="hidden" value="ja" name="simpelgem">
 	<input type="hidden" value="true" name="saved">
@@ -639,7 +635,6 @@ else
 
 	</div>
 
-	<input type=hidden value="<?php echo $ind['password']; ?>" name=password>
 	<input type=hidden value="<?php echo $ind['username']; ?>" name=username>
 	<input type="hidden" value="true" name="saved">
 	<input type=submit value="   Gem   "> <input type=reset value="Nulstil formular">
@@ -772,7 +767,6 @@ function r_oplysninger(&$utils, &$siteContext) {
 	?>
 	</div>
 
-	<input type="hidden" value="<?php echo htmlentities($ind['password']); ?>" name="password">
 	<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
 	<input type=submit value="   Gem   "> <input type=reset value="Nulstil formular">
 	</form>
@@ -790,7 +784,6 @@ function r_oplysninger(&$utils, &$siteContext) {
 	<input type=checkbox name=sletvirkelig> Jeg ønsker at slette min ZIP Stat konto, og ved atnår jeg har trykket på knappen &quot;Slet denne ZIP Stat konto - alle mine statistikker bliver slettet!&quot; er mine statistikker slettet for altid.<br>
 
 	<input type="hidden" name="type" value="slet_konto">
-	<input type="hidden" value="<?php echo htmlentities($ind['password']); ?>" name="password">
 	<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
 	<input type="submit" value="Slet denne ZIP Stat konto - alle mine statistikker bliver slettet!"> <input type=reset value="Nulstil formular">
 
@@ -818,15 +811,14 @@ function r_kodeord(&$utils, &$siteContext) {
 
 	echo "<form action=\"".$siteContext->getOption('urlUserAreaMain')."\" method=get target=\"_top\"><input type=hidden name=type value=\"gemkodeord\">";
 	?>
-	<h3>ndre kodeord</h3>
-	<p>For at ndre dit kodeord skal du skrive det nye kodeord <em>to</em> gange, for at sikre mod slfejl. Det vil kun blive opdateret hvis du skriver det samme kodeord i begge bokse. Det vil <em>ikke</em> blive opdateret hvis du ikke skriver noget.<BR>
-	Nyt kodeord 1. gang <a href="JAVAscript: alert('Hvis du vil ndre dit kodeord, skal du skrive det nye i boksen.\nDerefter skal du skrive det igen i nste boks.\nDet er for at undg slfejl.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til nytkodeord (1)..."></a>
+	<h3>&AElig;ndre kodeord</h3>
+	<p>For at ændre dit kodeord skal du skrive det nye kodeord <em>to</em> gange, for at sikre mod sålfejl. Det vil kun blive opdateret hvis du skriver det samme kodeord i begge bokse. Det vil <em>ikke</em> blive opdateret hvis du ike skriver noget.<BR>
+	Nyt kodeord 1. gang <a href="JAVAscript: alert('Hvis du vil ændre dit kodeord, skal du skrive det nye i boksen.\nDerefter skal du skrive det igen i ænste boks');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjælp til ny tkodeord (1)..."></a>
 		<input type=password name=pwd1><BR>
-	Nyt kodeord 2. gang <a href="JAVAscript: alert('Hvis du har valgt at ndre dit kodeord ved at skrive det nye\nkodeord i ovenstende boks, skal du skrive det igen i denne\nfr det bliver ndret. Det er for at beskytte\nmod slfejl.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til nyt kodeord (2)..."></a>
+	Nyt kodeord 2. gang <a href="JAVAscript: alert('Hvis du har valgt at ndre dit kodeord ved at skrive det nye\nkodeord i ovenstende boks, skal du skrive det igen i denne\nfør det bliveræ ndret');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjælp til nyt kodeord (2)..."></a>
 		<input type=password name=pwd2>
 	</P>
 
-	<input type="hidden" value="<?php echo htmlentities($ind['password']); ?>" name="password">
 	<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
 	<input type="submit" value="   Gem   "> <input type="reset" value="Nulstil formular">
 	</form>
@@ -860,12 +852,11 @@ function r_nulstil(&$utils, &$siteContext) {
 
 		<p><input type=checkbox name="nulalt">Nulstil alt.</p>
 
-		<p>St kryds i kassen &quot;Nulstil alt&quot; oven for og tryk p &quot;Gem&quot;, for at nulstille alle dine
-			statistikker. Ved tllerene er det kun hitsne der bliver nulstillet - de enkelte tllere og kliktllere kan
-			nulles seperat p tllersiden (brug linket i menuen venstre).</p>
+		<p>Sæt kryds i kassen &quot;Nulstil alt&quot; oven for og tryk � &quot;Gem&quot;, for at nulstille alle dine
+			statistikker. Ved tællerene er det kun hitsne der bliver nulstillet - de enkelte ætllere og klikætllere kan
+			nulles seperat på �llersiden (brug linket i menuen venstre).</p>
 		<p>I den avancerede ZIP Stat kan du nulstille de enkelte statistikker seperat.</p>
 
-		<input type="hidden" value="<?php echo htmlentities($ind['password']); ?>" name="password">
 		<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
 		<input type="submit" value="   Nulstil valgte   "> <input type="reset" value="Nulstil formular">
 
@@ -921,7 +912,6 @@ function r_nulstil(&$utils, &$siteContext) {
 		Hos tllere, sprgsml og kliktllere nulstilles kun hitsne. Disse kan envidere nulstilles fra de sider hvor de redigeres.
 		</P>
 		<p>
-		<input type="hidden" value="<?php echo htmlentities($ind['password']); ?>" name="password">
 		<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
 		<input type="submit" value="   Nulstil valgte   "> <input type="reset" value="Nulstil formular">
 
@@ -1009,7 +999,6 @@ function r_emailstats_simpel(&$utils, &$siteContext) {
 
 	<input type="hidden" name="simpel" value="ja">
 	<input type="hidden" value="<?php echo $visAntal; ?>" name="antalVist">
-	<input type="hidden" value="<?php echo htmlentities($ind['password']); ?>" name="password">
 	<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
 	<input type="submit" value="   Gem   "> <input type="reset" value="Nulstil formular">
 
@@ -1140,10 +1129,9 @@ function r_emailstats(&$utils, &$siteContext) {
 
 	} //End for
 	?>
-	<p>Lbet tr for tidspunkter? Nr du trykker p gem kommer der flere.</p>
+	<p>Løbet �r for tidspunkter? Når du trykker � gem kommer der flere.</p>
 	</div>
 	<input type="hidden" name="showCount" value="<?php echo $showCount; ?>" />
-	<input type="hidden" value="<?php echo htmlentities($ind['password']); ?>" name="password">
 	<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
 	<input type="submit" value="   Gem   "> <input type="reset" value="Nulstil formular">
 	<?php
@@ -1220,7 +1208,6 @@ function r_zipklik(&$utils, &$siteContext) {
 
 	?>
 	<input type="hidden" value="<?php echo $visAntal; ?>" name="antalVist">
-	<input type="hidden" value="<?php echo htmlentities($ind['password']); ?>" name="password">
 	<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
 	<input type="hidden" value="gem_zipklik" name="type">
 	<input type="submit" value="   Gem   "> <input type="reset" value="Nulstil formular">
@@ -1833,7 +1820,7 @@ function gem_kodeord(&$utils, &$siteContext) {
             $authFactory = new AuthenticationFactory($siteContext->getOptions());
             $auth = $authFactory->create();
             $auth->updatePasswordHash($ind['username'], $ind['pwd1'], '');
-            header('Location: '.$siteContext->getOption('urlUserArea').'?username='.urlencode($ind['username']).'&password='.urlencode($ind['pwd1']).'&start_type=adminmain&start=gemkodeord_ok');
+            header('Location: '.$siteContext->getOption('urlUserArea').'?username='.urlencode($ind['username']).'&start_type=adminmain&start=gemkodeord_ok');
 	    exit;
 	} else if (isset($ind['pwd1']) or isset($ind['pwd2'])) {
 		$utils->echoSiteHead("Fejl");
