@@ -106,7 +106,7 @@
 	}
 	
 	//Do a password check
-	if (strlen($datafil->getLine(57)) > 0)
+	if (! $datafil->getField('statsitePublic'))
 	{
 		$pwds = explode("::", $datafil->getLine(57));
 		//Is a valid password given?

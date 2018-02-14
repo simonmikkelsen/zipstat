@@ -2642,7 +2642,7 @@ class DatabaseMysqlSource extends DataSource
 	var $dataArray;
 	
 	/**
-	 * The name of the table for logging hits collectively.
+	 * The name of the table for logging hits collectively.
 	 * The attribute is just a cache and if there are any disputes about
 	 * the name, this attribute will loose.
 	 *
@@ -2651,7 +2651,7 @@ class DatabaseMysqlSource extends DataSource
 	var $dbTableCollective;
 	
 	/**
-	 * The name of the archive table for logging hits collectively.
+	 * The name of the archive table for logging hits collectively.
 	 * The attribute is just a cache and if there are any disputes about
 	 * the name, this attribute will loose.
 	 *
@@ -2665,6 +2665,8 @@ class DatabaseMysqlSource extends DataSource
 	 * @private
 	 */
 	var $db;
+
+        var $fieldsWhitelist = array('statsitePublic' => 'boolean');
 	
 	/**
 	 * Creates a new instance.
@@ -2853,6 +2855,7 @@ class DatabaseMysqlSource extends DataSource
 	 */
 	function hentFil()
 	{
+                // Read main data field.
 		$sql = "SELECT * FROM ".$this->getTableName()." WHERE username=\"".$this->db->secureSlashes($this->brugernavn)."\"";
 		$res = $this->db->runQuery($sql);
 
@@ -2860,8 +2863,42 @@ class DatabaseMysqlSource extends DataSource
 			return 0;
 		$this->dataArray = array();
 		$this->dataArray = explode("\n", stripslashes($res[0]['data']));
+
+                // Read additional data fields.
+                $this->fieldsValues = array();
+                foreach ($this->fieldsWhitelist as $field => $type) {
+                  $this->fieldsValues[$field] = $this->readField($res[0], $field, $type);
+                }
+
 		return 1;
 	}
+
+        function readField($fieldsHash, $fieldName, $fieldType) {
+          if ($fieldType === 'boolean') {
+            return isset($fieldsHash[$fieldName]) and $fieldsHash[$fieldName] === '1';
+          } else {
+            die("Unsupported field type: '$fieldType'.");
+          }
+        }
+
+        function getWriteFieldValue($name) {
+          array_key_exists($name, $this->fieldsWhitelist) or die("Unknown field (1): '$name'.");
+          if ($this->fieldsWhitelist[$name] === 'boolean') {
+            return $this->fieldsValues[$name] === TRUE ? '1' : '0';
+          } else {
+            die("Field with unsupported type: '$name'.");
+          }
+        }
+
+        function getField($name) {
+          array_key_exists($name, $this->fieldsWhitelist) or die("Unknown field (2): '$name'.");
+          return $this->fieldsValues[$name];
+        }
+
+        function setField($name, $value) {
+          array_key_exists($name, $this->fieldsWhitelist) or die("Unknown field (3): '$name'.");
+          $this->fieldsValues[$name] = $value;
+        }
 	
 	/**
 	 * Creates the current user, if non existent.
@@ -2893,12 +2930,19 @@ class DatabaseMysqlSource extends DataSource
 	 */
 	function gemFil($saveTimes = 3)
 	{
+                // Prepare fields.
+                $fieldSQL = '';
+                foreach ($this->fieldsWhitelist as $field => $type) {
+                  $fieldSQL .= ', ' . $field . '="'.$this->db->secureSlashes($this->getWriteFieldValue($field)).'"';
+                }
+
+                // Prepare old data structure.
 		$this->prepareForImplode();
 
 		//Save the data.
 		$userdata = $this->db->secureSlashes(implode("\n", $this->dataArray));
 		$sql = "UPDATE ".$this->getTableName()
-		      ." SET data=\"".$userdata."\" WHERE username=\""
+		      ." SET data=\"".$userdata."\"$fieldSQL WHERE username=\""
 		      .$this->db->secureSlashes($this->brugernavn)."\"";
 		$this->db->runQuery($sql, false);
 		$noAffectedRows = $this->db->latestQueryAffected();
@@ -5974,6 +6018,16 @@ class PersistenceMgr extends DataSource {
 		$dataSource = &$this->getWriter();
 		return $dataSource->getLine($index);
 	}
+
+        function getField($name) {
+		$dataSource = &$this->getWriter();
+                return $dataSource->getField($name);
+        }
+
+        function setField($name, $value) {
+		$dataSource = &$this->getWriter();
+                $dataSource->setField($name, $value); 
+        }
 
 	/**
 	 * Returns the line that corresponds to the parameter,

@@ -58,13 +58,13 @@
 	}
 	
 	//If the stat site is password protected
-	if (strlen($datafil->getLine(57)) > 0) {
-		$brugerkodeord = "&amp;brugerkodeord=".$ind['password']."&amp;menu=hide&amp;tableWidth=100%25";
+	if (! $datafil->getField('statsitePublic')) {
+		$brugerkodeord = "&amp;menu=hide&amp;tableWidth=100%25";
 		$statside_offentlig = "";
 		$targetTop = " target=\"main\"";
 	} else {
 		$brugerkodeord = '';
-		$statside_offentlig = "Statistiksiden er offentlig <a href=\"javascript:alert('Din statistikside er lige nu offentlig for alle.\\nDu kan dog sÃ¦tte kodeord Ã¥ den,\nsÃ¥ kun du kan se den.\\nDette Ã¸res Ã¥ siden Indstillinger\\nher Ã¥ brugeromrdet.');\">Ã¦s mere</a>";
+		$statside_offentlig = "Statistiksiden er offentlig <a href=\"javascript:alert('Din statistikside er lige nu offentlig for alle.\\nDu kan dog markere den privat p&aring; siden indstillinger i menuen til venstre.')\">L&aelig;s mere</a>";
 		$targetTop = " target=\"_top\"";
 	}
 

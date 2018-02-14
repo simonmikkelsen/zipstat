@@ -469,22 +469,12 @@ else #Hvis man ikke har pro
 	}
 
 	if ($utils->getUAType() === $utils->UA_TYPE_SIMPLE) {
-		#Kodeord p statistiksiden
-		if (strlen($datafile->getLine(57)) > 0)
-			$chk = ' CHECKED';
-		else
-			$chk = '';
-
-	if (isset($pro_kode)) 
-		echo $pro_kode;	
-	echo "<div class=forside><h3>Kodeord p√• statistiksiden</h3>\n<pKodeord p√ statistiksiden kan kun sl√s til via det avancerede brugeromr√de. Du kan skifte til det nederst i menuen til venstre.</p>\n";
-
 	?>
 
 	<div class=forside>
 	<h3>Bliv ikke selv talt med</h3>
 	<p><input type=checkbox name="ikkeop"<?php echo $ikopchek; ?>> T√¶l aldrig mig med i min statistik</P>
-	<p>OBS. Hvis du skifter til en anden computer eller en anden internet-browser, skal du g√• ind √•p denne side og krydse af igen.</p>
+	<p>OBS. Hvis du skifter til en anden computer eller en anden internet-browser, skal du g√• inp denne side og krydse af igen.</p>
 	</div>
 
 	<br>
@@ -512,13 +502,20 @@ else
 
 	#Kodeord til statistiksiden
 	echo "<div class=forside>\n";
-	echo "<h2>Kodeord til statistiksiden</h2><p>nsker du ikke at andre skal kunne se dine statistikker, kan du stte kodeord p statistiksiden.</p>";
+        echo "<h2>Offentlig statistikside</h2>";
 
+        $statsitePublic = $datafile->getField('statsitePublic');
+        echo "Statistiksiden er: <select name=\"statsitePublic\">\n";
+        echo "  <option value=\"true\"".($statsitePublic ? ' SELECTED' : '').">offentlig</option>\n";
+        echo "  <option value=\"false\"".((! $statsitePublic) ? ' SELECTED' : '').">lukket for offentligheden</option>\n";
+        echo "</select>";
+
+        echo "<p>&Oslash;nsker du at udvalgte personer skal kunne se statistiksiden uden at &aelig;ndre i resten af indstillingerne, kan du angive en r&aelig;kke kodeord herunder. Angiv 1 kodeord pr. linie.</p>\n";
+        echo "<p><b>OBS</b>: Disse kodeord opbevares i klar tekst - skulle nogen f&aring; adgang til ZIP Stats database vil angriberen f&aring; adgang til disse kodeord. Derfor b&oslash;r disse kodeord under ingen omst&aelig;ndigheder genbruges p&aring; andre sider! (dette g&aelig;lder i &oslash;vrigt for alle kodeord)</p>";
 	print "<TEXTAREA NAME=\"brugerkodeord\" ROWS=\"5\" COLS=\"10\">";
 	echo htmlentities(str_replace("::", "\n", $datafile->getLine(57)));
-	print "</TEXTAREA>Kun t kodeord pr. linie";
-
-	print "<a href=\"JAVAscript: alert('Hvis du vil have man skal skrive et kodeord for at kunne se din statistikside, skal du skrive dem her. t kodeord pr. linie. Hvis du ikke skriver nogle kodeord, skal man ikke bruge kodeord for at se statistiksiden. Disse kodeord giver kan kun benyttes til adgangskontrol til statistiksiden - de kan ikke bruges andre steder.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til kodeord p statistiksiden...\"></a>\n";
+	print "</TEXTAREA>Kun 1 kodeord pr. linie";
+        echo "<p><b>OBS</b>: Selvom der st&aring;r kodeord herover, er statistiksiden altid offentlig hvis dette er valgt - der skal alts&aring; st&aring: &quot;Statistiksiden er: lukket for offentligheden&quot; for at den IKKE er offentlig.</p>";
 	print "</div><br>\n";
 
 	#Sprringer
@@ -1304,6 +1301,9 @@ function gem_indstillinger(&$utils, &$siteContext) {
 	} else {
 		$datafile->setUserSetting('ignoreQuery', 'false');
 	}
+
+        // Sets the stat site to public only if the field is set and is set to true in lower case: Default to private.
+        $datafile->setField('statsitePublic', isset($ind['statsitePublic']) and $ind['statsitePublic'] === 'true');
 
 	if (isset($ind['simpelgem'])) {
             // This functionality is disabled due to the new password management.
