@@ -3020,7 +3020,7 @@ class DatabaseMysqlSource extends DataSource
                      if ($rpassword !== NULL and $rpassword !== "") {
                        $this->hentFil();
                        $this->dataArray[6] = "";
-                       //$this->gemFil();
+                       $this->gemFil();
                      }
                    $newPermission = is_array($getOnLogin) ? $getOnLogin : array($getOnLogin);
 		   $session->createNewSession($username, $newPermission, FALSE);

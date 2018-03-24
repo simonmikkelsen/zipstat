@@ -1,4 +1,4 @@
 %mainSite%
 
-Simon Mikkelsen (zipstat@zip.dk) (c) 1998-2018
+Simon Mikkelsen (zipstat@zipstat.dk) (c) 1998-2018
  

@@ -246,7 +246,7 @@ if ($found === true)
 	//Generates the html for the statsite.
 	$side = $statSite->generateSite();
 
-	@mail($datafil->getLine(2),"Statistikker fra ZIP Stat", $side, "From: zipstat_mailstats@zip.dk\nReply-to: zipstat_mailstats@zip.dk\nX-abuse: postmaster@zip.dk\nX-Mailer: ZIP Stat mailstats\nContent-Type: text/plain");
+	@mail($datafil->getLine(2),"Statistikker fra ZIP Stat", $side, "From: zipstat+mailstats@zipstat.dk\nReply-to: zipstat+mailstats@zipstat.dk\nX-abuse: zipstat+abuse@zipstat.dk\nX-Mailer: ZIP Stat mailstats\nContent-Type: text/plain");
 	//Stat site end
 
 	//Log the sending of the mail

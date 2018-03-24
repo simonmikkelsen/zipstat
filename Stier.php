@@ -32,7 +32,7 @@ function Stier()
 	
 	/* The password for the database.
 	*/
-	$this->options['DB_password'] = "";
+	$this->options['DB_password'] = "Gyb.98_Yprg%qq!jv5O";
 
         /** The path part of the main url, e.g. used for cookies. */
 	$this->options['urlPath'] = '/test';
@@ -52,7 +52,7 @@ function Stier()
 
 	/** The e-mail address of the administrator - probably yours.
 	 */
-	$this->options['adminEMail'] = "zipstat@zip.dk";
+	$this->options['adminEMail'] = "zipstat@zipstat.dk";
 
 	/** The name of the administrator - probably yours.
 	 */
@@ -60,7 +60,7 @@ function Stier()
 
 	/** The e-mail addres to which users can send errorrs to.
 	 */
-	$this->options['errorEMail'] = "zipstat@zip.dk";
+	$this->options['errorEMail'] = "zipstat@zipstat.dk";
 
 	/** The domain you are hosting ZIP Stat on. IMPORTANT: Only put your
 	 *  domain, and skip any www etc. E.g. zipstat.dk

@@ -98,6 +98,8 @@ if (isset($ind['token'])) {
 
 $username = $ind['username'];
 
+$datafil = DataSource::createInstance($username,$stier);
+$res = $datafil->hentFil();
 if ($res === -2 or ! $res) {
 	$message = "Det opstod en intern fejl. Kontakt ".$stier->getOption('name_of_service')."'s administrator via e-mail-adressen nederst p&aring; siden.";
 	$side = new HtmlSite($siteContext, "Der opstod en fejl");
@@ -115,13 +117,6 @@ $auth->createPwResetRequest($username, $token);
 
 $email = $datafil->getLine(2);
 mailReset($email, $stier, $token, $siteContext);
-
-/*
-	$side = new HtmlSite($siteContext, "Dit kodeord er sendt");
-	$side->addHtml("<div class=forside>Dit kodeord er nu afsendt. Gem mailen med det, eller skriv det ned. Hvis du glemmer dit kodeord igen, skal du dog være velkommen til at sende bud efter det igen. Nå, men mailen skulle være der nu!</div>");
-	echo $side->getSite();
-	exit;
-*/
 
 function showResetForm($siteContext, $username, $token) {
   $message = '
