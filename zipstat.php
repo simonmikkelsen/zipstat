@@ -192,7 +192,6 @@ if (isset($ind['taelop']) and $ind['taelop'] !== "nej" or !isset($ind['taelop'])
 		getenv('HTTP_ACCEPT_LANGUAGE'),
 		getenv('HTTP_REFERER')
 	);
-
 }
 
 //Is it time to send the user an e-mail with stats - if the user wants it.
@@ -204,6 +203,7 @@ $found = $event->repeatNow($lastMailSend, $send);
 if ($stier->getOption('send_stat_mails') === 0)
 	$found = false;
 
+$datafil->setOperation('hit');
 //Yes: Send an e-mail
 if ($found === true)
 {
@@ -250,9 +250,9 @@ if ($found === true)
 	//Stat site end
 
 	//Log the sending of the mail
-	$fp = fopen("mailsSend.txt","a");
-	fwrite($fp, "Mail send ".date('r')." ".$ind['brugernavn'].", adress: ".$datafil->getLine(2)."\n");
-	fclose($fp);
+	// $fp = fopen("mailsSend.txt","a");
+	// fwrite($fp, "Mail send ".date('r')." ".$ind['brugernavn'].", adress: ".$datafil->getLine(2)."\n");
+	// fclose($fp);
 
 }
 else

@@ -2309,6 +2309,13 @@ class DataSource
 	  */
 	 var $path;
 
+   /**
+    * Set to 'hit' when saving due to a hit registered.
+    * Set to 'maint' when saving due to maintance.
+    * This will cause the proper time stamps to be set.
+    */
+	 var $operation = null;
+
 	/**
 	 * Creates a new instance.
 	 *
@@ -2329,6 +2336,13 @@ class DataSource
 		}
 
 		$this->setPath($settings);
+	}
+
+	function setOperation($op) {
+	   if ($op != 'hit' and $op != 'maint') {
+       die('Unsupported operation value given.');
+	   }
+     $this->operation = $op;
 	}
 
 	/**
@@ -2939,10 +2953,17 @@ class DatabaseMysqlSource extends DataSource
                 // Prepare old data structure.
 		$this->prepareForImplode();
 
+		$timestampSql = '';
+		if ($this->operation == 'hit') {
+		  $timestampSql = ', latestVisit = NOW()';
+		} else if ($this->operation == 'maint') {
+		  $timestampSql = ', latestMaintenance = NOW()';
+	  }
+
 		//Save the data.
 		$userdata = $this->db->secureSlashes(implode("\n", $this->dataArray));
 		$sql = "UPDATE ".$this->getTableName()
-		      ." SET data=\"".$userdata."\"$fieldSQL WHERE username=\""
+		      ." SET data=\"".$userdata."\"" . $fieldSQL . $timestampSql ." WHERE username=\""
 		      .$this->db->secureSlashes($this->brugernavn)."\"";
 		$this->db->runQuery($sql, false);
 		$noAffectedRows = $this->db->latestQueryAffected();
@@ -5726,6 +5747,15 @@ class PersistenceMgr extends DataSource {
 	 */
 	function PersistenceMgr($username, &$settings) {
 		DataSource::DataSource($username, $settings);
+	}
+
+	function setOperation($operation) {
+    if ($this->sourceRead !== NULL) {
+      $this->sourceRead->setOperation($operation);
+    }
+    if ($this->sourceWrite !== NULL) {
+      $this->sourceWrite->setOperation($operation);
+    }
 	}
 
 	/**

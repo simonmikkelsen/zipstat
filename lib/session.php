@@ -89,7 +89,7 @@ class Session {
   function setCookie($value, $expire) {
     // Send the session cookie.
     $domain = '.' . $this->options->getOption('domain');
-    $path = '/';
+    $path = '/; samesite=strict';
     setcookie($this->cookieName, $value, $expire, $path, $domain, TRUE, TRUE); // secure and http only
   }
 

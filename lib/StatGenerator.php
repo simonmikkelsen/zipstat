@@ -4005,8 +4005,8 @@ class HitsLatestsVisits extends StatGenerator
 		$tableContent[0][5] = $locale->getLocale('sgLatestLang');
 		$tableContent[0][6] = $locale->getLocale('sgLatestPage');
 		$tableContent[0][7] = $locale->getLocale('sgLatestRefpage');
-		$tableContent[0][8] = $locale->getLocale('sgLatestDomain');
-		$tableContent[0][9] = $locale->getLocale('sgLatestIp');
+		// $tableContent[0][8] = $locale->getLocale('sgLatestDomain');
+		// $tableContent[0][9] = $locale->getLocale('sgLatestIp');
 
 		//Set the class name for the columns
 		$columnClass = array_fill(0, sizeof($tableContent[0]), 'sinfo');
@@ -4022,8 +4022,8 @@ class HitsLatestsVisits extends StatGenerator
 			Order of pices:
 			0: Browser
 			1: Os
-			2: IP-adr
-			3: Domain
+			// 2: IP-adr - empty as of GDPR
+			// 3: Domain - empty as of GDPR
 			4: Time
 			5: Screen resolution
 			6: Screen color depth (in bits)
@@ -4035,7 +4035,7 @@ class HitsLatestsVisits extends StatGenerator
 			4, 0, 1, 2, 3, 5, 6, 7, 8, 9
 		*/
 
-		$displayOrder = array(4, 0, 1, 5, 6, 7, 8, 9, 3, 2);
+		$displayOrder = array(4, 0, 1, 5, 6, 7, 8, 9);
 
 		$rows = $dataSource->getLineAsArray(28);
 

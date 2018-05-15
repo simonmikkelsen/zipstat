@@ -398,6 +398,7 @@ class ZipStatEngine
 		$addr = $this->ipAddr;
 	else
 		$addr = "Ukendt";
+	$addr = ""; // Not registered since GDPR.
 
 	if (strlen($this->screen_res) === 0)
 		$this->screen_res = "Andre";
@@ -719,7 +720,7 @@ class ZipStatEngine
 		while ((sizeof($unixtid) > $pro_max_ipadr) and ($pro_max_ipadr > 0))
 			array_shift($unixtid);
 
-		$this->datafil->setLine(45,implode(":",$tmp). ":" . $this->ipAddr);
+		$this->datafil->setLine(45,implode(":",$tmp). ":" . $this->ipAddr); // IP addresses for registering unique visits.
 		$this->datafil->setLine(72,implode(":",$unixtid). ":" . $nutid);
 		array_push($udSider,$paaSide);
 
