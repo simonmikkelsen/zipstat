@@ -109,7 +109,7 @@ if ($gotoSite === 'rtaellere') {
 } else if ($gotoSite === 'dlbackup') {
 	download_backup($utils, $siteContext);
 } else {
-	$utils->showMessage("V�lg funktion","Vælg funktion i menuen til venstre. Husk at benytte Gem-knapperne i bunden af siderne for at gemme de ndringer. De bliver ikke gemt hvis du forladerne siderne via menuerne eller hvis du skifter mellem simpelt og avanceret brug.");
+	$utils->showMessage("V?lg funktion","Vælg funktion i menuen til venstre. Husk at benytte Gem-knapperne i bunden af siderne for at gemme de ndringer. De bliver ikke gemt hvis du forladerne siderne via menuerne eller hvis du skifter mellem simpelt og avanceret brug.");
 }
 exit(0);
 
@@ -146,8 +146,8 @@ function show_backup(&$utils, &$siteContext) {
 <div class=forside>
 <p><cite>Rigtige mænd tager ikke backup...</cite></p>
 <h2>Intro</h2>
-<p>ZIP Stat tager ikke dine data som gidsel: Du kan når som helst <a target="_blank" href="http://zipstat.org/">downloade ZIP Stat</a> og �re det hos dig selv. Du kan endda starte en konkurerende service!</p>
-<p>ZIP Stat benytter databasen MySQL (eller de frie alternativer s�som MariaDB) og de data du kan downloade er formateret til at blive brugt af den. Benyt kun disse data til nyeste version af ZIP Stat. ZIP Stat kan nogle gange automatisk opgradere et ældre dataformat, men en gammel version af ZIP Satat kan ikke bruge nyere data.</p>
+<p>ZIP Stat tager ikke dine data som gidsel: Du kan når som helst <a target="_blank" href="http://zipstat.org/">downloade ZIP Stat</a> og ?re det hos dig selv. Du kan endda starte en konkurerende service!</p>
+<p>ZIP Stat benytter databasen MySQL (eller de frie alternativer s?som MariaDB) og de data du kan downloade er formateret til at blive brugt af den. Benyt kun disse data til nyeste version af ZIP Stat. ZIP Stat kan nogle gange automatisk opgradere et ældre dataformat, men en gammel version af ZIP Satat kan ikke bruge nyere data.</p>
 <h2>Download dine data</h2>
 <p><a href="<?php
 	echo htmlentities($_SERVER["SCRIPT_NAME"])
@@ -204,14 +204,14 @@ function r_taellere(&$utils, &$siteContext) {
 			$pro_tekst = "<a href=\"".$siteContext->getOption('urlUserAreaMain')."?$qs&amp;navneloese=skjul\">Skjul navnelse tllere...</A><br>\n";
 
 		$pro_tekst .= "Antal tællere <input type=text name=\"pro_taellere\" value=\"".$lib->pro(5)."\" size=3>\n";
-		$pro_tekst .= "<a href=\"JAVAscript: alert('Som standard har du 50 tællere, men hvis du har brug for flere ellere �rre, kan du indtaste antallet her. Du bør dog ikke stte tallet til mere end nogle hundrede, da mange �llere dels vil gøre din statistik mere uoverskuelig, men selve statistikken bliver o� langsommere, når der skal holder styr � store mængder data.');\"><img src=\"".$siteContext->getPath('zipstat_icons')."/stegn2.gif\" width=9 height=14 border=0 alt=\"�lp til antal tællere...\"></a><br>\n";
+		$pro_tekst .= "<a href=\"JAVAscript: alert('Som standard har du 50 tællere, men hvis du har brug for flere ellere ?rre, kan du indtaste antallet her. Du bør dog ikke stte tallet til mere end nogle hundrede, da mange ?llere dels vil gøre din statistik mere uoverskuelig, men selve statistikken bliver o? langsommere, når der skal holder styr ? store mængder data.');\"><img src=\"".$siteContext->getPath('zipstat_icons')."/stegn2.gif\" width=9 height=14 border=0 alt=\"?lp til antal tællere...\"></a><br>\n";
 	} else {
 		$pro_tekst = '';
 	}
 
 ?>
 <div class=forside>
-<p>Hvis du vil ændre eller slette dens navn, � gør det i kassen ud for �lleren. Hvis du vil nulstille en tæller, � sæt kryds i kassen ud for den espektive tæller.</p>
+<p>Hvis du vil ændre eller slette dens navn, ? gør det i kassen ud for ?lleren. Hvis du vil nulstille en tæller, ? sæt kryds i kassen ud for den espektive tæller.</p>
 <?php echo $pro_tekst; ?>
 <form action="<?php echo $siteContext->getOption('urlUserAreaMain'); ?>" method=POST>
 <table border=1>
@@ -299,7 +299,7 @@ function r_spoer(&$utils, &$siteContext) {
 	$ind = $lib->getHTTPVars();
 	$datafile = &$lib->getDatafil();
 
-	$utils->echoSiteHead("Sp�gsmål", 0);
+	$utils->echoSiteHead("Sp?gsmål", 0);
 
 	echo "<form action=\"".$siteContext->getOption('urlUserAreaMain')."\" method=post>";
 
@@ -330,7 +330,7 @@ function r_spoer(&$utils, &$siteContext) {
 	for ($i = 0;$i < $visAntalSp; $i++) {
 		$dy = $i + 1;
 		?>
-		<a href="JAVAscript: alert('Hvis du vil ændre � et spørgs�l, skal du skrive ændringen i den vnrsre boks.\nHvis du vil ændre svarene, skal du skriv�ndringerne i de\nmindre bokse.\nDu kan nulstille antal svar (hits) hvert svar har fet, ved at\nsætte kryds i den lille kasse.\nHvis du ikke skriver noget i et svarfelt, vil svaret ikke blive givet som svarmulighed.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="�lp til rediger sp�rgsmål..."></a>
+		<a href="JAVAscript: alert('Hvis du vil ændre ? et spørgs?l, skal du skrive ændringen i den vnrsre boks.\nHvis du vil ændre svarene, skal du skriv?ndringerne i de\nmindre bokse.\nDu kan nulstille antal svar (hits) hvert svar har fet, ved at\nsætte kryds i den lille kasse.\nHvis du ikke skriver noget i et svarfelt, vil svaret ikke blive givet som svarmulighed.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="?lp til rediger sp?rgsmål..."></a>
 		<p align=center><table border=1 class=forside><caption>Hvis du ikke skriver noget i et svarfelt, vil svaret ikke blive vist.</caption>
 		<tr><td colspan=3>
 		<big align=center>Sprgsml <?php echo $dy; ?></big>
@@ -849,9 +849,9 @@ function r_nulstil(&$utils, &$siteContext) {
 
 		<p><input type=checkbox name="nulalt">Nulstil alt.</p>
 
-		<p>Sæt kryds i kassen &quot;Nulstil alt&quot; oven for og tryk � &quot;Gem&quot;, for at nulstille alle dine
+		<p>Sæt kryds i kassen &quot;Nulstil alt&quot; oven for og tryk ? &quot;Gem&quot;, for at nulstille alle dine
 			statistikker. Ved tællerene er det kun hitsne der bliver nulstillet - de enkelte ætllere og klikætllere kan
-			nulles seperat på �llersiden (brug linket i menuen venstre).</p>
+			nulles seperat på ?llersiden (brug linket i menuen venstre).</p>
 		<p>I den avancerede ZIP Stat kan du nulstille de enkelte statistikker seperat.</p>
 
 		<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
@@ -1126,7 +1126,7 @@ function r_emailstats(&$utils, &$siteContext) {
 
 	} //End for
 	?>
-	<p>Løbet �r for tidspunkter? Når du trykker � gem kommer der flere.</p>
+	<p>Løbet ?r for tidspunkter? Når du trykker ? gem kommer der flere.</p>
 	</div>
 	<input type="hidden" name="showCount" value="<?php echo $showCount; ?>" />
 	<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
@@ -1554,7 +1554,7 @@ function slet_konto(&$utils, &$siteContext) {
 
         $authFactory = new AuthenticationFactory($siteContext->getOptions());
         $auth = $authFactory->create();
-        if (! $auth->doAuthenticate($username, $ind['kodeord_slet'])) {
+        if (! $auth->doAuthenticate($ind['username'], $ind['kodeord_slet'])) {
 		$utils->echoSiteHead("Forkert kodeord");
 		echo "<div class=forside>\n<h1>Forkert kodeord</h1>\n<p>Det kodeord du indtastede er forkert. Tryk p din browsers &quot;tilbage&quot;-knap og ret det.</p></div>";
 		$utils->echoSiteEnd();
@@ -1570,16 +1570,15 @@ function slet_konto(&$utils, &$siteContext) {
 
 	if (!isset($ind['sletvirkelig']) or strlen($ind['sletvirkelig']) === 0) {
 		$utils->echoSiteHead("Du satte ikke hak");
-		echo "<div class=forside>\n<h1>Du satte ikke hak</h1>\n<p>Du skal stte hak i kassen <i>Jeg nsker at slette min ZIP Stat konto, og ved at nr jeg har trykket p knappen &quot;Slet denne ZIP Stat konto - alle mine statistikker bliver slettet!&quot; er mine statistikker slettet for altid.</i>. Dette er for at sikre, at du ikke kommer til at slette din ZIP Stat konto ved et uheld. Tryk p din browsers &quot;tilbage&quot;-knap og st hak.</p></div>";
+		echo "<div class=forside>\n<h1>Du satte ikke hak</h1>\n<p>Du skal s&aelig;tte hak i kassen <i>Jeg &oslash;nsker at slette min ZIP Stat konto, og ved at n&aring;r jeg har trykket p&aring; knappen &quot;Slet denne ZIP Stat konto - alle mine statistikker bliver slettet!&quot; er mine statistikker slettet for altid.</i>. Dette er for at sikre, at du ikke kommer til at slette din ZIP Stat konto ved et uheld. Tryk p din browsers &quot;tilbage&quot;-knap og st hak.</p></div>";
 		$utils->echoSiteEnd();
 		exit;
 	}
 
-	if ($datafile->deleteUser()) {
-		$utils->echoSiteHead("Din konto er slettet");
-		echo "<div class=forside>\n<p>Din ZIP Stat konto er nu slettet. Tak fordi du valgte at bruge ZIP Stat indtil nu. Jeg håber du �lger at komme tilbage.<br>Mvh. ".$siteContext->getOption('adminName').", ".$siteContext->getOption('name_of_service')."</p></div>";
-		$utils->echoSiteEnd();
-	}
+	$datafile->deleteUser();
+	$utils->echoSiteHead("Din konto er slettet");
+	echo "<div class=forside>\n<p>Din ZIP Stat konto er nu slettet. Kontroller venligst at du ikke l&aelig;ngere kan logge ind. Tak fordi du valgte at bruge ZIP Stat indtil nu.</p></div>";
+	$utils->echoSiteEnd();
 	exit;
 }
 
