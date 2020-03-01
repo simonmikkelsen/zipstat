@@ -2959,7 +2959,6 @@ class DatabaseMysqlSource extends DataSource
 		} else if ($this->operation == 'maint') {
 		  $timestampSql = ', latestMaintenance = NOW()';
 	  }
-
 		//Save the data.
 		$userdata = $this->db->secureSlashes(implode("\n", $this->dataArray));
 		$sql = "UPDATE ".$this->getTableName()
