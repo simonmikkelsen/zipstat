@@ -548,7 +548,7 @@ function countVisit($url, $okSider)
 	//Remove invalid urls.
 	$okokSider = array();
 	foreach ($okSider as $enkeltSide) {
-		if (strlen($enkeltSide) > 0)
+		if (strlen(trim($enkeltSide)) > 0)
 			$okokSider[] = $enkeltSide;
 	}
 
@@ -575,7 +575,6 @@ function countVisit($url, $okSider)
 					return true;
 				}
 	}
-
 	return false;
 }
 

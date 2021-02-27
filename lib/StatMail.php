@@ -50,6 +50,9 @@ class EventCalculator {
 		for ($i = 0; $i < count($schedule); $i++)
 		{
 			$dayNTime = explode(";;",$schedule[$i]);
+			if (sizeof($dayNTime < 2)) {
+        return false;
+			}
 			$day = $dayNTime[0];
 			$time = $dayNTime[1];
 			

@@ -31,8 +31,8 @@ if (strlen($problemer) === 0) {
 	$url = trim($datafil->getLine(53));
 	
 	if (strlen($url) > 0) {
-		if (strpos(strtolower($url), 'http://') !== 0)
-			$url = "http://" . $url;
+		if (strpos(strtolower($url), 'http://') !== 0 and strpos(strtolower($url), 'https://') !== 0)
+			$url = "https://" . $url;
 		header('Location: '.$url);
 	} else {
 		$ind = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);

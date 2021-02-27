@@ -98,7 +98,6 @@ if ($stier->getOption('logMode') !== 0 and (!isset($ind['taelop']) or $ind['tael
 
 //Set the engine to NULL, so we can see if it has not been created.
 $engine = NULL;
-
 if ($stier->getOption('processMode') !== 0) {
 require_once "Mstat.php";
 require_once "lib/ZipStatEngine.php";
@@ -127,7 +126,6 @@ $res = $datafil->hentFil();
 
 $lib = new Html($ind,$datafil);
 $lib->setStier($stier);
-
 //Write the stat image
 if (!$errors->isOccured()) {
 	//'billed' is 'image' in danish: The image to display.
@@ -160,6 +158,7 @@ if (!$errors->isOccured()) {
 //'taelop' is danish for count up. nej is danish for no.
 if (!$lib->countVisit(getenv("HTTP_REFERER"),$datafil->getLine(111))) {
 	$ind['taelop'] = "nej";
+
 }
 //Ignore visits from this IP-address?
 if ((getenv("REMOTE_ADDR") === $datafil->getLine(52)) and ($datafil->getLine(52) != "")) {
@@ -250,9 +249,9 @@ if ($found === true)
 	//Stat site end
 
 	//Log the sending of the mail
-	// $fp = fopen("mailsSend.txt","a");
-	// fwrite($fp, "Mail send ".date('r')." ".$ind['brugernavn'].", adress: ".$datafil->getLine(2)."\n");
-	// fclose($fp);
+	//$fp = fopen("mailsSend.txt","a");
+	//fwrite($fp, "Mail send ".date('r')." ".$ind['brugernavn'].", adress: ".$datafil->getLine(2)."\n");
+	//fclose($fp);
 
 }
 else
@@ -410,14 +409,13 @@ function zipcount($coltype,$stier,$ind,$datafil) {
 function writeImage($imageFile,&$stier)
 {
 	//return 1; //Uncomment for debugging purposes - then text can be output instead of an image
-	header("Content-type: image/gif\n\n");
 	$filename = $stier->getSti('zipstat_icons')."/".$imageFile;
 
-	$fd = fopen ($filename, "r");
-	$contents = fread ($fd, filesize ($filename));
+	$fd = fopen ($filename, "rb");
+	header("Content-type: image/gif");
+	header("Content-Length: " . filesize($filename));
+	fpassthru($fd);
 	fclose ($fd);
-
-	print $contents;
 	flush();
 }
 
