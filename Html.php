@@ -3175,19 +3175,16 @@ class MySqlAccess
 		$host = $this->options->getOption('DB_hostname');
 		$passwd = $this->options->getOption('DB_password');
 
-		$conn = mysql_connect($host, $user, $passwd);
-		if ($conn) {
-			if (! mysql_select_db($db, $conn))
-				$status = mysql_error();
-			else
-				$status= 0;
-		} else {
-			$status = mysql_error();
-		}
+		$conn = mysqli_connect($host, $user, $passwd, $db);
 	
 		if (! $conn) {
-			echo "Can not connect to database - try later. Sorry.";
+			echo "Can not connect to database - try later. Sorry."; //Do not use this in production for security mysqli_connect_errno()
 			exit;
+		}
+
+		if (! mysqli_set_charset($conn, "utf8")) {
+      echo "Failed setting database charset to utf8.";
+      exit;
 		}
 	
 		return ($conn);
@@ -3201,9 +3198,9 @@ class MySqlAccess
 	 */
 	function secureSlashes($sql) {
 		if (get_magic_quotes_gpc() === 1) {
-			return mysql_real_escape_string(stripslashes($sql));
+			return mysqli_real_escape_string($this->conn, stripslashes($sql));
 		} else {
-			return mysql_real_escape_string($sql);
+			return mysqli_real_escape_string($this->conn, $sql);
 		}
 	}
 	
@@ -3215,7 +3212,7 @@ class MySqlAccess
 	 * @param $outputExpected if output is expected (true or false).
 	 */
 	function runQuery($sql, $outputExpected = TRUE) {
-		$result = mysql_query($sql, $this->conn);
+		$result = mysqli_query($this->conn, $sql);
 		if ($result === FALSE) {
 			die("Unfortunally there was an internal error in what is called an SQL query. If this error does not go away, please contact the administrator of this website. We are very sorry!");
 		}
@@ -3225,10 +3222,11 @@ class MySqlAccess
 
 		$resultArray = array();
 
-		while ($indl = mysql_fetch_array($result)) {
+		while ($indl = mysqli_fetch_array($result)) {
  			$resultArray[] = $indl;
  			unset($indl);
 		}
+		mysqli_free_result($result);
 		return $resultArray;
 	}
 	
@@ -3238,7 +3236,7 @@ class MySqlAccess
 	 * @return Returns the number of rows the latest query affected.
 	 */
 	function latestQueryAffected() {
-		return mysql_affected_rows($this->conn);
+		return mysqli_affected_rows($this->conn);
 	}
 
 }

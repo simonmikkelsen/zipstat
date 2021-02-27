@@ -34,13 +34,10 @@ function Stier()
 	*/
 	$this->options['DB_password'] = "Gyb.98_Yprg%qq!jv5O";
 
-        /** The path part of the main url, e.g. used for cookies. */
-	$this->options['urlPath'] = '/test';
-
 	/** The web address to the folder where files such as zipstat.php
 	 *  and stats.php can be found. There must be no / in the end.
 	 */
-	$this->options['urlMain'] = 'https://zipstat.dk' . $this->options['urlPath'];
+	$this->options['urlMain'] = 'https://zipstat.dk/zipstat';
 
 	/** The web address all links to the front page must point to.
 	 */
@@ -250,7 +247,7 @@ function Stier()
 	$this->options['urlSignup'] = $this->options['urlMain'].'/register.php';
 	$this->options['urlTotal'] = $this->options['urlMain'].'/total.php'; //Without any trailing /
 	$this->options['urlHelp'] = $this->options['ZSHomePage'].'hjaelp.shtml';
-	$this->options['urlLogout'] = $this->options['urlMain'].'/logout.php';
+        $this->options['urlLogout'] = $this->options['urlMain'].'/logout.php';
 	$this->options['imageURL'] = $this->options['urlMain']."/images";
 
 
