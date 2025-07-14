@@ -297,7 +297,7 @@ class Registrer
 <h2><?php echo $this->siteContext->getLocale('regNowOnlyMissing');?></h2>
 	<p><?php echo $this->siteContext->getLocale('regGenCode1');?>
 	<a href="userarea.php?username=<?php echo htmlentities(urlencode($in['brugernavn']));
-		?>&amp;password=<?php echo htmlentities(urlencode($in['kodeord']));?>&amp;start=Obligatorisk+kode&amp;start_type=kodegen">
+		?>&amp;start=Obligatorisk+kode&amp;start_type=kodegen">
 	<?php echo $this->siteContext->getLocale('regGenCode2');?></a>.
 	<?php echo $this->siteContext->getLocale('regGenCode3');?></p>
 
@@ -352,34 +352,33 @@ class Registrer
 		$lib = $this->siteContext->getCodeLib();
 
 		if (!isset($in['navn']) or strlen($in['navn']) === 0) {
-			$errors->addError(new Error(2, $this->siteContext->getLocale('regErrorNoName')));
+			$errors->addError(new ZsError(2, $this->siteContext->getLocale('regErrorNoName')));
 		}
 
 		if (!isset($in['e-mail']) or strlen($in['e-mail']) === 0 or !$lib->okmail($in['e-mail'])) {
-			$errors->addError(new Error(2, $this->siteContext->getLocale('regErrorBadEmail')));
+			$errors->addError(new ZsError(2, $this->siteContext->getLocale('regErrorBadEmail')));
 		}
 
 		if (!isset($in['url']) or strlen($in['url']) === 0 or !$lib->okurl($in['url'])) {
-			$errors->addError(new Error(2, $this->siteContext->getLocale('regErrorBadUrl')));
+			$errors->addError(new ZsError(2, $this->siteContext->getLocale('regErrorBadUrl')));
 		}
 
 		if (!isset($in['titel']) or strlen($in['titel']) === 0) {
-			$errors->addError(new Error(2, $this->siteContext->getLocale('regErrorNoTitle')));
+			$errors->addError(new ZsError(2, $this->siteContext->getLocale('regErrorNoTitle')));
 		}
 
 		if (!isset($in['brugernavn']) or strlen($in['brugernavn']) === 0 or !Datafil::isUsernameValid($in['brugernavn'])) {
-			$errors->addError(new Error(2, $this->siteContext->getLocale('regBadUsername')));
+			$errors->addError(new ZsError(2, $this->siteContext->getLocale('regBadUsername')));
 		} else {
 			$datasource = DataSource::createInstance($in['brugernavn'], $this->siteContext->getOptions());
 			if ($datasource->userExists()) {
-				$errors->addError(new Error(2, $this->siteContext->getLocale('regTakenUsername')));
+				$errors->addError(new ZsError(2, $this->siteContext->getLocale('regTakenUsername')));
 			}
 		}
 
 		if (!isset($in['pwd1']) or strlen($in['pwd1']) === 0 or !isset($in['pwd2']) or strlen($in['pwd2']) === 0 or $in['pwd1'] !== $in['pwd2']) {
-			$errors->addError(new Error(2, $this->siteContext->getLocale('regBadPassword')));
+			$errors->addError(new ZsError(2, $this->siteContext->getLocale('regBadPassword')));
 		}
-		
 		return $errors;
 	}
 

@@ -101,7 +101,7 @@ class Authenticate {
         return FALSE;
       }
     }
-    if (password_needs_rehash($hash, $this->algo)) {
+    if ($hash === NULL or trim($hash) === '' or password_needs_rehash($hash, $this->algo)) {
       $this->updatePasswordHash($userId, $password);
     }
     return TRUE;

@@ -23,7 +23,7 @@ require "view.php";
 $stier = new Stier();
 
 //$ind = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
-$ind = $_REQUEST;
+$ind = $_GET;
 
 if (isset($ind['username'])) {
   $lib = new Html($ind, $datafil);

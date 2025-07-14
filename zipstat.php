@@ -117,11 +117,11 @@ $res = $datafil->hentFil();
 		//Temporarely instance for error handling
 		//'da' is danish, currently the only user interface language.
 		$siteContext = new ShortSiteContext($stier, $ind, 'da');
-		$errors->addError(new Error(2, sprintf($siteContext->getLocale('errDamagedDatasource'), $stier->getOption('name_of_service'))));
+		$errors->addError(new ZsError(2, sprintf($siteContext->getLocale('errDamagedDatasource'), $stier->getOption('name_of_service'))));
 	} elseif (! $res or $res === 0) {
 		//Temporarely instance for error handling
 		$siteContext = new ShortSiteContext($stier, $ind, 'da');
-		$errors->addError(new Error(2, sprintf($siteContext->getLocale('errDatasourceInaccessible'), $stier->getOption('name_of_service'))));
+		$errors->addError(new ZsError(2, sprintf($siteContext->getLocale('errDatasourceInaccessible'), $stier->getOption('name_of_service'))));
 	}
 
 $lib = new Html($ind,$datafil);

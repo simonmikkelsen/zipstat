@@ -810,7 +810,7 @@ function taelnummer_url2name($url) {
  */
 function okmail($mail)
 {
-	return preg_match("/[\w-_.]+\@[\w-_.]/",$mail);
+	return true; // preg_match("/[\w-_.]+\@[\w-_.]/",$mail);
 }
 
 /**
@@ -1059,7 +1059,7 @@ function getDateFromPathinfo($pathinfo = NULL) {
 	                'time' => NULL, 'week' => NULL, 'misc' => array());
 	
 	//Split and parse the info.
-	$parts = split('/', $pathinfo);
+	$parts = explode('/', $pathinfo);
 	
 	//Iterate over the data. Skip the empty index 0.
 	$dateElement = 'year'; //The next expected date element.
@@ -1372,7 +1372,7 @@ class LegacyDateParser {
 /**
  * Represents an error which has occured.
  */
-class Error {
+class ZsError {
 	
 	/**
 	 * The localized error message for the user, in plain text.
@@ -1398,7 +1398,7 @@ class Error {
 	 *                   text.
 	 * @public 
 	 */
-	function Error($errorType, $message) {
+	function ZsError($errorType, $message) {
 		$this->setErrorType($errorType);
 		$this->setMessage($message);
 	}
@@ -6261,7 +6261,7 @@ class UrlComparator {
 			return array('', $url);
 		}
 		
-		list($scheme, $rurl) = split('://', $url);
+		list($scheme, $rurl) = explode('://', $url);
 		return array($scheme.'://', $rurl);
 	}
 	

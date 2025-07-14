@@ -108,7 +108,7 @@ $uaUtils = new UsersAreaUtils($siteContext);
 //Did something go wrong?
 if (strlen($problemer) > 0) {
 	$errors = new Errors();
-	$errors->addError(new Error(2, "<div class=problemer><h1>Der opstod desvrre problemer...</h1>$problemer</div>"));
+	$errors->addError(new ZsError(2, "<div class=problemer><h1>Der opstod desvrre problemer...</h1>$problemer</div>"));
 	$uaUtils->showErrors($errors);
 	exit;
 } else {

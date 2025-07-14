@@ -29,9 +29,9 @@
 		$siteContext = new ShortSiteContext($stier, $ind, 'da');
 		//Was the datafile fetched successfully
 		if ($res === -2) {
-			$errors->addError(new Error(2, sprintf($siteContext->getLocale('errDamagedDatasource'), $stier->getOption('name_of_service'))));
+			$errors->addError(new ZsError(2, sprintf($siteContext->getLocale('errDamagedDatasource'), $stier->getOption('name_of_service'))));
 		} elseif (! $res or $res === 0) {
-			$errors->addError(new Error(2, sprintf($siteContext->getLocale('errDatasourceInaccessible'), $stier->getOption('name_of_service'))));
+			$errors->addError(new ZsError(2, sprintf($siteContext->getLocale('errDatasourceInaccessible'), $stier->getOption('name_of_service'))));
 		}
 	}
 
@@ -103,13 +103,13 @@ if ($gotoSite === 'rtaellere') {
 } else if ($gotoSite === 'gem_mailstats') {
 	gem_mailstats($utils, $siteContext); //ok
 } else if ($gotoSite === 'gem_zipklik') {
-	gem_zipklik($utils, $siteContext);
+	gem_zipklik($utils, $siteContext); //ok
 } else if ($gotoSite === 'backup') {
-	show_backup($utils, $siteContext);
+	show_backup($utils, $siteContext); //ok
 } else if ($gotoSite === 'dlbackup') {
-	download_backup($utils, $siteContext);
+	download_backup($utils, $siteContext); //ok
 } else {
-	$utils->showMessage("V?lg funktion","Vælg funktion i menuen til venstre. Husk at benytte Gem-knapperne i bunden af siderne for at gemme de ndringer. De bliver ikke gemt hvis du forladerne siderne via menuerne eller hvis du skifter mellem simpelt og avanceret brug.");
+	$utils->showMessage("V&aelig;lg funktion","Vælg funktion i menuen til venstre. Husk at benytte Gem-knapperne i bunden af siderne for at gemme de ndringer. De bliver ikke gemt hvis du forladerne siderne via menuerne eller hvis du skifter mellem simpelt og avanceret brug.");
 }
 exit(0);
 
@@ -144,10 +144,10 @@ function show_backup(&$utils, &$siteContext) {
 	$utils->echoSiteHead("Backup", 0);
 ?>
 <div class=forside>
-<p><cite>Rigtige mænd tager ikke backup...</cite></p>
+<p><cite>Rigtige m&aelig;nd tager ikke backup...</cite></p>
 <h2>Intro</h2>
-<p>ZIP Stat tager ikke dine data som gidsel: Du kan når som helst <a target="_blank" href="http://zipstat.org/">downloade ZIP Stat</a> og ?re det hos dig selv. Du kan endda starte en konkurerende service!</p>
-<p>ZIP Stat benytter databasen MySQL (eller de frie alternativer s?som MariaDB) og de data du kan downloade er formateret til at blive brugt af den. Benyt kun disse data til nyeste version af ZIP Stat. ZIP Stat kan nogle gange automatisk opgradere et ældre dataformat, men en gammel version af ZIP Satat kan ikke bruge nyere data.</p>
+<p>ZIP Stat tager ikke dine data som gidsel: Du kan når som helst <a target="_blank" href="http://zipstat.org/">downloade ZIP Stat</a> og k&oslash;re det hos dig selv. Du kan endda starte en konkurerende service!</p>
+<p>ZIP Stat benytter databasen MySQL (eller de frie alternativer s&aring;som MariaDB) og de data du kan downloade er formateret til at blive brugt af den. Benyt kun disse data til nyeste version af ZIP Stat. ZIP Stat kan nogle gange automatisk opgradere et ældre dataformat, men en gammel version af ZIP Satat kan ikke bruge nyere data.</p>
 <h2>Download dine data</h2>
 <p><a href="<?php
 	echo htmlentities($_SERVER["SCRIPT_NAME"])
@@ -330,10 +330,10 @@ function r_spoer(&$utils, &$siteContext) {
 	for ($i = 0;$i < $visAntalSp; $i++) {
 		$dy = $i + 1;
 		?>
-		<a href="JAVAscript: alert('Hvis du vil ændre ? et spørgs?l, skal du skrive ændringen i den vnrsre boks.\nHvis du vil ændre svarene, skal du skriv?ndringerne i de\nmindre bokse.\nDu kan nulstille antal svar (hits) hvert svar har fet, ved at\nsætte kryds i den lille kasse.\nHvis du ikke skriver noget i et svarfelt, vil svaret ikke blive givet som svarmulighed.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="?lp til rediger sp?rgsmål..."></a>
+		<a href="JAVAscript: alert('Hvis du vil ændre et spørgsmål, skal du skrive ændringen i den vnrsre boks.\nHvis du vil ændre svarene, skal du skrive ændringerne i de\nmindre bokse.\nDu kan nulstille antal svar (hits) hvert svar har fet, ved at\nsætte kryds i den lille kasse.\nHvis du ikke skriver noget i et svarfelt, vil svaret ikke blive givet som svarmulighed.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="?lp til rediger sp?rgsmål..."></a>
 		<p align=center><table border=1 class=forside><caption>Hvis du ikke skriver noget i et svarfelt, vil svaret ikke blive vist.</caption>
 		<tr><td colspan=3>
-		<big align=center>Sprgsml <?php echo $dy; ?></big>
+		<big align=center>Sprgsm&aring;l <?php echo $dy; ?></big>
 		</td></tr>
 		<?php
 		echo "<tr><td colspan=2><input type=text size=50 name=\"spoergs$i\" value=\"";
@@ -364,9 +364,9 @@ function r_spoer(&$utils, &$siteContext) {
 	}
 
 	if ($lib->pro()) {
-		echo "<div class=forside>Nr du gemmer dine sprgsml og svar, og gr ind p denne side igen, vil der altid vre plads til endnu et nyt sprgsml samt 3 ydligere svar til hvert sprgsml.</div>";
+		echo "<div class=forside>N&aring;r du gemmer dine sp&oslash;rgsm&aring;l og svar, og g&aring;r ind p&aring; denne side igen, vil der altid v&aelig;re plads til endnu et nyt sp&oslash;rgsm&aring;l samt 3 ydligere svar til hvert sp&oslash;rgsm&aring;l.</div>";
 	} else {
-		echo "<div class=forside>Nr du gemmer dine sprgsml og svar, og gr ind p denne side igen, vil der, s lnge du har nogle ledige, vre plads til endnu et nyt sprgsml samt 3 ydligere svar til hvert sprgsml.</div>";
+		echo "<div class=forside>N&aring;r du gemmer dine sp&oslash;rgsm&aring;l og svar, og g&aring;r ind p&aring; denne side igen, vil der, s&aring; l&aelig;nge du har nogle ledige, v&aelig;re plads til endnu et nyt sp&oslash;rgsm&aring;l samt 3 ydligere svar til hvert sp&oslash;rgsm&aring;l.</div>";
 	}
 
 	echo "<input type=hidden value=\"$visAntalSv\" name=antalVistSv>\n";
@@ -713,7 +713,7 @@ function r_oplysninger(&$utils, &$siteContext) {
 
 		#Udskriver selectbox'e med kategorier
 		$inddata[86] =~ s/\n//g;
-		@kate_stier = split(/::/,$inddata[86]);
+		@kate_stier = explode(/::/,$inddata[86]);
 		for ($i = 1;$i <= $pro_max_kategorier;$i++)
 			{ $kategorier .= "Kategori nr. $i ".&getMuligeKategorier("kategorier$i",$kate_stier[$i-1],$kun_over_18_aar)."<br>\n"; }
 
@@ -1072,7 +1072,7 @@ function r_emailstats(&$utils, &$siteContext) {
 	<tr><td><label><input type=checkbox name="ref"<?php echo $check['ref']; ?>>Referencesider.</label>
 		<td><label><input type=checkbox name="sord"<?php echo $check['sord']; ?>>Sgeord.</label>
 	<tr><td><label><input type=checkbox name="smask"<?php echo $check['smask']; ?>>Sgemaskiner.</label>
-		<td><label><input type=checkbox name="zipklik"<?php echo $check['zipklik']; ?>>Kliktllere</label>
+		<td><label><input type=checkbox name="zipklik"<?php echo $check['zipklik']; ?>>Klikt&aelig;llere</label>
 	<tr><td><label><input type=checkbox name="bev"<?php echo $check['bev']; ?>>Bevgelser.</label>
 		<td>
 	</table>
@@ -1199,9 +1199,9 @@ function r_zipklik(&$utils, &$siteContext) {
 	echo "</table>\n";
 
 	if ($lib->pro())
-		print "<div class=forside>Nr du gemmer dine kliktllere, og gr ind p denne side igen, vil der vre plads til 5 kliktllere mere.</div>";
+		print "<div class=forside>N&aring;r du gemmer dine klikt&aelig;llere, og g&aring;r ind p&aring; denne side igen, vil der v&aelig;re plads til 5 klikt&aelig;llere mere.</div>";
 	else
-		print "<div class=forside>Nr du gemmer dine kliktllere, og gr ind p denne side igen, vil der, s lnge du har ledige kliktllere, vre plads til 5 kliktllere mere.</forside>";
+		print "<div class=forside>N&aring;r du gemmer dine klikt&aelig;llere, og g&aring;r ind p&aring; denne side igen, vil der, s&aring; l&aelig;nge du har ledige klikt&aelig;llere, v&aelig;re plads til 5 klikt&aelig;llere mere.</forside>";
 
 	?>
 	<input type="hidden" value="<?php echo $visAntal; ?>" name="antalVist">
@@ -1424,8 +1424,8 @@ if ($options{'use_index'} == 1) {
 	#Indsamler oplysninger om selectbox'ene
 	$inddata[86] =~ s/\n//g;
 	$inddata[87] =~ s/\n//g;
-	@kategorier = split(/::/,$inddata[86]);
-	@placeringer = split(/::/,$inddata[87]);
+	@kategorier = explode(/::/,$inddata[86]);
+	@placeringer = explode(/::/,$inddata[87]);
 
 	#Tager hjde for at samme kategori kan vre valgt i flere felter.
 	#Tjekker ogs om man har valgt at siden ikke er ok for folk under 18,
@@ -2183,7 +2183,7 @@ function gem_zipklik(&$utils, &$siteContext) {
 		if (isset($ind["navne$i"]) and $utils->validateString($ind["navne$i"])) {
 			$navne[$i] = $ind["navne$i"];
 		} else {
-			$problemer .= "<li>Det angivne navn for nr. $i ($str) indeholder tegn det ikke m indeholde. Det m kun indeholde tegnene a-z (store og sm bogstaver), tallene 0-9 samt en - og en _. Navnet blev ikke gemt.";
+			$problemer .= "<li>Det angivne navn for nr. $i ($str) indeholder tegn det ikke m&aring; indeholde. Det m&aring; kun indeholde tegnene a-z (store og sm&aring; bogstaver), tallene 0-9 samt en - og en _. Navnet blev ikke gemt.";
 		}
 
 		if (isset($ind["url$i"]) and
@@ -2192,7 +2192,7 @@ function gem_zipklik(&$utils, &$siteContext) {
 		} else {
 			if (isset($ind["navne$i"])) {
 				$adr = $ind["url$i"];
-				$problemer .= "<li>Kliktller nr. $i ($adr) er ikke en gyldig internetadresse, og blev derfor ikke gemt.\n";
+				$problemer .= "<li>Klikt&aelig;ller nr. $i ($adr) er ikke en gyldig internetadresse, og blev derfor ikke gemt.\n";
 			}
 		} #Slut p if okurl or not ind url else
 		if (isset($ind["nulstil$i"])) {
@@ -2208,7 +2208,7 @@ function gem_zipklik(&$utils, &$siteContext) {
 	if (!isset($problemer))
 		$problemer = '';
 
-	$utils->saveData($datafile, "<p>Dine kliktllere er gemt</p>\n", $problemer, 'kunHvisProblemer');
+	$utils->saveData($datafile, "<p>Dine klikt&aelig;llere er gemt</p>\n", $problemer, 'kunHvisProblemer');
 	r_zipklik($utils, $siteContext);
 
 }

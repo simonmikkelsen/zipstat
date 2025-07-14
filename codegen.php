@@ -178,8 +178,8 @@ function vis_obl_kode($utils, $siteContext) {
                         </td>
                 </tr>
                 <tr>
-                        <td style="padding-right: 2em;"><input type=radio name=taeltype value=usynlig>Usynlig tller</td>
-                        <td style="padding-right: 2em;"><input type=radio name=taeltype value=gtaeller>Gammeldags tller</td>
+                        <td style="padding-right: 2em;"><input type=radio name=taeltype value=usynlig>Usynlig t&aelig;ller</td>
+                        <td style="padding-right: 2em;"><input type=radio name=taeltype value=gtaeller>Gammeldags t&aelig;ller</td>
                         <td style="padding-right: 2em;"><input type=radio name=taeltype value=ikon CHECKED>Ikon</td>
                         <td><input type=radio name=taeltype value=panel>Ministatistik</td>
                 </tr>
@@ -195,7 +195,7 @@ function vis_obl_kode($utils, $siteContext) {
                 ?>
                 <div class=forside>
                 <h4>Avanceret: Fast tller</h4>
-                <p>Hvis denne kode altid skal tlle en speciel tller op, skal du vlge denne tller her. Normalt skal du ikke ndre dette.</p>
+                <p>Hvis denne kode altid skal t&aelig;lle en speciel t&aelig;ller op, skal du vlge denne t&aelig;ller her. Normalt skal du ikke &aelig;ndre dette.</p>
                 <?php echo $counters_select; ?>
                 </p>
                 <div>
@@ -203,15 +203,15 @@ function vis_obl_kode($utils, $siteContext) {
                 <div class=forside>
                 <h4>Framesikker kode</h4>
                 <input type=checkbox name=framesikker> Lav framesikker kode<br>
-                <b>Tip</b> (for den tekniske): Du skal kun benytte <em>framesikker kode</em>, hvis den side, den obligatoriske kode skal ligge p, er en del af et st rammer (frameset), og denne side ligger p et andet domne, end den side hvis adresse str i browserens adresselinie.<br>
+                <b>Tip</b> (for den tekniske): Du skal kun benytte <em>framesikker kode</em>, hvis den side, den obligatoriske kode skal ligge p&aring;, er en del af et st rammer (frameset), og denne side ligger p et andet domne, end den side hvis adresse str i browserens adresselinie.<br>
                 <b>Tip</b> (for almindelige mennesker)
                 <ol>
                         <li>Bruger du ikke rammer/frames, skal du er det <em>ligemeget</em> om du laver en framesikker eller en almindelig kode.
-                        <li>Bruger du rammer/frames, s lav en almindelig obligatorisk kode (alts en der <em>ikke</em> er framesikker) og st den p din side.
-                        <li>Lg siden ud p internettet, se siden fra de forskellige adresser hvorfra man kan g ind p den. Husk at mange sider i dag kan ses bde med og uden &quot;<code>www</code>&quot;.
-                        <li>Fr du p et tidspunkt en fejlmeddelelse, der bl.a. indeholder teksten &quot;<code>top.document.referer</code>&quot; skal du lave en <em>framesikker</em> kode. Fr du <em>ikke</em> fejlmeddelelsen, skal du lave en almindelig kode.
+                        <li>Bruger du rammer/frames, s&aring; lav en almindelig obligatorisk kode (alts en der <em>ikke</em> er framesikker) og s&aelig;t den p&aring; din side.
+                        <li>L&aelig;g siden ud p&aring; internettet, se siden fra de forskellige adresser hvorfra man kan g&aring; ind p&aring; den. Husk at mange sider i dag kan ses b&aring;de med og uden &quot;<code>www</code>&quot;.
+                        <li>F&aring;r du p&aring; et tidspunkt en fejlmeddelelse, der bl.a. indeholder teksten &quot;<code>top.document.referer</code>&quot; skal du lave en <em>framesikker</em> kode. Fr du <em>ikke</em> fejlmeddelelsen, skal du lave en almindelig kode.
                 </ol>
-                <b>OBS</b> (for alle): Nr den framesikre kode benyttes, bliver der ikke registreret referencesider, sgeord og -maskiner, med mindre gsten gr direkte ind p en underside med koden p, og ikke ser siden i rammerne (framesettet).
+                <b>OBS</b> (for alle): N&aring;r den framesikre kode benyttes, bliver der ikke registreret referencesider, sgeord og -maskiner, med mindre g&aelig;sten g&aring;r direkte ind p&aring; en underside med koden p&aring;, og ikke ser siden i rammerne (framesettet).
                 </div>
 
                 <?php
@@ -304,7 +304,7 @@ function gen_obl_kode(&$utils, &$siteContext) {
         ?>
         <div class=forside>
         <h1>Her er din kode</h1>
-        <p>Markr koden, og st den ind p din hjemmeside. Se mere om det lige under kassen med koden.</p>
+        <p>Marker koden, og s&aelig;t den ind p&aring; din hjemmeside. Se mere om det lige under kassen med koden.</p>
         <?php
         echo "<form action=\"\" method=post><textarea cols=60 rows=15>\n";
 
@@ -351,26 +351,26 @@ function gen_obl_kode(&$utils, &$siteContext) {
         ?>
         </div>
         <div class=forside>
-        <h3>Lidt hjlp</h3>
-        <h4>HTML &quot;i hnden&quot;</h4>
-        <p>Koden skal indsttes p alle dine sider, og vre mellem <code>
+        <h3>Lidt hj&aelig;lp</h3>
+        <h4>HTML &quot;i h&aring;nden&quot;</h4>
+        <p>Koden skal indsttes p&aring; alle dine sider, og v&aelig;re mellem <code>
         &lt;body&gt;</code> og <code> &lt;/body&gt;</code> tagsne. Hvis du bruger frames skal koden indsttes i en af de filer hvis indhold bliver
         vist - <em>ikke</em> i filen med <code>&lt;frameset&gt;</code> koderne!</p>
 
         <h4>FrontPage ol.</h4>
-        <p>Hvis du bruger FrontPage, eller et lignende program hvor du ikke ser HTML-koderne, skal du huske at indstte
-        koden som HTML. Ellers vil koden blive vist p din side, og ivrigt vre virkningsls. Har du det problem at din
-        kode bliver vist p din side, s se i de <a href="<?php echo htmlentities($siteContext->getOption('ZSHomePage')); ?>/oss.shtml#oblkode_fp" target="_top">Ofte Stillede Sprgsml</a>,
-        hvor du finder en lsning, da dette problem er meget almindeligt.</p>
+        <p>Hvis du bruger FrontPage, eller et lignende program hvor du ikke ser HTML-koderne, skal du huske at inds&aelig;tte
+        koden som HTML. Ellers vil koden blive vist p&aring; din side, og i&oslash;vrigt v&aelig;re virkningsl&oslash;s. Har du det problem at din
+        kode bliver vist p&aring; din side, s&aring; se i de <a href="<?php echo htmlentities($siteContext->getOption('ZSHomePage')); ?>/oss.shtml#oblkode_fp" target="_top">Ofte Stillede Sprgsm&oslash;l</a>,
+        hvor du finder en l&oslash;sning, da dette problem er meget almindeligt.</p>
         </div>
 
         <?php
 
         if ($utils->getUAType() === $utils->UA_TYPE_SIMPLE) {
                 echo "<div class=forside><h3>Mere avanceret</h3><p>nsker du selv at bestemme mere over koden, fx. vlge at en bestemt tller skal tlles op, kan du gre dette i den avancerede tilstand. Du kan skifte ved at trykke p linket &quot;Skift til avanceret brug&quot; i menuen til venstre.</div>\n";
-                echo "<div class=forside><h3>Fr du javascript-fejl</h3>\nGiver denne obligatoriske kode en fejl, nr du bruger den, skal du nok lave en &quot;framesikker&quot; kode. Dette kan du gre ved at skifte til avanceret visning og lave den obligatoriske kode igen. P den frste side hvor du skal foretage nogle valg, skal du s stte kryds ud for &quot;Framesikker kode&quot;.</div>";
+                echo "<div class=forside><h3>F&aring;r du javascript-fejl</h3>\nGiver denne obligatoriske kode en fejl, n&aring;r du bruger den, skal du nok lave en &quot;framesikker&quot; kode. Dette kan du g&oslash;re ved at skifte til avanceret visning og lave den obligatoriske kode igen. P&aring; den f&oslash;rste side hvor du skal foretage nogle valg, skal du s&aring; stte kryds ud for &quot;Framesikker kode&quot;.</div>";
         } else {
-                echo "<div class=forside><h3>Fr du javascript-fejl</h3>\nGiver denne obligatoriske kode en fejl, nr du bruger den, skal du nok lave en &quot;framesikker&quot; kode. Dette kan du gre ved at lave den obligatoriske kode igen, og p den frste side hvor du skal foretage nogle valg, skal du s stte kryds ud for &quot;Framesikker kode&quot;.</div>";
+                echo "<div class=forside><h3>F&aring;r du javascript-fejl</h3>\nGiver denne obligatoriske kode en fejl, n&aring;r du bruger den, skal du nok lave en &quot;framesikker&quot; kode. Dette kan du g&oslash;re ved at lave den obligatoriske kode igen, og p&aring; den f&oslash;rste side hvor du skal foretage nogle valg, skal du s&aelig;tte kryds ud for &quot;Framesikker kode&quot;.</div>";
         }
 
         $utils->echoSiteEnd();
@@ -984,7 +984,7 @@ function vis_zipklik_gen(&$utils, &$siteContext) {
         $urls = explode('::', $datafile2->getLine(71));
 
         $utils->echoSiteHead("", 0);
-        echo "<div class=forside><h1>Kliktllere</h1>Istedet for at benytte de links du har angivet p siden &quot;Adresser&quot;, p din hjemmeside, skal du benytte de nedenstende links, der svarer til dem. S vil der blive registreret hvor mange der klikker p de enkelte links.</div>";
+        echo "<div class=forside><h1>Klikt&aelig;llere</h1>Istedet for at benytte de links du har angivet p&aring; siden &quot;Adresser&quot;, p&aring; din hjemmeside, skal du benytte de nedenstende links, der svarer til dem. S&aring; vil der blive registreret hvor mange der klikker p&aring; de enkelte links.</div>";
 
         $pro_max_moments = $lib->pro(10);
 
@@ -1046,16 +1046,16 @@ function vis_js_kode($utils, $siteContext) {
         $datafile2 = &$lib->getDatafil();
 
         $utils->echoSiteHead("JavaScript stats kode", 0);
-        echo"<span class=forside><p>Placer denne kode p de sider, hvorfra du vil have adgang til en rkke statistikker i form af javascript-variable. Du skal placerer koden <em>fr</em> det javascript der skal bruge dem, hvis det skal virke.<br>Er dette sort snak for dig, vil jeg anbefale du ser p ministatistikken i stedet.</p></span>";
+        echo"<span class=forside><p>Placer denne kode p&aring; de sider, hvorfra du vil have adgang til en r&aelig;kke statistikker i form af javascript-variable. Du skal placerer koden <em>f&oslash;r</em> det javascript der skal bruge dem, hvis det skal virke.<br>Er dette sort snak for dig, vil jeg anbefale du ser p&aring; ministatistikken i stedet.</p></span>";
         echo "<span class=forside>\n<pre>";
 
-        echo "&lt;-- Start p JS stats kode --&gt;\n";
+        echo "&lt;-- Start på JS stats kode --&gt;\n";
         echo "&lt;script language=&quot;JavaScript&quot; src=&quot;"
              .$siteContext->getOption('cgiURL').'/'
              .$siteContext->getPath('jsvarsCgi')."?brugernavn="
              .$in['username']."&quot;&gt;\n";
         echo "&lt;/script&gt;\n";
-        echo "&lt;-- Slut p JS stats kode --&gt;\n";
+        echo "&lt;-- Slut på JS stats kode --&gt;\n";
 
         echo "</pre>\n";
         echo "</span>\n";
@@ -1092,7 +1092,7 @@ function oblkode(&$siteContext, $in, $hw, $codeType, $count, $show) {
         else
                 $topDocReferer = "document.referrer";
 
-        $mandatory[0] = "&lt;!-- Start p ZIP Stat kode --&gt;\n";
+        $mandatory[0] = "&lt;!-- Start på ZIP Stat kode --&gt;\n";
         $mandatory[0] .= "&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;\n";
         $mandatory[0] .= "&lt;!--\n";
         $mandatory[0] .= "far=&quot;Andre&quot;; jav=&quot;Ved ikke&quot;; skh=&quot;Andre&quot;; jav=navigator.javaEnabled(); \n";
@@ -1119,17 +1119,17 @@ function oblkode(&$siteContext, $in, $hw, $codeType, $count, $show) {
         if (isset($in['firewallsikker']) and strlen($in['firewallsikker']) > 0 and $codeType === 'fuld') {
                 $return = "<div class=forside>\n";
                 $return .= "<pre>\n";
-                $return .= "&lt;!-- Start p ZIP Stat firewall-sikker kode --&gt;\n";
+                $return .= "&lt;!-- Start på ZIP Stat firewall-sikker kode --&gt;\n";
                 $return .= "&lt;a href=&quot;".$siteContext->getOption('urlStatsite')."?brugernavn=".$in['username'].$show."&quot; target=&quot;_top&quot;&gt;\n";
                 $return .= "&lt;img $hw border=0 src=&quot;".$siteContext->getOption('cgiURL').'/'.$siteContext->getPath('zipstatCgi')."?brugernavn=".$in['username'].$count."&quot;&gt;&lt;/a&gt;\n";
-                $return .= "&lt;!-- Slut p ZIP Stat firewall-sikker kode --&gt;\n";
+                $return .= "&lt;!-- Slut på ZIP Stat firewall-sikker kode --&gt;\n";
                 $return .= "</pre>\n";
                 $return .= "</div>\n";
                 return $return;
         } else if (isset($in['firewallsikker']) and strlen($in['firewallsikker']) > 0 and $codeType === 'uden links') {
-                $return .= "&lt;!-- Start p ZIP Stat firewall-sikker kode --&gt;\n";
+                $return .= "&lt;!-- Start på ZIP Stat firewall-sikker kode --&gt;\n";
                 $return .= "&lt;img $hw border=0 src=&quot;".$siteContext->getOption('cgiURL').'/'.$siteContext->getPath('zipstatCgi')."?brugernavn=".$in['username'].$count."&quot;&gt;\n";
-                $return .= "&lt;!-- Slut p ZIP Stat firewall-sikker kode --&gt;\n";
+                $return .= "&lt;!-- Slut på ZIP Stat firewall-sikker kode --&gt;\n";
                 return $return;
         } else if ($codeType === 'fuld') {
                 $return = '';

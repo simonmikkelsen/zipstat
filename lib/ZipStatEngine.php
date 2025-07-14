@@ -290,9 +290,9 @@ class ZipStatEngine
                     $ip = long2ip(ip2long($this->ipAddr)*1);
                     $ip = escapeshellarg($ip);
                     $out = shell_exec("host --quick --timeout=2 $ip");
-                    $out = split("\n", $out);
+                    $out = explode("\n", $out);
                     if (count($out) >= 2) {
-                            $out = split(" ", $out[0]);
+                            $out = explode(" ", $out[0]);
                             if (count($out) >= 2) {
                               $name = $out[1];
                             }
@@ -1025,7 +1025,7 @@ class ZipStatEngine
 			$cleanedSet = array();
 			for ($i = 0; $i < sizeof($refStier); $i++)
 			{
-				list($refererUrl, $hits) = split(';;', $refStier[$i]);
+				list($refererUrl, $hits) = explode(';;', $refStier[$i]);
 				if (!$comp->isInSite($ejerSide, 'http://'.$refererUrl)) {
 					$cleanedSet[] = $refStier[$i];
 				}

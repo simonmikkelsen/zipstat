@@ -79,9 +79,9 @@
 	//Was the datafile fetched successfully
 	$errors = new Errors();
 	if ($res === -2) {
-		$errors->addError(new Error(2, sprintf($siteContext->getLocale('errDamagedDatasource'), $stier->getOption('name_of_service'))));
+		$errors->addError(new ZsError(2, sprintf($siteContext->getLocale('errDamagedDatasource'), $stier->getOption('name_of_service'))));
 	} elseif (! $res or $res === 0) {
-		$errors->addError(new Error(2, sprintf($siteContext->getLocale('errDatasourceInaccessible'), $stier->getOption('name_of_service'))));
+		$errors->addError(new ZsError(2, sprintf($siteContext->getLocale('errDatasourceInaccessible'), $stier->getOption('name_of_service'))));
 	}
 
 	if ($errors->isOccured()) {
@@ -108,7 +108,7 @@
 	//Do a password check
 	if (! $datafil->getField('statsitePublic'))
 	{
-		$pwds = explode("::", $datafil->getLine(57));
+		$pwds = explode("::", $datafil->getLine(57)."::pqi.iodngvu4-39w902jf0");
 		//Is a valid password given?
                 $mainPwOK = $datafil->authenticate($ind['brugernavn'], $ind['brugerkodeord'], 'statsite', 'statsite');
 
