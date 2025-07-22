@@ -624,9 +624,10 @@ class HtmlTable extends SiteTable
 		{
 			//Creates a table row
 			$out .= "<tr";
-			if ($row < sizeof($this->columnClassArray) and
-			  strlen($this->columnClassArray[$row]) > 0) {
-				$out .= " class=\"".htmlentities($this->columnClassArray[$row])."\"";
+			if (isset($this->columnClassArray) 
+        and $row < sizeof($this->columnClassArray) 
+        and strlen($this->columnClassArray[$row]) > 0) {
+  				$out .= " class=\"".htmlentities($this->columnClassArray[$row])."\"";
 			}
 			$out .= ">\n";
 
@@ -650,8 +651,10 @@ class HtmlTable extends SiteTable
 				{ /*The data*/
 					$thisTag = "td";
 					$out .= $thisTag;
-					if (strlen($this->columnClassArray[$col]) > 0)
-						$out .= " class=\"".htmlentities($this->columnClassArray[$col])."\"";
+					if (isset($this->columnClassArray) and isset($this->columnClassArray[$col])
+            and strlen($this->columnClassArray[$col]) > 0) {
+						  $out .= " class=\"".htmlentities($this->columnClassArray[$col])."\"";
+            }
 				}
 
 				//The last column, if all the columns arn't used
@@ -1096,7 +1099,7 @@ class HtmlTypeSelector extends TypeSelector {
 		$out .= $locale->getLocale('sgTypeText').": ";
 		$out .= "<select name=\"type\" size=\"1\">\n";
 		
-		$supModes = $this->siteGenerator->getSupportedModes();
+		$supModes = SiteGenerator::getSupportedModes();
 		for ($i = count($supModes)-1; $i >= 0; $i--) {
 			$selected = "";
 			if (strlen($this->selectedType) > 0 && $this->selectedType === $supModes[$i])
@@ -1125,8 +1128,8 @@ class HtmlCalendarMaker extends CalendarMaker {
 	 * @param $month a unix time stamp that falls within the month
 	 *               to make a calendar for.
 	 */
-	function HtmlCalendarMaker($month) {
-		parent::CalendarMaker($month);
+	function __construct($month) {
+		parent::__construct($month);
 	}
 
 

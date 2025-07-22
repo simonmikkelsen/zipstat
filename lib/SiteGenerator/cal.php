@@ -65,7 +65,7 @@ class CalDraw {
 	 * @param $month a unix time stamp that falls within the month
 	 *               to make a calendar for.
 	 */
-	function CalDraw($month) {
+	function __construct($month) {
 		$this->month = $month;
 	}
 

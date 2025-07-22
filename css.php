@@ -4,7 +4,8 @@ header ("Content-type: text/css\n\n");
 require "Stier.php";
 $options = new Stier();
 
-if (! ( !(preg_match("#compatible#i",$HTTP_USER_AGENT)) and (preg_match("#Mozilla/4#i",$HTTP_USER_AGENT)) )  )
+$userAgent = $_SERVER['HTTP_USER_AGENT'];
+if (! ( !(preg_match("#compatible#i",$userAgent)) and (preg_match("#Mozilla/4#i",$userAgent)) )  )
 	{
 	//Non Netscape 4 CSS.
 ?>

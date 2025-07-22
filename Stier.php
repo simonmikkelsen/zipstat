@@ -5,7 +5,7 @@
 
 class stier
 {
-function Stier()
+function __construct()
 {
 	////////////////////////////////////
 	 //|Basic settings|//
@@ -104,7 +104,7 @@ function Stier()
 	*/
 	$this->options['always_pro'] = 0; //Values: 0 or 1.
 
-	/*States if users with a pro account also shall have limitations. If ýou
+	/*States if users with a pro account also shall have limitations. If ï¿½ou
 	  do not have problems with users who e.g. uses the stats for the latest
 	  visits as a log file, you should disable this. The limits are defined
 	  in the file Html.php in the function pro in the array $maxvalue.
@@ -115,6 +115,7 @@ function Stier()
 	/*Always adjust the time with this amount of seconds.
 	  Other time adjustments may be performed later, but this adjustment will
 	  always be applied.
+    CURRENTLY NOT USED.
 	*/
 	$this->options['timeAdjustSec'] = 0*2*3600; //Add 0 hours.
 	

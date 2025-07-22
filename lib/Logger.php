@@ -37,7 +37,7 @@ class Logger {
 	 *                    (TRUE) or not (FALSE). If TRUE opening and closing
 	 *                    of the data source will be handled.
 	 */
-	function Logger(&$options, $singleLine = TRUE) {
+	function __construct(&$options, $singleLine = TRUE) {
 		$this->options = $options;
 		$this->singleLine = $singleLine;
 		$this->logline = '';

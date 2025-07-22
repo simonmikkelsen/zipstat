@@ -49,9 +49,9 @@ class SeriesStatGenerator extends StatGenerator
 	 * @version 0.0.1
 	 * @since 0.0.1
 	 */
-	function SeriesStatGenerator(&$siteContext, &$siteGenerator)
+	function __construct(&$siteContext, &$siteGenerator)
 	{
-		StatGenerator::StatGenerator($siteContext, $siteGenerator);
+		parent::__construct($siteContext, $siteGenerator);
 /*		if (is_subclass_of($siteGenerator, 'SiteGenerator'))
 			$this->setSiteGenerator($siteGenerator);
 		else

@@ -1,7 +1,7 @@
 <?php
 
 class AuthenticationDAOMySQL {
-  function AuthenticationDAOMySQL($host, $database, $user, $password, $authTable, $credField, $userIdField) {
+  function __construct($host, $database, $user, $password, $authTable, $credField, $userIdField) {
     $this->mysqli = new mysqli($host, $user, $password, $database);
     $this->mysqli->set_charset('utf8');
     $this->authTable = $authTable;
@@ -54,7 +54,7 @@ class AuthenticationDAOMySQL {
 }
 
 class AuthenticationFactory {
-  function AuthenticationFactory(&$options) {
+  function __construct(&$options) {
     $this->options = &$options;
   }
 
@@ -73,7 +73,7 @@ class AuthenticationFactory {
 }
 
 class Authenticate {
-  function Authenticate($authDAO) {
+  function __construct($authDAO) {
     $this->authDAO = $authDAO;
     $this->algo = PASSWORD_DEFAULT;
     $this->resetTokenValidSeconds = 3600;

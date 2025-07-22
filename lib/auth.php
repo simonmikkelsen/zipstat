@@ -17,7 +17,7 @@ class ZipStatAuthentication {
 	 *
 	 * @param $datasource a datasource associated with the current user.
 	 */
-	function ZipStatAuthentication(&$datasource) {
+	function __construct(&$datasource) {
 		$this->datasource = &$datasource;
 	}
 	

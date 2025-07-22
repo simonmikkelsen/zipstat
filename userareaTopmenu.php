@@ -6,7 +6,7 @@
 	require "lib/UsersArea/Utils.php";
 	
 	$stier = new Stier();
-	$in = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+	$in = Html::setPostOrGetVars($_POST, $_GET);
 
 	$dummy_for_lib = NULL;
 	                               //$lib

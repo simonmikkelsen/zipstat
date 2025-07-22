@@ -8,7 +8,7 @@ require "lib/Localizer.php";
 $options = new Stier();
 
 //Fetches parameters for the script.
-$in = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+$in = Html::setPostOrGetVars($_POST, $_GET);
 
 //Validates the username.
 $datafile = DataSource::createInstance($in['brugernavn'],$options);

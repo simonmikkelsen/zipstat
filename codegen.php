@@ -13,7 +13,7 @@
         $stier = new Stier();
 
         //Fetches parameters for the script. 
-        $in = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+        $in = Html::setPostOrGetVars($_POST, $_GET);
 
         if (isset($in['username']))
                 $username = $in['username'];

@@ -86,7 +86,7 @@ class StatSite
 	 * @param $generatortype text string which identifies the type of
 	 *         generator to be used.
 	 */
-	function StatSite(&$siteContext,$generatorType)
+	function __construct(&$siteContext,$generatorType)
 	{
 		$this->site = "";
 		if (strtolower(get_class($siteContext)) == 'sitecontext') {
@@ -118,7 +118,7 @@ class StatSite
 	 * @since 0.0.1
 	 * @return String the code for the site.
 	 */
-	function generateSite()
+	function generateSite($statReq = "")
 	{
 		$sg = &$this->siteGenerator;
 		$locale = &$this->siteContext->getLocalizer();
@@ -497,7 +497,7 @@ class StatSite
 		$lib = &$this->siteContext->getCodeLib();
 
 		//Don't let the browser cache this page.
-		$lib->outputNoCacheHeaders();
+		Html::outputNoCacheHeaders();
 
 		//Adds the main title
 		$headline = $locale->getLocale('collGeneratingHeadline');
@@ -535,9 +535,9 @@ class CollectiveStatSite extends StatSite
 	 * @param $generatortype text string which identifies the type of
 	 *         generator to be used.
 	 */
-	function CollectiveStatSite(&$siteContext, $generatorType)
+	function __construct(&$siteContext, $generatorType)
 	{
-		parent::StatSite($siteContext,$generatorType);
+		parent::__construct($siteContext,$generatorType);
 	}
 
 	/**
@@ -548,7 +548,7 @@ class CollectiveStatSite extends StatSite
 	 *                 Must be an instance of CollectiveStatRequest.
 	 * @return String the code for the site.
 	 */
-	function generateSite($statReq)
+	function generateSite($statReq = "")
 	{
 		$sg = &$this->siteGenerator;
 		$locale = &$this->siteContext->getLocalizer();
@@ -917,9 +917,9 @@ class CollectiveIndex extends StatSite
 	 * @param $generatortype text string which identifies the type of
 	 *         generator to be used.
 	 */
-	function CollectiveIndex(&$siteContext, $generatorType)
+	function __construct(&$siteContext, $generatorType)
 	{
-		parent::StatSite($siteContext,$generatorType);
+		parent::__construct($siteContext,$generatorType);
 	}
 
 	/**
@@ -928,7 +928,7 @@ class CollectiveIndex extends StatSite
 	 * @public
 	 * @return the code for the site.
 	 */
-	function generateSite()
+	function generateSite($statReq = "")
 	{
 		//Initialise
 		$sg = &$this->siteGenerator;

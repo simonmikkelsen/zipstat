@@ -36,7 +36,7 @@ class Localizer
 	 *         <code>da</code> is supported.
 	 * @param $siteContext an instance of the {@link SiteContext}.
 	 */
-	function Localizer($language,&$siteContext)
+	function __construct($language,&$siteContext)
 	{
 		if ($language === 'da')
 			$localeFile = $siteContext->getPath('languages')."/da.inc";
@@ -71,7 +71,7 @@ class Localizer
 	 */
 	function localizeDate($date, $format = 0)
 	{
-		if ($date === $date*1)
+		if (is_numeric($date))
 		{ /*This must be unix time*/
 			if ($format === 0)
 				return date($this->getLocale('dateLong'),$date);

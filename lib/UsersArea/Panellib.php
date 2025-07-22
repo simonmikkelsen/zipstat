@@ -14,7 +14,7 @@ class Panellib {
 	 * @public
 	 * @param $siteContext the instance of the site context.
 	 */
-	function Panellib(&$siteContext) {
+	function __construct(&$siteContext) {
 		$this->siteContext = &$siteContext;
 	}
 

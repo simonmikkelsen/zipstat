@@ -178,7 +178,7 @@ class CsvHandler extends ElementJoiner
 	 * 
 	 * @param $separator the char which shall be used to separate the values.
 	 */
-	function CsvHandler($separator) {
+	function __construct($separator) {
 		$this->separator = $separator;
 	}
 	

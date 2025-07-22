@@ -10,12 +10,19 @@
 	$stier = new Stier();
 
 	//Henter variable udefra
-	$ind = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+	$ind = Html::setPostOrGetVars($_POST, $_GET);
 	
-	if (isset($ind['username']))
+	if (isset($ind['username'])) {
 		$username = $ind['username'];
-	if (isset($ind['password']))
+  } else {
+    $username = '';
+  }
+
+  if (isset($ind['password'])) {
 		$password = $ind['password'];
+  } else {
+    $password = '';
+  }
 
 	$errors = new Errors();
 	if (isset($ind) and isset($username)) {
@@ -1234,11 +1241,7 @@ function gem_indstillinger(&$utils, &$siteContext) {
 		$datafile->setLine(59, $ind['pro_overskrift']);
 	
 	if (isset($ind['pro_body'])) {
-		if (get_magic_quotes_gpc())
-			$pro_body_val = stripslashes($ind['pro_body']);
-		else
-			$pro_body_val = $ind['pro_body'];
-		$datafile->setLine(56, $pro_body_val);
+		$datafile->setLine(56, $ind['pro_body']);
 	}
 	
 	if (isset($ind['pro_css']) and ($utils->validateUrl($ind['pro_css']) or strlen($ind['pro_css']) === 0))

@@ -54,7 +54,7 @@ class Html
 	 * @version 0.0.1
 	 * @since 0.0.1
 	 */
-	function Html($HTTPVars, &$datafil, $rounder=null)
+	function __construct($HTTPVars, &$datafil, $rounder=null)
 	{
 		$this->setHTTPVars($HTTPVars);
 
@@ -235,22 +235,22 @@ class Html
 	 * @public
 	 * @version 0.0.1
 	 * @since 0.0.1
-	 * @param $HTTP_POST_VARS the post vars array
-	 * @param $HTTP_GET_VARS the get vars array
+	 * @param $POST_VARS the post vars array
+	 * @param $GET_VARS the get vars array
 	 * @return String[] the one of the parameters which is used.
 	 */
-	function setPostOrGetVars($HTTP_POST_VARS, $HTTP_GET_VARS)
+	static function setPostOrGetVars($POST_VARS, $GET_VARS)
 	{
-		if (sizeof($HTTP_GET_VARS) > 0) {
-			$HTTP_VARS = $HTTP_GET_VARS;
-		} elseif (sizeof($HTTP_GET_VARS)) {
-			$HTTP_VARS = $HTTP_POST_VARS;
-                } elseif (isset($_POST) and sizeof($_POST) > 0) {
-                        $HTTP_VARS = $_POST;
-                } elseif (isset($_GET) and sizeof($_GET)) {
-                        $HTTP_VARS = $_GET;
-                }
-		return $HTTP_VARS;
+		if (isset($GET_VARS) and sizeof($GET_VARS) > 0) {
+			return $GET_VARS;
+		} elseif (isset($POST_VARS) and sizeof($POST_VARS)) {
+			return $POST_VARS;
+    } elseif (isset($_POST) and sizeof($_POST) > 0) {
+      return $_POST;
+    } elseif (isset($_GET) and sizeof($_GET)) {
+      return $_GET;
+    } 
+		return array();
 	}
 
 	/**
@@ -261,7 +261,7 @@ class Html
 	 * @since 0.0.1
 	 * @return void
 	 */
-	function outputNoCacheHeaders()
+	static function outputNoCacheHeaders()
 	{
 		header("Cache-Control: no-cache, must-revalidate");
 		header ("Pragma: no-cache");
@@ -350,8 +350,12 @@ function pro($nr = "test")
 	if ($this->datafil->loaded()) {
 		$pro = $this->datafil->getLine(61);
 	} else {
-		$pro = "";
+		$pro = 1;
 	}
+
+  if (! is_numeric($pro)) {
+    $pro = 0;
+  }
 
 	//                    0   1   2  3  4   5  6   7   8   9  10  11   12  13 14 15  16  17
 	$normvalue =  array(100, 30, 20,10,10, 50, 3,100,100, 30, 50, 50,  75, 75, 1, 5, 50, 50); /*The limit for ordinarry users.*/
@@ -487,10 +491,12 @@ function hpb()
 	for ($i = 0;$i < $hpbmax; $i++)
 		{
 		if ($hpbmax != 0) {
-			if (isset($tmp[$i]))
+			if (isset($tmp[$i]) and is_numeric($tmp[$i])) {
 				$ht += $tmp[$i] * ($n/$hpbmax);
-			if (isset($tmp2[$i]))
+      }
+			if (isset($tmp2[$i]) and is_numeric($tmp2[$i])) {
 				$hn += $tmp2[$i] * ($n/$hpbmax);
+      }
 		}
 		$n--;
 
@@ -591,7 +597,7 @@ function countVisit($url, $okSider)
  */
 function kortdato()
 {
-	$timeAdjusted = $this->getTimeAdjusted();
+	$timeAdjusted = Html::getTimeAdjusted();
 	$sec =  date('s', $timeAdjusted); /*Sekund*/
 	$min =  date('i', $timeAdjusted); /*Minut*/
 	$hour = date('H', $timeAdjusted); /*time*/
@@ -721,7 +727,7 @@ function taelnummer($counterNo, $counterName, $counterNameList,
 			return array(0,$counterNameList);
 		}
 			
-		$filename = $this->taelnummer_url2name($filename);
+		$filename = Html::taelnummer_url2name($filename);
 
 		$notFound = 1;
 		$location = 0;
@@ -774,7 +780,7 @@ function taelnummer($counterNo, $counterName, $counterNameList,
  *  @param $url the one to find a name for.
  *  @return the name of the $url or the whole url.
  */
-function taelnummer_url2name($url) {
+static function taelnummer_url2name($url) {
 	$filename = $url;
 	
 	//Remove text after ? and # (both included).
@@ -808,7 +814,7 @@ function taelnummer_url2name($url) {
  * @param $mail The e-mail address to validate.
  * @return boolean if the given string is a valid e-mail address.
  */
-function okmail($mail)
+static function okmail($mail)
 {
 	return true; // preg_match("/[\w-_.]+\@[\w-_.]/",$mail);
 }
@@ -831,7 +837,7 @@ function okurl($url)
 		return 1;
 	} elseif (strpos(strtolower($url),"mailto:") == 0) {
 		//mailto url: Validate as e-mail.
-		return $this->okmail(substr($url,7));
+		return Html::okmail(substr($url,7));
 	} else {
 		//We don't know this one: Invalid.
 		return 0;
@@ -877,7 +883,7 @@ function urlkeys($url)
  * @param $anArray the array that shall have zeros added.
  * @return Object[] an array with zeros on empty spots.
  */
-function addZeros($upTo,$anArray)
+static function addZeros($upTo,$anArray)
 {
 	for ($i = 0;$i <= $upTo;$i++)
 		if (!isset($anArray[$i]) or $anArray[$i] === 0 or $anArray[$i] == "")
@@ -899,7 +905,7 @@ function addZeros($upTo,$anArray)
  *        in the previous array.
  * @return String[][] an array containing the two new arrays.
  */
-function removeInvalidData($textArray,$numbersArray)
+static function removeInvalidData($textArray,$numbersArray)
 {
 	//Arryays the valid data is put into.
 	$textOkArray = array();
@@ -935,7 +941,7 @@ function removeInvalidData($textArray,$numbersArray)
  * @param $month the month of witch the length shall be returned.
  * @return int the length of the given month.
  */
-function lengthOfMont($month)
+static function lengthOfMont($month)
 {
 	$dates = getDate();
 	if ($month == 1)  return 31; /*January*/
@@ -987,7 +993,10 @@ function toBool($str) {
  *                  be given if this method is invoked statically.
  * @return the adjusted timestamp.
  */
-function getTimeAdjusted($time = NULL, $settings = NULL) {
+static function getTimeAdjusted($time = NULL, $settings = NULL) {
+  return time();
+  // Currently not used.
+
 	//Get the time.
 	if ($time === NULL) {
 		$time = time();
@@ -1010,7 +1019,7 @@ function getTimeAdjusted($time = NULL, $settings = NULL) {
  *
  * @param $arr the array to rotate - it will be modified!
  */
-function array_rotate(&$arr) {
+static function array_rotate(&$arr) {
 		$ele = array_shift($arr);
 		$arr[count($arr)] = $ele;
 }
@@ -1044,7 +1053,7 @@ function array_rotate(&$arr) {
  * @param $pathinfo use this value instead of @c getenv('PATH_INFO')
  *                  This parameter is primary ment for ease of testing.
  */
-function getDateFromPathinfo($pathinfo = NULL) {
+static function getDateFromPathinfo($pathinfo = NULL) {
 	//Get path info.
 	if ($pathinfo === NULL) {
 		$pathinfo = getenv('PATH_INFO');
@@ -1186,7 +1195,7 @@ class DateFormatter {
 	 * @param $format the format, for the PHP function date(), to use.
 	 * @public
 	 */
-	function DateFormatter($format) {
+	function __construct($format) {
 		$this->format = $format;
 		$this->disableCurrentYear();
 	}
@@ -1398,7 +1407,7 @@ class ZsError {
 	 *                   text.
 	 * @public 
 	 */
-	function ZsError($errorType, $message) {
+	function __construct($errorType, $message) {
 		$this->setErrorType($errorType);
 		$this->setMessage($message);
 	}
@@ -1469,7 +1478,7 @@ class Errors {
 	 * 
 	 * @public
 	 */
-	function Errors() {
+	function __construct() {
 		$this->errors = array();
 	}
 	
@@ -1650,7 +1659,7 @@ class Rounder
 	 * @param $point the char used as point. E.g. in USA '.' is used,
 	 *         in Denmark ',' is used.
 	 */
-	function Rounder(
+	function __construct(
 		$addPercent = 1,
 		$zeroDotToPercent = 1,
 		$maxDecimalsVisible = 5,
@@ -2208,7 +2217,7 @@ class PersistenceSource {
 	 */
 	var $username;
 
-	function PersistenceSource() {
+	function __construct() {
 	}
 
 	/**
@@ -2326,7 +2335,7 @@ class DataSource
 	 * @param $settings an instance of the settings object.
 	 * @return DataSource
 	 */
-	function DataSource($username, &$settings)
+	function __construct($username, &$settings)
 	{
 		//Validate the username
 		if ($this->isUsernameValid($username))
@@ -2372,7 +2381,7 @@ class DataSource
 	 * @param $username  the username to create an instance for.
 	 * @param $options   an instance of the class that provides options.
 	 */
-	function createInstance($username, &$options) {
+	static function createInstance($username, &$options) {
 		return new PersistenceMgr($username, $options);
 	}
 	
@@ -2383,7 +2392,7 @@ class DataSource
 	 * @param $options an instance of the class that provides options.
 	 * @return instance of the current CollectiveReader.
 	 */
-	function createCollectiveReader(&$options) {
+	static function createCollectiveReader(&$options) {
 		return new MySqlCollectiveReader($options);
 	}
 	
@@ -2394,7 +2403,7 @@ class DataSource
 	 * @param $options an instance of the class that provides options.
 	 * @return instance of the current {@link ContentCache}.
 	 */
-	function createContentCache(&$options) {
+	static function createContentCache(&$options) {
 		return new MySqlContentCache($options);
 	}
 
@@ -2408,8 +2417,14 @@ class DataSource
 	 */
 	function isUsernameValid($username)
 	{
+		return self::isUsernameValidStatic($username);
+	}
+
+  static function isUsernameValidStatic($username)
+	{
 		return ! preg_match("/[^a-z0-9_\-]/i", $username);
 	}
+
 
 	/**
 	 * Returns the represented username.
@@ -2692,7 +2707,7 @@ class DatabaseMysqlSource extends DataSource
 	 * @param $options an instance of the settings object.
 	 * @return DatabaseMysqlSource
 	 */
-	function DatabaseMysqlSource($username, &$options)
+	function __construct($username, &$options)
 	{
 		$this->setPath($options);
 		//Cache for other methods
@@ -3156,7 +3171,7 @@ class MySqlAccess
 	 * @author Simon Mikkelsen
 	 * @param $options an instance of the settings object.
 	 */
-	function MySqlAccess(&$options)
+	function __construct(&$options)
 	{
 		$this->options = &$options;
 		$this->conn = $this->openDatabase();
@@ -3197,11 +3212,7 @@ class MySqlAccess
 	 * @param the escaped SQL.
 	 */
 	function secureSlashes($sql) {
-		if (get_magic_quotes_gpc() === 1) {
-			return mysqli_real_escape_string($this->conn, stripslashes($sql));
-		} else {
-			return mysqli_real_escape_string($this->conn, $sql);
-		}
+    return mysqli_real_escape_string($this->conn, $sql);
 	}
 	
 	/**
@@ -3287,7 +3298,7 @@ class DataFileSource extends DataSource {
 	 * @param $stier an instance of the settings object.
 	 * @return Datafil
 	 */
-	function DataFileSource($brugernavn, &$stier)
+	function __construct($brugernavn, &$stier)
 	{
 		//Validate the username
 		if ($this->isUsernameValid($brugernavn))
@@ -3752,7 +3763,7 @@ class Visit {
 	/**
 	 * Creates a new instance.
 	 */
-	function Visit() {
+	function __construct() {
 		$this->searchWords = array();
 	}
 	
@@ -4003,7 +4014,7 @@ class CollectiveItem {
 	 * @param $text  the text to display for the item.
 	 * @param $count the number of times the item has occurd.
 	 */
-	function CollectiveItem($text, $count) {
+	function __construct($text, $count) {
 		$this->text = $text;
 		$this->count = $count;
 	}
@@ -4116,7 +4127,7 @@ class CollectiveStatRequest {
 	 * @param $startDay  the start time.
 	 * @param $endDay    the end time.
 	 */
-	function CollectiveStatRequest($stat, $unique, $startDay, $endDay) {
+	function __construct($stat, $unique, $startDay, $endDay) {
 		$this->stat = $stat;
 		$this->unique = $unique;
 		$this->startDay = $startDay;
@@ -4307,7 +4318,7 @@ class MySqlCollectiveReader extends CollectiveReader {
 	 *
 	 * @param $options an instance of the settings object.
 	 */
-	function MySqlCollectiveReader(&$options) {
+	function __construct(&$options) {
 		$this->options = &$options;
 		
 		//Create the database connection.
@@ -4483,7 +4494,7 @@ class ContentCache {
 	 *
 	 * @param $options an instance of the options.
 	 */
-	function ContentCache(&$options) {
+	function __construct(&$options) {
 		$this->options = &$options;
 	}
 	
@@ -4581,8 +4592,8 @@ class MySqlContentCache extends ContentCache {
 	 *
 	 * @param $options an instance of the settings object.
 	 */
-	function MySqlContentCache(&$options) {
-		parent::ContentCache($options);
+	function __construct(&$options) {
+		parent::__construct($options);
 		
 		//Create the database connection.
 		$this->db = new MySqlAccess($options);
@@ -4801,7 +4812,7 @@ class LogDatasource {
 	 * 
 	 * @param $options The instance of the options.
 	 */
-	function LogDatasource(&$options) {
+	function __construct(&$options) {
 		$this->options = $options;
 		$this->logFilePointer = NULL;
 		$this->logFileName = NULL;
@@ -4981,7 +4992,7 @@ class Resets
 	 * @version 0.0.1
 	 * @since 0.0.1
 	 */
-	function Resets($line)
+	function __construct($line)
 	{
 		$this->resets = explode("::",$line);
 	}
@@ -5046,7 +5057,7 @@ class TimeLogger2
 	 * @param $usr the name of the user for testing (so multiple instances
 	 *             can de seperated from each other).
 	 */
-	function TimeLogger2($usr)
+	function __construct($usr)
 	{
 		list($usec, $sec) = explode(" ",microtime());
 		$this->usr = $usr."[".($sec + $usec)."]";
@@ -5096,7 +5107,7 @@ class SearchEngines
 {
 	var $engins;
 
-	function SearchEngines()
+	function __construct()
 	{
 		$this->engines['altavista'][0] = 'http://www.altavista.com';
 		$this->engines['altavista'][1] = 'Altavista';
@@ -5343,7 +5354,7 @@ class UrlBuilder
 	 * @param $url the part after the domain name.
 	 * @param $domain the domain and subdomain part.
 	 */
-	function UrlBuilder($url, $domain = "")
+	function __construct($url, $domain = "")
 	{
 		$this->setUrl($url);
 		$this->setDomain($domain);
@@ -5589,7 +5600,7 @@ class StatSiteUrlBuilder extends UrlBuilder
 	 * @version 0.0.1
 	 * @since 0.0.1
 	 */
-	function StatSiteUrlBuilder(&$siteContext)
+	function __construct(&$siteContext)
 	{
 			$this->setUrl("stats.php");
 			$this->showParameters = array();
@@ -5640,7 +5651,7 @@ class StatSiteUrlBuilder extends UrlBuilder
 	function setShowAll()
 	{
 		//$this->setParameters(array());
-		$this->setStatVisible($this->getKeyAll());
+		$this->setStatVisible(StatSiteUrlBuilder::getKeyAll());
 	}
 
 	/**
@@ -5652,7 +5663,7 @@ class StatSiteUrlBuilder extends UrlBuilder
 	 * @return  the key which states that all stats should be selected.
 	 * @returns String
 	 */
-	function getKeyAll() {
+	static function getKeyAll() {
 		return 'all';
 	}
 } //End of class StatSiteUrlBuilder
@@ -5665,7 +5676,7 @@ class Debug {
 	/**
 	 * @author spagmoid at yahoo dot NOSPAMcom
 	 */
-	function stacktrace()
+	static function stacktrace()
 	{
 	   $s = '';
 	   $MAXSTRLEN = 64;
@@ -5741,8 +5752,8 @@ class PersistenceMgr extends DataSource {
 	 * @param $username the username
 	 * @param $settings an instance of the settings object.
 	 */
-	function PersistenceMgr($username, &$settings) {
-		DataSource::DataSource($username, $settings);
+	function __construct($username, &$settings) {
+		parent::__construct($username, $settings);
 	}
 
 	function setOperation($operation) {
@@ -6169,7 +6180,7 @@ class UrlComparator {
 	 * @public
 	 * @author Simon Mikkelsen
 	 */
-	function UrlComparator() {
+	function __construct() {
 	}
 	
 	/**

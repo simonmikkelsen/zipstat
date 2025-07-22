@@ -40,7 +40,7 @@ class UsersAreaUtils {
 	 * @param $siteContext an optional instance of the site context. Some
 	 *                     methods will fail if it is not set.
 	 */
-	function UsersAreaUtils(&$siteContext) {
+	function __construct(&$siteContext) {
 		//if (is_object($siteContext))
 		$this->setSiteContext($siteContext);
 	}
@@ -290,7 +290,6 @@ class UsersAreaUtils {
 			$this->siteContext->getOption('adminName'),            //Admin name
 			$this->siteContext->getOption('name_of_service')      //Name of the service (e.g. ZIP Stat)
 		);
-                header('Content-Type: text/html; charset=utf-8'); //TODO: Put in a nicer location, but this works for now.
 		echo str_replace($keys, $vals, $localTpl);
 	}
 

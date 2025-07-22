@@ -69,7 +69,7 @@ class SiteContext
 	 *                   for the request.
 	 * @param $language  the ISO code for the users prefered language.
 	 */
-	function SiteContext(&$codeLib,&$options,$HTTP_VARS,$language)
+	function __construct(&$codeLib,&$options,$HTTP_VARS,$language)
 	{
 		$this->codeLib = &$codeLib;
 		$this->options = &$options;
@@ -277,7 +277,7 @@ class ShortSiteContext extends SiteContext {
 	 *                   for the request.
 	 * @param $language  the ISO code for the users prefered language.
 	 */
-	function ShortSiteContext(&$options,$HTTP_VARS,$language) {
+	function __construct(&$options,$HTTP_VARS,$language) {
 		$this->options = &$options;
 		$this->HTTP_VARS = $HTTP_VARS;
 		$this->locale = NULL; //new Localizer($language,$this);

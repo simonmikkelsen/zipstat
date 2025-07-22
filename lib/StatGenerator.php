@@ -69,7 +69,7 @@ class StatGenerator
 	 * @version 0.0.1
 	 * @since 0.0.1
 	 */
-	function StatGenerator(&$siteContext, &$siteGenerator)
+	function __construct(&$siteContext, &$siteGenerator)
 	{
 		$this->siteContext = &$siteContext;
 		$this->lib = &$this->siteContext->getCodeLib();
@@ -1064,7 +1064,10 @@ class BasicStatsGenerator extends StatGenerator
 		//the average visitor looks at a site.
 		for ($i = 0;$i < sizeof($unixtimes);$i++)
 		{
-			if (($unixtimes[$i] + $timePerVisitor > time()) and (strpos($iper,":".$ip[$i].":") === false))
+			if (is_numeric($unixtimes[$i]) and is_numeric($timePerVisitor) 
+          and ($unixtimes[$i] + $timePerVisitor > time()) 
+          and (strpos($iper,":".$ip[$i].":") === false)
+          )
 			{
 				$visitorsNow++;
 				$iper .= $ip[$i].":";
@@ -1413,7 +1416,7 @@ class BasicStatsGenerator extends StatGenerator
 class Projection extends StatGenerator
 {
 
-	function generateStat()
+	function &generateStat()
 	{
 		if (strtolower($this->siteGenerator->getParentClass()) != "sitegenerator")
 		{ /*It's not a SiteGenerator*/
@@ -1680,7 +1683,7 @@ hvilket bringer siden op p i alt %6$s i denne mned.*/
 		if ($n != 0)
 		{
 			return ($months[$dates['mon']] + $this->hitsToComeToday()) *
-				($this->lib->lengthOfMont($dates['mon']) / $n);
+				(Html::lengthOfMont($dates['mon']) / $n);
 		}
 		else
 			return $this->hitsToComeToday();
@@ -3090,7 +3093,7 @@ class HitsJavaScript extends GraphStatGenerator
 class HitsReferer extends StatGenerator
 {
 
-	function generateStat()
+	function &generateStat()
 	{
 		$this->setName("HitsReferer");
 
@@ -3774,8 +3777,8 @@ class HitsVotes extends StatGenerator
 	 * @version 0.0.1
 	 * @since 0.0.1
    */
-	function HitsVotes(&$siteContext, &$siteGenerator) {
-		parent::StatGenerator($siteContext, $siteGenerator);
+	function __construct(&$siteContext, &$siteGenerator) {
+		parent::__construct($siteContext, $siteGenerator);
 		$this->setName("Votes");
 	}
 
@@ -3788,7 +3791,7 @@ class HitsVotes extends StatGenerator
 	 * @since 0.0.1
 	 * @return SiteElement
 	 */
-	function generateStat()
+	function &generateStat()
 	{
 
 		if (strtolower($this->siteGenerator->getParentClass()) != "sitegenerator")
@@ -3950,8 +3953,8 @@ class HitsLatestsVisits extends StatGenerator
 	 * @version 0.0.1
 	 * @since 0.0.1
 	 */
-	function HitsLatestsVisits(&$siteContext, &$siteGenerator) {
-		parent::StatGenerator($siteContext, $siteGenerator);
+	function __construct(&$siteContext, &$siteGenerator) {
+		parent::__construct($siteContext, $siteGenerator);
 		$this->setName("LatestsVisits");
 	}
 
@@ -3964,7 +3967,7 @@ class HitsLatestsVisits extends StatGenerator
 	 * @since 0.0.1
 	 * @return SiteElement
 	 */
-	function generateStat()
+	function &generateStat()
 	{
 
 		if (strtolower($this->siteGenerator->getParentClass()) != "sitegenerator")

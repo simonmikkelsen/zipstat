@@ -8,7 +8,7 @@
 #
 #	var $start;
 #
-#	function TimeLogger($usr)
+#	function __construct($usr)
 #	{
 #		list($usec, $sec) = explode(" ",microtime());
 #		$this->usr = $usr."[".($sec + $usec)."]";
@@ -178,7 +178,7 @@ if (isset($ind['taelop']) and $ind['taelop'] !== "nej" or !isset($ind['taelop'])
 	$engine->setCounterIgnoreQuery($datafil->getUserSetting('ignoreQuery') !== 'false');
 
 	//Process the visit.
-	$engine->process($lib->getTimeAdjusted(),
+	$engine->process(Html::getTimeAdjusted(),
 		(isset($ind['ssto']) ? $ind['ssto'] : ''),
 		(isset($ind['referer']) ? $ind['referer'] : ''),
 		(isset($ind['colors']) ? $ind['colors'] : ''),
@@ -197,7 +197,7 @@ if (isset($ind['taelop']) and $ind['taelop'] !== "nej" or !isset($ind['taelop'])
 $send = explode("::",$datafil->getLine(67));
 $lastMailSend = array_shift($send);
 
-$event = new EventCalculator($lib->getTimeAdjusted());
+$event = new EventCalculator(Html::getTimeAdjusted());
 $found = $event->repeatNow($lastMailSend, $send);
 if ($stier->getOption('send_stat_mails') === 0)
 	$found = false;
@@ -219,7 +219,7 @@ if ($found === true)
 	//Store that the mail has been send before it is send:
 	//Worst case: An e-mail is lorst, but we don't risk sending an e-mail
 	//that and not storing that it has been send, resulting in spamming the user.
-	array_unshift($send, $lib->getTimeAdjusted());
+	array_unshift($send, Html::getTimeAdjusted());
 	$datafil->setLine(67,implode("::",$send));
 	$datafil->gemFil();
 
@@ -289,7 +289,7 @@ if ($stier->getOption('collective') === 1) {
 
 	$visit = new Visit();
 	$visit->setUnique($lib->isVisitUnique(getenv('REMOTE_ADDR')) ? 1 : 0);
-	$visit->setTime($lib->getTimeAdjusted());
+	$visit->setTime(Html::getTimeAdjusted());
 	$visit->setBrowser(ZipStatEngine::short_browser(getenv('HTTP_USER_AGENT')));
 	$visit->setOs(ZipStatEngine::platform(getenv('HTTP_USER_AGENT')));
 	$visit->setResolution((isset($ind['ssto']) ? $ind['ssto'] : '')); //Todo: Test for correct syntax

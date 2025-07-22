@@ -78,7 +78,7 @@ class HtmlSite
 	 * @param $title sidens titel.
 	 * @since 0.0.1
 	 */
-	function HtmlSite($siteContext, $title="")
+	function __construct($siteContext, $title="")
 	{
 		$this->setSiteContext($siteContext);
 		$this->setTitle($title);

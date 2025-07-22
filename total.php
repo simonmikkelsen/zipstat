@@ -12,7 +12,7 @@
 	$settings = new Stier();
 
 	//Get site parameters.
-	$http_vars = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+	$http_vars = Html::setPostOrGetVars($_POST, $_GET);
 
 	//Instantierer klassen med standardkode
 	$datasource = DataSource::createCollectiveReader($settings);

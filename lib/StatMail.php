@@ -20,7 +20,7 @@ class EventCalculator {
 	 *
 	 * @param $currentTime the current time. This may be adjusted for time zone etc.
 	 */
-	function EventCalculator($currentTime = NULL) {
+	function __construct($currentTime = NULL) {
 		if ($currentTime === NULL) {
 			$currentTime = time();
 		}

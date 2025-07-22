@@ -13,7 +13,7 @@
 	$stier = new Stier();
 
 	//Henter variable udefra
-	$ind = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+	$ind = Html::setPostOrGetVars($_POST, $_GET);
 
 	//Maps old to new parameters
 	$statSiteMapper = new StatSiteLegacyMapper(); // todo: This seems to be not used anymore.
@@ -148,7 +148,7 @@
 /*----Selve programmet----*/
 
 //Sender headers til browseren om at siden ikke m caches.
-$lib->outputNoCacheHeaders();
+Html::outputNoCacheHeaders();
 
 //Genererer HTML'en
 $side = $statSite->generateSite();

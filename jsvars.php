@@ -20,7 +20,7 @@ require "Stier.php";
 $stier = new Stier();
 
 require "Html.php";
-$ind = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+$ind = Html::setPostOrGetVars($_POST, $_GET);
 
 //Tjekker brugernavnet
 $datafil = DataSource::createInstance($ind['brugernavn'],$stier);

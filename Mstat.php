@@ -21,7 +21,7 @@ class Mstat
 	 */
 	var $enabled;
 
-	function Mstat(&$lib) {
+	function __construct(&$lib) {
 		$this->lib = &$lib;
 		$this->datasource = &$lib->getDataSource();
 		$options = $this->lib->getStier();

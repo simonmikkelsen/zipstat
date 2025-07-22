@@ -1,7 +1,7 @@
 <?php
 
 class SessionDAOMySQL {
-  function SessionDAOMySQL($host, $database, $user, $password, $sessionTable) {
+  function __construct($host, $database, $user, $password, $sessionTable) {
     $this->mysqli = new mysqli($host, $user, $password, $database);
     $this->mysqli->set_charset('utf8');
     $this->sessionTable = $sessionTable;
@@ -47,7 +47,7 @@ class SessionDAOMySQL {
 
 
 class SessionFactory {
-  function SessionFactory(&$options) {
+  function __construct(&$options) {
     $this->options = &$options;
   }
 
@@ -65,7 +65,7 @@ class SessionFactory {
 
 
 class Session {
-  function Session($dao, &$options) {
+  function __construct($dao, &$options) {
     $this->dao = $dao;
     $this->options = $options;
     $this->cookieName = 'session';

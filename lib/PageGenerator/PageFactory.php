@@ -37,7 +37,7 @@ class PageFactory
 	 * @param $mode the mode to create objects for. The supported modes is
 	 *              returned by {@link #getSupportedModes}.
 	 */
-	function PageFactory(&$siteContext, $mode)
+	function __construct(&$siteContext, $mode)
 	{
 		$this->siteContext = &$siteContext;
 		

@@ -26,7 +26,7 @@ class LegacyMapper {
 	 * 
 	 * @public
 	 */
-	function LegacyMapper() {
+	function __construct() {
 	}
 	
 	/**

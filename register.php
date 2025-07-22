@@ -9,7 +9,7 @@ require "lib/SiteGenerator/SiteGenerator.php";
 
 //Initialize
 $options = new Stier();
-$in = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+$in = Html::setPostOrGetVars($_POST, $_GET);
 
 $datafil = NULL;
 $lib = new Html($in,$datafil);
@@ -63,7 +63,7 @@ class Registrer
 	 * @version 0.0.1
 	 * @since 0.0.1
 	 */
-	function Registrer($siteContext)
+	function __construct($siteContext)
 	{
 		$this->setSiteContext($siteContext);
 	}
@@ -355,7 +355,7 @@ class Registrer
 			$errors->addError(new ZsError(2, $this->siteContext->getLocale('regErrorNoName')));
 		}
 
-		if (!isset($in['e-mail']) or strlen($in['e-mail']) === 0 or !$lib->okmail($in['e-mail'])) {
+		if (!isset($in['e-mail']) or strlen($in['e-mail']) === 0 or !Html::okmail($in['e-mail'])) {
 			$errors->addError(new ZsError(2, $this->siteContext->getLocale('regErrorBadEmail')));
 		}
 
@@ -367,7 +367,7 @@ class Registrer
 			$errors->addError(new ZsError(2, $this->siteContext->getLocale('regErrorNoTitle')));
 		}
 
-		if (!isset($in['brugernavn']) or strlen($in['brugernavn']) === 0 or !Datafil::isUsernameValid($in['brugernavn'])) {
+		if (!isset($in['brugernavn']) or strlen($in['brugernavn']) === 0 or !Datafil::isUsernameValidStatic($in['brugernavn'])) {
 			$errors->addError(new ZsError(2, $this->siteContext->getLocale('regBadUsername')));
 		} else {
 			$datasource = DataSource::createInstance($in['brugernavn'], $this->siteContext->getOptions());

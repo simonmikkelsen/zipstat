@@ -5,7 +5,7 @@
  */
 
 (function($) {
-    function Plot(target_, data_, options_) {
+    function __construct(target_, data_, options_) {
         // data is on the form:
         //   [ series1, series2 ... ]
         // where series is either just the data as [ [x1, y1], [x2, y2], ... ]

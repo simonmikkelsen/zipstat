@@ -22,7 +22,7 @@ elseif (! $res)
 $lib = new Html($ind,$datafil);
 $lib->setStier($stier);
 
-$lib->outputNoCacheHeaders();
+Html::outputNoCacheHeaders();
 
 if (strlen($problemer) === 0) {
 	$datafil->setLine(52, getenv('REMOTE_ADDR'));
@@ -35,7 +35,7 @@ if (strlen($problemer) === 0) {
 			$url = "https://" . $url;
 		header('Location: '.$url);
 	} else {
-		$ind = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+		$ind = Html::setPostOrGetVars($_POST, $_GET);
 		$siteContext = new SiteContext($lib, $stier, $ind, 'da');
 		$utils = new UsersAreaUtils($siteContext);
 		$utils->echoSiteHead("Ingen adresse angivet", 1);

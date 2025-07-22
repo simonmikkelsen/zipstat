@@ -51,7 +51,7 @@ class SiteGenerator
 	 * @since 0.0.1
 	 * @param the instance of <code>SiteContext</code> to use.
 	 */
-	function SiteGenerator(&$siteContext)
+	function __construct(&$siteContext)
 	{
 		$this->siteContext = &$siteContext;
 	}
@@ -195,7 +195,7 @@ class SiteGenerator
 	 * @since 0.0.1
 	 * @return String[] an array of the supported modes.
 	 */
-	function getSupportedModes() {
+	static function getSupportedModes() {
 		$supportedModes[0] = 'text';
 		$supportedModes[1] = 'csv';
 		$supportedModes[2] = 'html';
@@ -297,7 +297,7 @@ class SiteGenerator
 	 * @return SiteGenerator a {@link SiteGenerator}.
 	 * @see SiteContext
 	 */
-	function getGenerator($type, &$siteContext)
+	static function getGenerator($type, &$siteContext)
 	{
 		$supportedModes = SiteGenerator::getSupportedModes();
 		if ($type === $supportedModes[0]) /*Plain text*/
@@ -419,7 +419,7 @@ class SiteElement
 	 * @since 0.0.1
 	 * @param $siteContext The instance of {@link SiteContext} to use.
 	 */
-	function SiteElement(&$siteContext)
+	function __construct(&$siteContext)
 	{
 		$this->siteContext = &$siteContext;
 		$this->elementName = "";
@@ -812,8 +812,8 @@ class Wrapper extends SiteElement
 	 * @param $siteContext The instance of {@link SiteContext} to use.
 	 * @public
 	 */
-	function Wrapper(&$siteContext) {
-		parent::SiteElement($siteContext);
+	function __construct(&$siteContext) {
+		parent::__construct($siteContext);
 	}
 
 	/**
@@ -1555,8 +1555,8 @@ class FormWrapper extends Wrapper {
 	 * @param $siteContext The instance of {@link SiteContext} to use.
 	 * @public
 	 */
-	function FormWrapper(&$siteContext) {
-		parent::Wrapper($siteContext);
+	function __construct(&$siteContext) {
+		parent::__construct($siteContext);
 		$this->passThroughParams = array();
 	}
 
@@ -1803,9 +1803,9 @@ class SiteGraph extends SiteElement
 	 * @version 0.0.1
 	 * @since 0.0.1
 	 */
-	function SiteGraph(&$siteContext)
+	function __construct(&$siteContext)
 	{
-		$this->SiteElement($siteContext);
+		parent::__construct($siteContext);
 		$this->sorted = 0; /*Default: Not sorted*/
 		$this->emphasize = ""; /*Default: None emphasized*/
 		$this->showNumbers = 1; /*Default: Show the numbers on the graphs*/
@@ -2217,7 +2217,7 @@ class SiteSeriesGraph extends SiteElement {
 	 * @public
 	 * @param $siteContext an instance of the <code>SiteContext</code>.
 	 */
-	function SiteSeriesGraph(&$siteContext)
+	function __construct(&$siteContext)
 	{
 		$this->SiteElement($siteContext);
 	}
@@ -3434,9 +3434,9 @@ class StatSelector extends SiteElement
 	 * @param $siteContext the instance of {@link SiteContext} to use.
 	 * @param $statGenerator the {@link SiteGenerator} used to instantiate this.
 	 */
-	function StatSelector(&$siteContext, &$siteGenerator)
+	function __construct(&$siteContext, &$siteGenerator)
 	{
-		parent::SiteElement($siteContext);
+		parent::__construct($siteContext);
 		$this->siteGenerator = &$siteGenerator;
 		$this->passThroughParams = array();
 	}
@@ -3543,7 +3543,7 @@ class StatSelector extends SiteElement
 		for ($i = 0; $i < $noStats; $i++) {
 			$currentStatElement = $this->getStat($i);
 
-			$currentStatUrlBuilder = &$this->siteContext->getUrlBuilder("statsite");
+			$currentStatUrlBuilder = $this->siteContext->getUrlBuilder("statsite");
 			$currentStatUrlBuilder->setStatVisible($currentStatElement->getIdentifier());
 
 			//Add the http parameters to pass through. E.g. username (danish: brugernavn).
@@ -3563,7 +3563,7 @@ class StatSelector extends SiteElement
 			$currentStatText->setText($this->siteContext->getLocale($currentStatElement->getHeadlineKey()));
 			$currentStatUrl = $this->siteGenerator->newElement('urlWrapper');
 			$currentStatUrl->setUrl($currentStatUrlBuilder->createUrl());
-			$currentStatCheckbox = &$this->siteGenerator->newElement('checkbox');
+			$currentStatCheckbox = $this->siteGenerator->newElement('checkbox');
 			$currentStatCheckbox->setElementName('show[]');
 			$currentStatCheckbox->setValue($currentStatElement->getIdentifier());
 			$currentStatCheckbox->setSelected($this->isSelected($i) ? 1 : 0);
@@ -4145,7 +4145,7 @@ class CalendarMaker extends SiteElement {
 	 *
 	 * @param $month a unix time stamp within the month to generate code for.
 	 */
-	function CalendarMaker($month) {
+	function __construct($month) {
 		$this->setMonthTimestamp($month);
 	}
 
@@ -4432,7 +4432,7 @@ class SiteHeader {
 	 * @code The raw code of the header.
 	 * @public
 	 */
-	function SiteHeader($scheme, $code) {
+	function __construct($scheme, $code) {
 		$this->scheme = $scheme;
 		$this->code = $code;
 	}

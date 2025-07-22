@@ -10,7 +10,7 @@
 	$stier = new Stier();
 
 	//Henter variable udefra
-	$ind = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+	$ind = Html::setPostOrGetVars($_POST, $_GET);
 	
         $username = $password = '';
 	if (isset($ind['username']))

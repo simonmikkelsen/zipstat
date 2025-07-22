@@ -22,7 +22,7 @@ require "view.php";
 //Program
 $stier = new Stier();
 
-//$ind = Html::setPostOrGetVars($HTTP_POST_VARS,$HTTP_GET_VARS);
+//$ind = Html::setPostOrGetVars($_POST, $_GET);
 $ind = $_GET;
 
 if (isset($ind['username'])) {
@@ -145,10 +145,10 @@ Du, eller muligvis en anden, har bedt om at f√• kodeordet nulstillet til en ZIP 
 
 For at nulstille kodeordet skal du benytte dette link:
 '.$resetUrl.'
-Linket vil virke 1 time efter denne mail blev sendt, hvorefter det er n√dvendigt at bede
+Linket vil virke 1 time efter denne mail blev sendt, hvorefter det er nÔøΩdvendigt at bede
 om en ny mail.
 
-Hvis du ikke har bedt om at f√ nulstillet dit kodeord, s√•se venligst bort fra denne mail.
+Hvis du ikke har bedt om at fÔøΩ nulstillet dit kodeord, s√•se venligst bort fra denne mail.
 Det er kun dig som har mulighed for at nulstille kodeordet.
 
 -- 

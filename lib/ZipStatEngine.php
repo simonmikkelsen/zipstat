@@ -66,7 +66,7 @@ class ZipStatEngine
 	 *             of the data source and settings objects. Can be set to @c NULL
 	 *             for test purposes - on your responserbillity!
 	 */
-	function ZipStatEngine(&$lib) {
+	function __construct(&$lib) {
 		if ($lib !== NULL) {
 			$this->datafil = &$lib->getDataSource();
 			$this->lib = &$lib;
@@ -330,7 +330,7 @@ class ZipStatEngine
 	if (strlen($topdomaene) > 0)
 	{
 		$this->datafil->setLines(
-			$this->stringstat(			/*Giver en array*/
+			ZipStatEngine::stringstat(			/*Giver en array*/
 				$topdomaene,				/*Ny tekst*/
 				$this->datafil->getLine(22),	/*Tekst ind*/
 				$this->datafil->getLine(23)	/*Tal ind*/
@@ -342,9 +342,9 @@ class ZipStatEngine
 
 
 	//Browser 24, antal 25
-	$browser = $this->short_browser($this->useragent);
+	$browser = ZipStatEngine::short_browser($this->useragent);
 		$this->datafil->setLines(
-			$this->stringstat(			/*Giver en array*/
+			ZipStatEngine::stringstat(			/*Giver en array*/
 				$browser,					/*Ny tekst*/
 				$this->datafil->getLine(24),	/*Tekst ind*/
 				$this->datafil->getLine(25)	/*Tal ind*/
@@ -365,9 +365,9 @@ class ZipStatEngine
 		//$this->mstat->stringstat($browser, 90, 91);
 		
 	//Styreystem 26, antal 27
-	$platform = $this->platform($this->useragent);
+	$platform = ZipStatEngine::platform($this->useragent);
 		$this->datafil->setLines(
-			$this->stringstat(			/*Giver en array*/
+			ZipStatEngine::stringstat(			/*Giver en array*/
 				$platform,					/*Ny tekst*/
 				$this->datafil->getLine(26),	/*Tekst ind*/
 				$this->datafil->getLine(27)	/*Tal ind*/
@@ -453,7 +453,7 @@ class ZipStatEngine
 	if (preg_match("/^[a-z][a-z]/",$lang))
 	{
 		$this->datafil->setLines(
-			$this->stringstat(			/*Giver en array*/
+			ZipStatEngine::stringstat(			/*Giver en array*/
 				substr($lang,0,2),		/*Ny tekst*/
 				$this->datafil->getLine(29),	/*Tekst ind*/
 				$this->datafil->getLine(30)	/*Tal ind*/
@@ -470,7 +470,7 @@ class ZipStatEngine
 			$opl = "Andre";
 
 	$this->datafil->setLines(
-		$this->stringstat(			/*Giver en array*/
+		ZipStatEngine::stringstat(			/*Giver en array*/
 			$opl,							/*Ny tekst*/
 			$this->datafil->getLine(31),	/*Tekst ind*/
 			$this->datafil->getLine(32)	/*Tal ind*/
@@ -492,10 +492,11 @@ class ZipStatEngine
 
 	//Farver (bit) 33 antal 34
 	$cols = $this->colors;
-	if (($cols == round(1*$cols)) and ($cols > 0) or 1)
+	//if (($cols == round(1*$cols)) and ($cols > 0) or 1)
+	if (is_numeric($cols) and $cols > 0)
 		{
 		$this->datafil->setLines(
-			$this->stringstat(			/*Giver en array*/
+			ZipStatEngine::stringstat(			/*Giver en array*/
 				$cols,						/*Ny tekst*/
 				$this->datafil->getLine(33),	/*Tekst ind*/
 				$this->datafil->getLine(34)	/*Tal ind*/
@@ -526,7 +527,7 @@ class ZipStatEngine
 	if ( ($this->javasupport === "true") or ($this->javasupport === "false") or ($this->javasupport === "Ved ikke") )
 	{
 		$this->datafil->setLines(
-			$this->stringstat(			/*Giver en array*/
+			ZipStatEngine::stringstat(			/*Giver en array*/
 				$this->javasupport,				/*Ny tekst*/
 				$this->datafil->getLine(35),	/*Tekst ind*/
 				$this->datafil->getLine(36)	/*Tal ind*/
@@ -551,7 +552,7 @@ class ZipStatEngine
 		$this->jsSupport = "Ved ikke";
 
 		$this->datafil->setLines(
-			$this->stringstat(			/*Giver en array*/
+			ZipStatEngine::stringstat(			/*Giver en array*/
 				$this->jsSupport,					/*Ny tekst*/
 				$this->datafil->getLine(39),	/*Tekst ind*/
 				$this->datafil->getLine(40)	/*Tal ind*/
@@ -601,8 +602,10 @@ class ZipStatEngine
 
 		if ($this->datafil->getLine(66) != $genr)
 		{
-			$tmp3 = array(0,$tmp3[0],$tmp3[1]);
-			$tmp4 = array(0,$tmp4[0],$tmp4[1]);
+			//$tmp3 = array(0,$tmp3[0],$tmp3[1]);
+			//$tmp4 = array(0,$tmp4[0],$tmp4[1]);
+      $tmp3 = array_unshift($tmp3, 0);
+      $tmp4 = array_unshift($tmp4, 0);
 			$this->datafil->setLine(66,$genr);
 		}
 		$tmp4[0]++;
@@ -918,7 +921,7 @@ class ZipStatEngine
 			
 			$seName = ucwords(strtolower($smask[$i]));
 			$this->datafil->setLines(
-				$this->stringstat(			/*Giver en array*/
+				ZipStatEngine::stringstat(			/*Giver en array*/
 					$seName,	/*Ny tekst*/
 					$this->datafil->getLine(49),	/*Tekst ind*/
 					$this->datafil->getLine(50)	/*Tal ind*/
@@ -1118,15 +1121,16 @@ function stringstatmax($nyTekst,$eTekst,$eTal,$maxstk)
 //Kald	($tekststreng,$talstreng) = &stringstatmax($nytekst,$eksisterende_tekststreng,$eksisterende_talstreng,$max_stk:integer);
 
 	//Hvis der ikke er nogen ny tekst.
-	if (sizeof($nyTekst) === 0)
+	if (strlen($nyTekst) === 0) {
 		return array($eTekst,$eTal);
+  }
 
 	$maxstk = ($maxstk >= 0) ? $maxstk : 0;
 
 	$eTekstArray = explode("::",$eTekst);
 	$eTalArray = explode("::",$eTal);
 
-	$ufs = $this->stringstat($nyTekst,$eTekst,$eTal,"array");
+	$ufs = ZipStatEngine::stringstat($nyTekst,$eTekst,$eTal,"array");
 	$uTekst = $ufs[0];
 	$uTal = $ufs[1];
 
@@ -1173,7 +1177,7 @@ function stringstatmax($nyTekst,$eTekst,$eTal,$maxstk)
  *                    nskes to strings.
  * @return String[]
  */
-function stringstat($nyTekst,$eTekst,$eTal,$returnType = "string")
+static function stringstat($nyTekst,$eTekst,$eTal,$returnType = "string")
 {
 	//If it's not an array, make it an array
 	if (! is_array($eTekst))
@@ -1230,7 +1234,7 @@ function stringstat($nyTekst,$eTekst,$eTal,$returnType = "string")
  * Returnere browsernavnet.
  * Modtager den tekststreng browserens identificerer sig med.
  */
-function short_browser($agent) {
+static function short_browser($agent) {
 $agentl = strtolower($agent);
 if (strpos($agentl, 'mozilla/') !== FALSE and preg_match("#Mozilla/(\d)#i",$agent,$verNN))
 	{
@@ -1381,7 +1385,7 @@ return $longagent;
  * Returnere styresystem p lselig form.
  * @param $agent den tekststreng styresystemet bliver identificeret p.
  */
-function platform($agent)
+static function platform($agent)
 {
 	$agentl = strtolower($agent);
 	if (strpos($agentl, "win95") !== FALSE)
@@ -1418,6 +1422,12 @@ function platform($agent)
 		{$longplatform = "Windows 2000";}
 	elseif (strpos($agentl, "windows nt 6.1") !== FALSE)
 		{$longplatform = "Windows 7";}
+  elseif (strpos($agentl, "windows nt 6.2") !== FALSE)
+    {$longplatform = "Windows 8";}
+  elseif (strpos($agentl, "windows nt 10") !== FALSE)
+    {$longplatform = "Windows 10";}
+  elseif (strpos($agentl, "windows nt 11") !== FALSE)
+    {$longplatform = "Windows 11";}
 	elseif (strpos($agentl, "windows nt 6") !== FALSE)
 		{$longplatform = "Windows Vista";}
 	elseif (strpos($agentl, "windows nt") !== FALSE)
