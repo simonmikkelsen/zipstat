@@ -92,7 +92,7 @@ class StatSite
 		if (strtolower(get_class($siteContext)) == 'sitecontext') {
 			$this->siteContext = &$siteContext;
 		} else {
-			echo "<b>Error:</b> Param <code>\$siteContext</code> to contrusctor <code>StatSite()</code> must be an instance of the class <code>SiteContext</code>.";
+			echo "<b>Error 283:</b> Param <code>\$siteContext</code> to contrusctor <code>StatSite()</code> must be an instance of the class <code>SiteContext</code>.";
 			echo Debug::stacktrace();
 			exit;
 		}
@@ -297,7 +297,7 @@ class StatSite
 		if (! isset($this->show) or ! is_array($this->show) or count($this->show) === 0) {
 			$show = $this->siteContext->getHttpVar("show");
 			if (! is_array($show))
-				$show = array();
+				$show = array('all');
 		} else {
 			$show = $this->show;
 		}

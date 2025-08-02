@@ -14,6 +14,8 @@
 
 	//Henter variable udefra
 	$ind = Html::setPostOrGetVars($_POST, $_GET);
+  $ind['type'] = isset($ind['type']) ? $ind['type'] : '';
+
 
 	//Maps old to new parameters
 	$statSiteMapper = new StatSiteLegacyMapper(); // todo: This seems to be not used anymore.
@@ -65,10 +67,9 @@
 
 	//Instantierer <code>SiteContext</code>-objektet.
 	$siteContext = new SiteContext($lib, $stier, $ind, 'da');
-
 	$lib->setSiteContext($siteContext);
 	$lib->setStier($stier);
-	
+
 	//Give the site context to the legasy mapper (which will give itself to
 	//the site context.
 	$statSiteMapper->setSiteContext($siteContext);
@@ -108,16 +109,43 @@
 	//Do a password check
 	if (! $datafil->getField('statsitePublic'))
 	{
-		$pwds = explode("::", $datafil->getLine(57)."::pqi.iodngvu4-39w902jf0");
-		//Is a valid password given?
-                $mainPwOK = $datafil->authenticate($ind['brugernavn'], $ind['brugerkodeord'], 'statsite', 'statsite');
 
-		if ((strlen($ind['brugerkodeord']) === 0 or ! in_array($ind['brugerkodeord'], $pwds)) and ! $mainPwOK)
+    if (isset($ind['brugerkodeord'])) {
+      $brugerkodeord = $ind['brugerkodeord'];
+    } else {
+      $brugerkodeord = NULL;
+    }
+
+		//Is a valid password given?
+    if (isset($ind['brugernavn']) and $datafil->authenticate($ind['brugernavn'], $brugerkodeord, 'statsite', 'statsite')) {
+      $mainPwOK = true;
+    } else {
+      $mainPwOK = false;
+    }
+
+		$brugerkodeordListe = explode("::", $datafil->getLine(57));
+    if (sizeof($brugerkodeordListe) > 0 and $brugerkodeord !== NULL and in_array($brugerkodeord, $brugerkodeordListe, true)) {
+      $brugerkodeordOK = true;
+    } else {
+      $brugerkodeordOK = false; 
+    }
+
+    // If no password is given or the password is not correct, ask for it.
+		if (! $mainPwOK and ! $brugerkodeordOK)
 		{
+      // Ask for password if required and not given.
 			require_once "lib/SiteGenerator/SiteGenerator.php";
 			require_once "lib/StatGenerator.php";
 
-			$sg = SiteGenerator::getGenerator($ind['type'],$siteContext);
+      if (!isset($ind['type'])) {
+        $ind['type'] = ''; // Default type if not specified.
+      }
+
+      $lib = new Html($ind, $datafil);
+      $lib->setSiteContext($siteContext);
+      $lib->setStier($stier);
+
+      $sg = SiteGenerator::getGenerator($ind['type'],$siteContext);
 			$headline = $sg->newElement("headline");
 			$headline->setHeadline($siteContext->getLocale("siteEnterPwdHead"));
 			$headline->setSize(1);
@@ -134,7 +162,7 @@
 			$login->setUsername($ind["brugernavn"]);
 			$sg->addElement($login);
 
-                        echo $sg->getSite();
+      echo $sg->getSite();
 			exit;
 		}
 	}

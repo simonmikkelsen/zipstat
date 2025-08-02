@@ -62,7 +62,13 @@ if (! $tillad[1])
 
 //Udskriver statistikkerne
 
-$hitsSiden1 = $datafil->getLine(7)+$datafil->getLine(82);
+$line7 = trim($datafil->getLine(7));
+$line82 = trim($datafil->getLine(82));
+if (is_numeric($line7) and is_numeric($line82)) {
+  $hitsSiden1 = $datafil->getLine(7)+$datafil->getLine(82);
+} else {
+  $hitsSiden1 = 0;
+}
 
 echo "var hits_siden_1 = '$hitsSiden1';$nl";
 echo "var hits_siden_1_dato = '".$datafil->getLine(8)."';$nl";
@@ -90,10 +96,18 @@ echo "var max_hits_maaned_dato = '".$datafil->getLine(19)."';$nl";
 		$i = $mon -1;
 		$stk = 0;
 		$mhits = 0;
+    $htm = 0; // I don't know what this is, but it is used in the original code.
+    $hm12 = 0; // Hits per month for 12 months.
+    $hm6 = 0; // Hits per month for 6 months.
+    $hm3 = 0; // Hits per month for 3 months.
+    $hm3b = 0; // Hits per month for 3 months, but adjusted for the current month.
+    // Note to my 25 years younger self: Don't code like this!
 		for ($n = 1;$n <= 12;$n++)
 		{
-			$mhits += $tmp[$i];
-			if ($tmp[$i] > 0) $stk++;
+      if (isset($tmp[$i])) {
+        $mhits += $tmp[$i];
+        if ($tmp[$i] > 0) $stk++;
+      }
 
 			if ($i == 0)
 				$i = 12;
@@ -150,11 +164,11 @@ echo $nl;
 		$hd = $hd / $n;
 	else
 		$hd = 0;
-
+  $hdOrig = $hd;
 	$hd = $lib->afrund($hd);
 
 echo "var hits_pr_dag = '$hd';$nl";
-$ht = $lib->afrund($hd / 24);
+$ht = $lib->afrund($hdOrig / 24);
 echo "var hits_pr_time = '$ht';$nl";
 
 	$tmp = explode(":",$datafil->getLine(73));
@@ -192,6 +206,7 @@ echo "var personer_paa_siden_nu = '$hps';$nl";
 		$ant31 = 0;
 		$maxi = 0;
 		$mini = 0;
+    $h31 = 0; // Hits for the last 31 days.
 		for ($i = 0;$i < 31;$i++)
 		{
 			if (($i != $mday -1) and ($tmp[$i] != 0))
@@ -224,6 +239,7 @@ echo "var personer_paa_siden_nu = '$hps';$nl";
 		
 		$tmp = explode("::",$datafil->getLine(15));
 		$antuge = 0;
+    $thiu = 0;
 		for ($i = 0;$i < 7;$i++)
 		{
 			if ($tmp[$i] != 0)
@@ -283,12 +299,15 @@ echo "var personer_paa_siden_nu = '$hps';$nl";
 		if ($ptn < 0)
 			$ptn *= -1;
 
+    $ti = 0; // Not initialized in the original code, but used later.
 		if ($ti < 0)
 			$ti *= -1;
 
+    $hits_ialt_timer = 0; // Not initialized in the original code, but used later.
 		if ($hits_ialt_timer < 0)
 			$hits_ialt_timer *= -1;
 
+    $hits_ialt_maaned = 0; // Not initialized in the original code, but used later.
 		if ($hits_ialt_maaned < 0)
 			$hits_ialt_maaned *= -1;
 
@@ -357,7 +376,7 @@ $tHits = explode("::",$datafil->getLine(37)); /*Tllerhist*/
 $tNavne = explode("::",$datafil->getLine(38)); /*Tllernavne*/
 $proMaxAntTaellere = $lib->pro(5);
 
-$filnavne = explode("/",$HTTP_REFERER);
+$filnavne = explode("/",$_SERVER['HTTP_REFERER']);
 $filnavne = array_reverse($filnavne);
 $filnavn = $filnavne[0];
 
@@ -410,7 +429,7 @@ if (! $minimal)
 	echo "var spsv=new Array;$nl";
 	echo "var sv_hits=new Array;$nl";
 
-	$cookie = $HTTP_COOKIE_VARS;
+	$cookie = $_COOKIE;
 	$svnr = 0;
 	for ($isse = 0;$isse < $pro_max_sp; $isse++)
 	{

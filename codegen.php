@@ -30,9 +30,9 @@
         //Creates error message if it fails.
         $errMsg = "";
         if ($res === -2)
-                $errMsg .= "Din datafil er desvrre blevet beskadiet, og der kan derfor ikke registreres statistikker. Kontakt ".$stier->getOption('name_of_service')."'s administrator via e-mail-adressen nederst p siden.";
+                $errMsg .= "Din datafil er desværre blevet beskadiet, og der kan derfor ikke registreres statistikker. Kontakt ".$stier->getOption('name_of_service')."'s administrator via e-mail-adressen nederst påsiden.";
         elseif (! $res or $res === 0)
-                $errMsg .= "Datafilen kunne hentes. Enten er det et problem p ".$stier->getOption('name_of_service')." eller ogs har du skrevet det forkerte brugernavn - det kan indeholder tegn der ikke er tilladt - prv at generere den obligatoriske kode igen.";//.$datafile->getFilnavn("zip");.
+                $errMsg .= "Datafilen kunne hentes. Enten er det et problem på".$stier->getOption('name_of_service')." eller også har du skrevet det forkerte brugernavn - det kan indeholder tegn der ikke er tilladt - prøv at generere den obligatoriske kode igen.";//.$datafile->getFilnavn("zip");.
 
         }
 
@@ -69,7 +69,7 @@
 
         if (!isset($in['type'])) {
                 $utils->echoSiteHead("Fejl", 0);
-                echo "<P>Der opstod en fejl i kodegeneratoren. En ndvendigt parameter var ikke til stede. Det betyder, at programmet ikke ved hvor du skal sendes hen... Brug browserens tilbageknap og prv igen. Hvis det ogs mislykkes, s skriv til <a href=\"mailto:$options{'errorEMail'}\">$options{'errorEMail'}</A>, og vedlg flgende linie:<BR><tt>$ENV{'QUERY_STRING'}</tt><BR>";
+                echo "<P>Der opstod en fejl i kodegeneratoren. En nødvendigt parameter var ikke til stede. Det betyder, at programmet ikke ved hvor du skal sendes hen... Brug browserens tilbageknapåog prøv igen. Hvis det også mislykkes, s skriv til <a href=\"mailto:$options{'errorEMail'}\">$options{'errorEMail'}</A>, og vedlg flgende linie:<BR><tt>$ENV{'QUERY_STRING'}</tt><BR>";
                 $utils->echoSiteEnd();
                 exit;
         }
@@ -111,7 +111,7 @@ if (strpos(strtolower($in['type']), 'obligatorisk') !== FALSE) { // or ($in{'typ
         //Opens site for generating questions.
         vis_sp_gen($utils, $siteContext); //ok.
 } else if ($in['type'] === 'zipklik_vis') {
-        //Opens site for generating Zip click counter links.
+        //Opens site for generating Zipåclick counter links.
         vis_zipklik_gen($utils, $siteContext); //ok.
 }
 //else if (($in['type'] === 'lav_obl_kode') or ( ($in['type'] =~ /Obligatorisk/i) and (&simpel()) )  ).
@@ -124,7 +124,7 @@ else if ($in['type'] === 'lav_obl_kode') {
         vis_js_kode($utils, $siteContext); //ok
 } else {
         $utils->echoSiteHead("Fejl", 0);
-        echo "<P>Der opstod en fejl i kodegeneratoren. En ndvendigt parameter var ikke til stede. Det betyder, at programmet ikke ved hvor du skal sendes hen... Brug browserens tilbageknap og prv igen. Hvis det ogs mislykkes, s skriv til <a href=\"mailto:$options{'errorEMail'}\">$options{'errorEMail'}</A>, og vedlg flgende linie:<BR><tt>$ENV{'QUERY_STRING'}</tt><BR>";
+        echo "<P>Der opstod en fejl i kodegeneratoren. En nødvendig parameter var ikke til stede. Det betyder, at programmet ikke ved hvor du skal sendes hen... Brug browserens tilbageknap og prøv igen. Hvis det også mislykkes, s skriv til <a href=\"mailto:$options{'errorEMail'}\">$options{'errorEMail'}</A>, og vedlg flgende linie:<BR><tt>$ENV{'QUERY_STRING'}</tt><BR>";
         $utils->echoSiteEnd();
         exit;
 }
@@ -148,13 +148,13 @@ function vis_obl_kode($utils, $siteContext) {
         <form action="<?php echo htmlentities($siteContext->getOption('urlUserAreaCodegen')); ?>" method=POST>
         <div class=forside>
         <h1>Obligatorisk kode</h1>
-        <p>Vlg hvordan din obligatoriske kode skal vises p din hjemmeside.</p>
+        <p>Vælg hvordan din obligatoriske kode skal vises på din hjemmeside.</p>
 
         <table>
                 <tr>
                         <td valign=bottom style="padding-right: 2em;"></td>
-                        <td valign=bottom style="padding-right: 2em;"><img src="<?php echo htmlentities($siteContext->getOption('imageURL')); ?>/sh_taeller.gif" width=40 height=16 alt="Eks. p tller" valign=bottom></td>
-                        <td valign=bottom style="padding-right: 2em;"><img src="<?php echo htmlentities($siteContext->getOption('imageURL')); ?>/stats5.gif" width=25 height=25 alt="Eks. p tllerbillede" align=center valign=bottom></td>
+                        <td valign=bottom style="padding-right: 2em;"><img src="<?php echo htmlentities($siteContext->getOption('imageURL')); ?>/sh_taeller.gif" width=40 height=16 alt="Eks. på tæller" valign=bottom></td>
+                        <td valign=bottom style="padding-right: 2em;"><img src="<?php echo htmlentities($siteContext->getOption('imageURL')); ?>/stats5.gif" width=25 height=25 alt="Eks. på tællerbillede" align=center valign=bottom></td>
                         <td valign=bottom>
         <?php
 
@@ -167,7 +167,7 @@ function vis_obl_kode($utils, $siteContext) {
         //&#38-counter name.
         $counters = explode('::', $datafile2->getLine(38));
         $counters_select = "<select size=1 name=taelnavn>\n";
-        $counters_select .= "   <option value=\"\" SELECTED>Alle tllere\n";
+        $counters_select .= "   <option value=\"\" SELECTED>Alle tællere\n";
 
         for ($i = 0; $i < count($counters); $i++)       {
                 $counters_select .= "   <option value=\"$counters[$i]\">$i $counters[$i]\n";
@@ -194,8 +194,8 @@ function vis_obl_kode($utils, $siteContext) {
         if ($utils->getUAType() !== $utils->UA_TYPE_SIMPLE) {
                 ?>
                 <div class=forside>
-                <h4>Avanceret: Fast tller</h4>
-                <p>Hvis denne kode altid skal t&aelig;lle en speciel t&aelig;ller op, skal du vlge denne t&aelig;ller her. Normalt skal du ikke &aelig;ndre dette.</p>
+                <h4>Avanceret: Fast tæller</h4>
+                <p>Hvis denne kode altid skal t&aelig;lle en speciel t&aelig;ller op, skal du vælge denne t&aelig;ller her. Normalt skal du ikke &aelig;ændre dette.</p>
                 <?php echo $counters_select; ?>
                 </p>
                 <div>
@@ -203,15 +203,15 @@ function vis_obl_kode($utils, $siteContext) {
                 <div class=forside>
                 <h4>Framesikker kode</h4>
                 <input type=checkbox name=framesikker> Lav framesikker kode<br>
-                <b>Tip</b> (for den tekniske): Du skal kun benytte <em>framesikker kode</em>, hvis den side, den obligatoriske kode skal ligge p&aring;, er en del af et st rammer (frameset), og denne side ligger p et andet domne, end den side hvis adresse str i browserens adresselinie.<br>
+                <b>Tip</b> (for den tekniske): Du skal kun benytte <em>framesikker kode</em>, hvis den side, den obligatoriske kode skal ligge p&aring;, er en del af et st rammer (frameset), og denne side ligger på et andet domne, end den side hvis adresse str i browserens adresselinie.<br>
                 <b>Tip</b> (for almindelige mennesker)
                 <ol>
                         <li>Bruger du ikke rammer/frames, skal du er det <em>ligemeget</em> om du laver en framesikker eller en almindelig kode.
-                        <li>Bruger du rammer/frames, s&aring; lav en almindelig obligatorisk kode (alts en der <em>ikke</em> er framesikker) og s&aelig;t den p&aring; din side.
+                        <li>Bruger du rammer/frames, s&aring; lav en almindelig obligatorisk kode (altså en der <em>ikke</em> er framesikker) og s&aelig;t den p&aring; din side.
                         <li>L&aelig;g siden ud p&aring; internettet, se siden fra de forskellige adresser hvorfra man kan g&aring; ind p&aring; den. Husk at mange sider i dag kan ses b&aring;de med og uden &quot;<code>www</code>&quot;.
                         <li>F&aring;r du p&aring; et tidspunkt en fejlmeddelelse, der bl.a. indeholder teksten &quot;<code>top.document.referer</code>&quot; skal du lave en <em>framesikker</em> kode. Fr du <em>ikke</em> fejlmeddelelsen, skal du lave en almindelig kode.
                 </ol>
-                <b>OBS</b> (for alle): N&aring;r den framesikre kode benyttes, bliver der ikke registreret referencesider, sgeord og -maskiner, med mindre g&aelig;sten g&aring;r direkte ind p&aring; en underside med koden p&aring;, og ikke ser siden i rammerne (framesettet).
+                <b>OBS</b> (for alle): N&aring;r den framesikre kode benyttes, bliver der ikke registreret referencesider, søgeord og -maskiner, med miændre g&aelig;sten g&aring;r direkte ind p&aring; en underside med koden p&aring;, og ikke ser siden i rammerne (framesettet).
                 </div>
 
                 <?php
@@ -330,13 +330,13 @@ function gen_obl_kode(&$utils, &$siteContext) {
 
                 //require "panellib.cgi";.
 
-                echo "&lt;!-- Start p JS stats kode til ministatistik --&gt;\n";
+                echo "&lt;!-- Start på JS stats kode til ministatistik --&gt;\n";
                 echo "&lt;script language=&quot;JavaScript&quot;  type=&quot;text/javascript&quot; src=&quot;"
                                 .htmlentities($siteContext->getOption('cgiURL')).'/'
                                 .htmlentities($siteContext->getPath('jsvarsCgi'))."?brugernavn="
                                 .htmlentities($in['username'])."&amp;amp;type=ministatistik&quot;&gt;\n";
                 echo "&lt;/script&gt;\n";
-                echo "&lt;!-- Slut p JS stats kode til ministatistik --&gt;\n\n";
+                echo "&lt;!-- Slut på JS stats kode til ministatistik --&gt;\n\n";
 
                 echo $panellib->panel($in['paneler'], oblkode($siteContext, $in, $hw, "url", $count, $show), $in['minioversk'], $include2);
                 echo "\n";
@@ -353,8 +353,8 @@ function gen_obl_kode(&$utils, &$siteContext) {
         <div class=forside>
         <h3>Lidt hj&aelig;lp</h3>
         <h4>HTML &quot;i h&aring;nden&quot;</h4>
-        <p>Koden skal indsttes p&aring; alle dine sider, og v&aelig;re mellem <code>
-        &lt;body&gt;</code> og <code> &lt;/body&gt;</code> tagsne. Hvis du bruger frames skal koden indsttes i en af de filer hvis indhold bliver
+        <p>Koden skal indsættes p&aring; alle dine sider, og v&aelig;re mellem <code>
+        &lt;body&gt;</code> og <code> &lt;/body&gt;</code> tagsne. Hvis du bruger frames skal koden indsættes i en af de filer hvis indhold bliver
         vist - <em>ikke</em> i filen med <code>&lt;frameset&gt;</code> koderne!</p>
 
         <h4>FrontPage ol.</h4>
@@ -367,8 +367,8 @@ function gen_obl_kode(&$utils, &$siteContext) {
         <?php
 
         if ($utils->getUAType() === $utils->UA_TYPE_SIMPLE) {
-                echo "<div class=forside><h3>Mere avanceret</h3><p>nsker du selv at bestemme mere over koden, fx. vlge at en bestemt tller skal tlles op, kan du gre dette i den avancerede tilstand. Du kan skifte ved at trykke p linket &quot;Skift til avanceret brug&quot; i menuen til venstre.</div>\n";
-                echo "<div class=forside><h3>F&aring;r du javascript-fejl</h3>\nGiver denne obligatoriske kode en fejl, n&aring;r du bruger den, skal du nok lave en &quot;framesikker&quot; kode. Dette kan du g&oslash;re ved at skifte til avanceret visning og lave den obligatoriske kode igen. P&aring; den f&oslash;rste side hvor du skal foretage nogle valg, skal du s&aring; stte kryds ud for &quot;Framesikker kode&quot;.</div>";
+                echo "<div class=forside><h3>Mere avanceret</h3><p>nsker du selv at bestemme mere over koden, fx. vælge at en bestemt tæller skal tlles op, kan du gre dette i den avancerede tilstand. Du kan skifte ved at trykke på linket &quot;Skift til avanceret brug&quot; i menuen til venstre.</div>\n";
+                echo "<div class=forside><h3>F&aring;r du javascript-fejl</h3>\nGiver denne obligatoriske kode en fejl, n&aring;r du bruger den, skal du nok lave en &quot;framesikker&quot; kode. Dette kan du g&oslash;re ved at skifte til avanceret visning og lave den obligatoriske kode igen. P&aring; den f&oslash;rste side hvor du skal foretage nogle valg, skal du s&aring; sætte kryds ud for &quot;Framesikker kode&quot;.</div>";
         } else {
                 echo "<div class=forside><h3>F&aring;r du javascript-fejl</h3>\nGiver denne obligatoriske kode en fejl, n&aring;r du bruger den, skal du nok lave en &quot;framesikker&quot; kode. Dette kan du g&oslash;re ved at lave den obligatoriske kode igen, og p&aring; den f&oslash;rste side hvor du skal foretage nogle valg, skal du s&aelig;tte kryds ud for &quot;Framesikker kode&quot;.</div>";
         }
@@ -394,8 +394,8 @@ function vis_obl_kode2($utils, $siteContext) {
 
         if (isset($in['taeltype']) and $in['taeltype'] === 'panel') {
                 ?>
-                <h1>Vlg ministatistik</h1>
-                <p>Vlg det udseende din ministatistik skal have.</p>
+                <h1>Vælg ministatistik</h1>
+                <p>Vælg det udseende din ministatistik skal have.</p>
                 <?php
 
                 $panellib = new Panellib($siteContext);
@@ -411,16 +411,16 @@ function vis_obl_kode2($utils, $siteContext) {
                         <p><input type=submit value="Videre..."> <input type=reset value="Nulstil formular"></p>
 
                         <div class=forside>
-                        <h3>Avanceret: Vlg statistikker</h3>
-                        <p>Vlg de statistikker der skal vises.</p>
+                        <h3>Avanceret: Vælg statistikker</h3>
+                        <p>Vælg de statistikker der skal vises.</p>
                         <input type=checkbox name=hits CHECKED>Hits<br>
                         <input type=checkbox name=hitsialt CHECKED>Hits i alt<br>
-                        <input type=checkbox name=hits_bruger CHECKED>Hits. pr. gst (besgende)<br>
+                        <input type=checkbox name=hits_bruger CHECKED>Hits. pr. gæst (besøgende)<br>
                         <input type=checkbox name=hits_dag CHECKED>Hits pr. dag<br>
                         <input type=checkbox name=hits_maaned CHECKED>Hits pr. mned<br>
-                        <input type=checkbox name=bgr_online CHECKED>Antal besgende p siden lige nu (online).<br>
+                        <input type=checkbox name=bgr_online CHECKED>Antal besøgende på siden lige nu (online).<br>
 
-                        <p>Nederst p ministatistikken er der et link til din statistikside. Vlg den tekst linket skal have:</p>
+                        <p>Nederst på ministatistikken er der et link til din statistikside. Vælg den tekst linket skal have:</p>
                         <select size=1 name=minioversk>
                                 <option>Flere...
                                 <option>Flere stats...
@@ -437,7 +437,7 @@ function vis_obl_kode2($utils, $siteContext) {
                         $sel = " SELECTED";
                 else
                         $sel = "";
-                $counters_select .= "   <option value=\"\"$sel>Alle tllere\n";
+                $counters_select .= "   <option value=\"\"$sel>Alle tællere\n";
 
                 for ($i = 0; $i < count($counters); $i++) {
                         if (isset($in['taelnavn']) and ($in['taelnavn'] === $counters[$i]))
@@ -451,7 +451,7 @@ function vis_obl_kode2($utils, $siteContext) {
                 ?>
                 <div class=forside>
                 <h2>Hvad skal vises</h2>
-                <p>Vlg hvad tlleren skal vise. Du kan vlge:
+                <p>Vælg hvad tælleren skal vise. Du kan vælge:
                 <?php
 
                 if ($utils->getUAType() !== $utils->UA_TYPE_SIMPLE) {
@@ -459,16 +459,16 @@ function vis_obl_kode2($utils, $siteContext) {
                         <select name="gtaeltype" size="1">
                                 <option value="ntael" selected>1. Hits for hele siden (der kan nulstilles [1])
                                 <option value="etael">2. Hits for hele siden (der ikke kan nulstilles [1])
-                                <option value="taeller">3. Tallet for din faste tller [2])
+                                <option value="taeller">3. Tallet for din faste tæller [2])
                         </select>
 
-                        <a href="JAVAscript: alert('[1] Hvor 1. er antal hits p hele siden, siden seneste nulstilling, er 2. antal hits siden stastikken kom p. Indtil antal hits for frste gang er nulstillet, er disse to tal alts ens.');"><img src="<?php echo htmlentities($siteContext->getPath('zipstat_icons')); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til note [1]...">[1]</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="JAVAscript: alert('[2] Angiv tllernavn eller -nummer neden for. Hvis intet angives, vil sidens filnavn blive brugt som tllernavn. Er alle tllere brugt op, vil der ikke blive talt op. Den tller du angiver, vil samtidig vre den der bliver talt op nr siden vises.');"><img src="<?php echo htmlentities($siteContext->getPath('zipstat_icons')); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til note [2]...">[2]</a>
+                        <a href="JAVAscript: alert('[1] Hvor 1. er antal hits på hele siden, siden seneste nulstilling, er 2. antal hits siden stastikken kom p. Indtil antal hits for frste gang er nulstillet, er disse to tal altså ens.');"><img src="<?php echo htmlentities($siteContext->getPath('zipstat_icons')); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til note [1]...">[1]</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="JAVAscript: alert('[2] Angiv tællernavn eller -nummer neden for. Hvis intet angives, vil sidens filnavn blive brugt som tællernavn. Er alle tællere brugt op, vil der ikke blive talt op. Den tæller du angiver, vil samtidig være den der bliver talt op når siden vises.');"><img src="<?php echo htmlentities($siteContext->getPath('zipstat_icons')); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til note [2]...">[2]</a>
 
                         <ol>
-                        <li>Hvor mange besgende (hits) alle dine sider (med ZIP Stat p).
-                        <li>Det tal du valgte som fast tller er net til. Hvis du ikke valgte en fast tller, eller vil ndre dit valg, kan du ndre det lngere nede p denne side.
-                        <li>Antal hits for alle dine sider, siden du fik ZIP Stat p. Forskellen p denne og 1 er, at dette tal ikke kan nulstilles.
+                        <li>Hvor mange besøgende (hits) alle dine sider (med ZIP Stat p).
+                        <li>Det tal du valgte som fast tæller er net til. Hvis du ikke valgte en fast tæller, eller vil ændre dit valg, kan du ændre det lngere nede på denne side.
+                        <li>Antal hits for alle dine sider, siden du fik ZIP Stat p. Forskellen på denne og 1 er, at dette tal ikke kan nulstilles.
                         </ol>
                         <?php
                 } else {
@@ -484,10 +484,10 @@ function vis_obl_kode2($utils, $siteContext) {
                 </div>
 
                 <div class=forside>
-                <h2>Vlg udseende</h2>
-                <p>Du kan vlge mellem en tller med sort baggrund og hvide tal, eller hvid baggrund og sorte tal.</p>
-                <input type=radio name=billed value=taelsh CHECKED><img src="<?php echo htmlentities($siteContext->getOption('imageURL')); ?>/sh_taeller.gif" width=40 height=16 alt="Eks. p tller"><br>
-                <input type=radio name=billed value=taelhs><img src="<?php echo htmlentities($siteContext->getOption('imageURL')); ?>/hs_taeller.gif" width=40 height=16 alt="Eks. p tller">
+                <h2>Vælg udseende</h2>
+                <p>Du kan vælge mellem en tæller med sort baggrund og hvide tal, eller hvid baggrund og sorte tal.</p>
+                <input type=radio name=billed value=taelsh CHECKED><img src="<?php echo htmlentities($siteContext->getOption('imageURL')); ?>/sh_taeller.gif" width=40 height=16 alt="Eks. på tæller"><br>
+                <input type=radio name=billed value=taelhs><img src="<?php echo htmlentities($siteContext->getOption('imageURL')); ?>/hs_taeller.gif" width=40 height=16 alt="Eks. på tæller">
                 </p>
                 </div>
 
@@ -499,10 +499,10 @@ function vis_obl_kode2($utils, $siteContext) {
                         <p><input type=submit value="Videre..."> <input type=reset value="Nulstil formular"></p>
 
                         <div class=forside>
-                        <h4>Avanceret: Fast tller</h4>
-                        <p>Hvis denne kode altid skal tlle n speciel tller op, skal du vlge denne tller her.
-                        Du havde muligheden for dette p forrige side, men set i lyset af mulighederne du har med den gammeldags tller,
-                        kunne det vre du ville ndre dit valg.</p>
+                        <h4>Avanceret: Fast tæller</h4>
+                        <p>Hvis denne kode altid skal tælle én speciel tæller op, skal du vælge denne tæller her.
+                        Du havde muligheden for dette på forrige side, men set i lyset af mulighederne du har med den gammeldags tæller,
+                        kunne det være du ville ændre dit valg.</p>
 
                         <?php echo $counters_select; ?>
                         </p>
@@ -511,8 +511,8 @@ function vis_obl_kode2($utils, $siteContext) {
                 } //End of - if not simpel.
         } else { //Show icon.
                 ?>
-                <h1>Vlg ikon</h1>
-                <p>Vlg det ikon du nsker at f vist</p>
+                <h1>Vælg ikon</h1>
+                <p>Vælg det ikon du nsker at få vist</p>
                 <table>
                         <tr>
                                 <td>
@@ -594,7 +594,7 @@ function vis_obl_kode3(&$utils, &$siteContext) {
                 $hidden .= "<input type=hidden name=billed value=trans>\n"; //Fixed setting.
         } else if (isset($in['fra']) and $in['fra'] === 'gtaeller') {
                 //If shown i the context of the legasy/graphic counter.
-                $addtext = "tlleren";
+                $addtext = "tælleren";
 
                 $hidden .= "<input type=hidden name=taeltype value=".(isset($in['gtaeltype']) ? $in['gtaeltype'] : '').">\n";
                 $hidden .= "<input type=hidden name=billed value=".(isset($in['billed']) ? $in['billed'] : '').">\n";
@@ -630,12 +630,12 @@ function vis_obl_kode3(&$utils, &$siteContext) {
         <div class=forside>
         <form action="<?php echo htmlentities($siteContext->getOption('urlUserAreaCodegen')); ?>" method=POST>
 
-        <h3>Visning p statistikside</h3>
-        <p>Nr man klikker p <?php echo (isset($addtext) ? $addtext : ''); ?> kommer man til din statistikside. Vlg hvilke statistikker skal der vises p denne:</p>
+        <h3>Visning på statistikside</h3>
+        <p> Når man klikker på <?php echo (isset($addtext) ? $addtext : ''); ?> kommer man til din statistikside. Vælg hvilke statistikker skal der vises på denne:</p>
 
         <p><input type=checkbox name="alle"<?php echo (isset($select['alle']) ? $select['alle'] : ''); ?>> Alle statistikker (anbefales)<BR>
-        <a href="JAVAscript: alert('Hvis du har valgt ikke at stte kryds i ovenstende boks,\\nskal du stte kryds i en eller flere af de nedenstende.\\nNr en besgende klikker p statistikbilledet p din hjemeside, vil\\ndisse ting blive vist.');"><img src="<?php echo htmlentities($siteContext->getPath('zipstat_icons')); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til resten..."></a>
-        Hvis du ikke har valgt at stte kryds i ovenstende boks, skal du stte kryds i en eller flere af nedenstende.</p>
+        <a href="JAVAscript: alert('Hvis du har valgt ikke at sætte kryds i ovenstende boks,\\nskal du sætte kryds i en eller flere af de nedenstående.\\n Når en besøgende klikker på statistikbilledet på din hjemeside, vil\\ndisse ting blive vist.');"><img src="<?php echo htmlentities($siteContext->getPath('zipstat_icons')); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til resten..."></a>
+        Hvis du ikke har valgt at sætte kryds i ovenstende boks, skal du sætte kryds i en eller flere af nedenstående.</p>
         </div>
 
         <input type=submit value="Generer kode"> <input type=reset value="Nulstil formular">
@@ -643,7 +643,7 @@ function vis_obl_kode3(&$utils, &$siteContext) {
         <input type=hidden value="<?php echo (isset($in['username']) ? $in['username'] : ''); ?>" name="username">
         <input type=hidden value="lav_obl_kode" name="type">
 
-        <p><i>(Lngere nede er der mulighed for at lave firewall-sikker kode...)</i></p>
+        <p><i>(Længere nede er der mulighed for at lave firewall-sikker kode...)</i></p>
 
         <h4>Avanceret</h4>
         <div class=forside>
@@ -656,7 +656,7 @@ function vis_obl_kode3(&$utils, &$siteContext) {
                 <td><input type=checkbox name="ugedag_hits"<?php echo (isset($select['ugedag_hits']) ? $select['ugedag_hits'] : ''); ?>>Hits pr. ugedag.
         <tr><td><input type=checkbox name="top_domain"<?php echo (isset($select['top_domain']) ? $select['top_domain'] : ''); ?>>Hits pr. topdomne (.dk, .com osv.)
                 <td><input type=checkbox name="domaene_hits"<?php echo (isset($select['domaene_hits']) ? $select['domaene_hits'] : ''); ?>>Hits pr. domne.
-        <tr><td><input type=checkbox name="info20"<?php echo (isset($select['info20']) ? $select['info20'] : ''); ?>>Div. informationer om de seneste besgende.
+        <tr><td><input type=checkbox name="info20"<?php echo (isset($select['info20']) ? $select['info20'] : ''); ?>>Div. informationer om de seneste besøgende.
                 <td><input type=checkbox name="hits_browser"<?php echo (isset($select['hits_browser']) ? $select['hits_browser'] : ''); ?>>Hits pr. browser.
         <tr><td><input type=checkbox name="hits_os"<?php echo (isset($select['hits_os']) ? $select['hits_os'] : ''); ?>>Hits pr. styresystem.
                 <td><input type=checkbox name="hits_sprog"<?php echo (isset($select['hits_sprog']) ? $select['hits_sprog'] : ''); ?>>Hits pr. sprog.
@@ -664,13 +664,13 @@ function vis_obl_kode3(&$utils, &$siteContext) {
                 <td><input type=checkbox name="hits_farver"<?php echo (isset($select['hits_farver']) ? $select['hits_farver'] : ''); ?>>Hits pr. antal understttede farver (i bits).
         <tr><td><input type=checkbox name="java_support"<?php echo (isset($select['java_support']) ? $select['java_support'] : ''); ?>>JAVA support.
                 <td><input type=checkbox name="js"<?php echo (isset($select['js']) ? $select['js'] : ''); ?>>JAVA-script support.
-        <tr><td><input type=checkbox name="taellere"<?php echo (isset($select['taellere']) ? $select['taellere'] : ''); ?>>Hits for dine 30 tllere.
-                <td><input type=checkbox name="spoergs"<?php echo (isset($select['spoergs']) ? $select['spoergs'] : ''); ?>>Sprgsml og svar.
+        <tr><td><input type=checkbox name="taellere"<?php echo (isset($select['taellere']) ? $select['taellere'] : ''); ?>>Hits for dine 30 tællere.
+                <td><input type=checkbox name="spoergs"<?php echo (isset($select['spoergs']) ? $select['spoergs'] : ''); ?>>Spørgsmål og svar.
         <tr><td><input type=checkbox name="ref"<?php echo (isset($select['ref']) ? $select['ref'] : ''); ?>>Referencesider.
                 <td><input type=checkbox name="indgang"<?php echo (isset($select['indgang']) ? $select['indgang'] : ''); ?>>Indgangssider.
         <tr><td><input type=checkbox name="udgang"<?php echo (isset($select['udgang']) ? $select['udgang'] : ''); ?>>Udgangssider.
-                <td><input type=checkbox name="sord"<?php echo (isset($select['sord']) ? $select['sord'] : ''); ?>>Sgeord.
-        <tr><td><input type=checkbox name="smask"<?php echo (isset($select['smask']) ? $select['smask'] : ''); ?>>Sgemaskiner.
+                <td><input type=checkbox name="sord"<?php echo (isset($select['sord']) ? $select['sord'] : ''); ?>>Søgeord.
+        <tr><td><input type=checkbox name="smask"<?php echo (isset($select['smask']) ? $select['smask'] : ''); ?>>Søgemaskiner.
                 <td><input type=checkbox name="zipklik"<?php echo (isset($select['zipklik']) ? $select['zipklik'] : ''); ?>>Viser hvilke links (angivet i &quot;Adresser&quot;) der er klikket p.
         <tr><td><input type=checkbox name="bev"<?php echo (isset($select['bev']) ? $select['bev'] : ''); ?>>Bevgelser.
                 <td>
@@ -681,8 +681,8 @@ function vis_obl_kode3(&$utils, &$siteContext) {
         <div class=forside>
         <h4>Firewall-sikker kode</h4>
         <input type=checkbox name=firewallsikker> Lav firewall-sikker kode<br>
-        Den firewall-sikre kode indholder ikke det JAVA-script, som den almindelige obligatoriske kode. Du br kun benytte
-        den firewall-sikre kode, hvis den skal bruges p et intranet (lokalnetvrk der benytter internetteknologi), hvor
+        Den firewall-sikre kode indholder ikke det JAVA-script, som den almindelige obligatoriske kode. Du bør kun benytte
+        den firewall-sikre kode, hvis den skal bruges på et intranet (lokalnetværk der benytter internetteknologi), hvor
         din firewall giver fejlmeddelelser mht. den almindelige obligatoriske kode.
         </div>
 
@@ -718,7 +718,7 @@ function vis_statpanel(&$utils, &$siteContext) {
         <form action="<?php echo htmlentities($siteContext->getOption('urlUserAreaCodegen')); ?>" method=POST>
         <div class=forside>
         <h1>Ministatistik</h1>
-        <p>Vlg den ministatistik du nsker:</p>
+        <p>Vælg den ministatistik du nsker:</p>
         <?php
 
         $panellib = new Panellib($siteContext);
@@ -733,17 +733,17 @@ function vis_statpanel(&$utils, &$siteContext) {
         <input type=hidden name=type value="vis_statpanel2">
 
         <div class=forside>
-        <h3>Avanceret: Vlg statistikker</h3>
-        <p>Vlg de statistikker der skal vises.</p>
+        <h3>Avanceret: Vælg statistikker</h3>
+        <p>Vælg de statistikker der skal vises.</p>
         <input type=checkbox name=hits CHECKED>Hits<br>
         <input type=checkbox name=hitsialt CHECKED>Hits i alt<br>
-        <input type=checkbox name=hits_bruger CHECKED>Hits. pr. gst (besgende)<br>
+        <input type=checkbox name=hits_bruger CHECKED>Hits. pr. gæst (besøgende)<br>
         <input type=checkbox name=hits_dag CHECKED>Hits pr. dag<br>
         <input type=checkbox name=hits_maaned CHECKED>Hits pr. mned<br>
-        <input type=checkbox name=bgr_online CHECKED>Antal besgende p siden lige nu (online).<br>
+        <input type=checkbox name=bgr_online CHECKED>Antal besøgende på siden lige nu (online).<br>
 
         <h3>Overskrift</h3>
-        <p>Nederst p ministatistikken er der et link til din statistikside. Vlg den tekst linket skal have:</p>
+        <p>Nederst på ministatistikken er der et link til din statistikside. Vælg den tekst linket skal have:</p>
         <select size=1 name=minioversk>
                 <option>Flere...
                 <option>Flere stats...
@@ -800,12 +800,12 @@ function vis_statpanel2(&$utils, &$siteContext) {
         <form action="<?php echo htmlentities($siteContext->getOption('urlUserAreaCodegen')); ?>" method=POST>
 
         <div class=forside>
-        <h3>Visning p statistikside</h3>
-        <p>Nr man klikker p ministatistikkens overskrift kommer man til din statistikside. Vlg hvilke statistikker skal der vises p denne:</p>
+        <h3>Visning på statistikside</h3>
+        <p> Når man klikker på ministatistikkens overskrift kommer man til din statistikside. Vælg hvilke statistikker skal der vises på denne:</p>
 
         <p><input type=checkbox name="alle"<?php echo (isset($select['alle']) ? $select['alle'] : ''); ?>> Alle statistikker (anbefales)<BR>
-        <a href="JAVAscript: alert('Hvis du har valgt ikke at stte kryds i ovenstende boks,\\nskal du stte kryds i en eller flere af de nedenstende.\\nNr en besgende klikker p ministatistikkens overskrift, p din hjemeside, vil\\ndisse ting blive vist.');"><img src="<?php echo htmlentities($siteContext->getPath('zipstat_icons')); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til resten..."></a>
-        Hvis du ikke har valgt at stte kryds i ovenstende boks, skal du stte kryds i en eller flere af nedenstende.</p>
+        <a href="JAVAscript: alert('Hvis du har valgt ikke at sætte kryds i ovenstende boks,\\nskal du sætte kryds i en eller flere af de nedenstående.\\n Når en besøgende klikker på ministatistikkens overskrift, på din hjemeside, vil\\ndisse ting blive vist.');"><img src="<?php echo htmlentities($siteContext->getPath('zipstat_icons')); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til resten..."></a>
+        Hvis du ikke har valgt at sætte kryds i ovenstende boks, skal du sætte kryds i en eller flere af nedenstående.</p>
         </div>
 
         <input type=submit value="Generer kode"> <input type=reset value="Nulstil formular">
@@ -823,7 +823,7 @@ function vis_statpanel2(&$utils, &$siteContext) {
                 <td><input type=checkbox name="ugedag_hits"<?php echo (isset($select['ugedag_hits']) ? $select['ugedag_hits'] : ''); ?>>Hits pr. ugedag.
         <tr><td><input type=checkbox name="top_domain"<?php echo (isset($select['top_domain']) ? $select['top_domain'] : ''); ?>>Hits pr. topdomne (.dk, .com osv.)
                 <td><input type=checkbox name="domaene_hits"<?php echo (isset($select['domaene_hits']) ? $select['domaene_hits'] : ''); ?>>Hits pr. domne.
-        <tr><td><input type=checkbox name="info20"<?php echo (isset($select['info20']) ? $select['info20'] : ''); ?>>Div. informationer om de seneste besgende.
+        <tr><td><input type=checkbox name="info20"<?php echo (isset($select['info20']) ? $select['info20'] : ''); ?>>Div. informationer om de seneste besøgende.
                 <td><input type=checkbox name="hits_browser"<?php echo (isset($select['hits_browser']) ? $select['hits_browser'] : ''); ?>>Hits pr. browser.
         <tr><td><input type=checkbox name="hits_os"<?php echo (isset($select['hits_os']) ? $select['hits_os'] : ''); ?>>Hits pr. styresystem.
                 <td><input type=checkbox name="hits_sprog"<?php echo (isset($select['hits_sprog']) ? $select['hits_sprog'] : ''); ?>>Hits pr. sprog.
@@ -831,13 +831,13 @@ function vis_statpanel2(&$utils, &$siteContext) {
                 <td><input type=checkbox name="hits_farver"<?php echo (isset($select['hits_farver']) ? $select['hits_farver'] : ''); ?>>Hits pr. antal understttede farver (i bits).
         <tr><td><input type=checkbox name="java_support"<?php echo (isset($select['java_support']) ? $select['java_support'] : ''); ?>>JAVA support.
                 <td><input type=checkbox name="js"<?php echo (isset($select['js']) ? $select['js'] : ''); ?>>JAVA-script support.
-        <tr><td><input type=checkbox name="taellere"<?php echo (isset($select['taellere']) ? $select['taellere'] : ''); ?>>Hits for dine 30 tllere.
-                <td><input type=checkbox name="spoergs"<?php echo (isset($select['spoergs']) ? $select['spoergs'] : ''); ?>>Sprgsml og svar
+        <tr><td><input type=checkbox name="taellere"<?php echo (isset($select['taellere']) ? $select['taellere'] : ''); ?>>Hits for dine 30 tællere.
+                <td><input type=checkbox name="spoergs"<?php echo (isset($select['spoergs']) ? $select['spoergs'] : ''); ?>>Spørgsmål og svar
         <tr><td><input type=checkbox name="ref"<?php echo (isset($select['ref']) ? $select['ref'] : ''); ?>>Referencesider.
                 <td><input type=checkbox name="indgang"<?php echo (isset($select['indgang']) ? $select['indgang'] : ''); ?>>Indgangssider.
         <tr><td><input type=checkbox name="udgang"<?php echo (isset($select['udgang']) ? $select['udgang'] : ''); ?>>Udgangssider.
-                <td><input type=checkbox name="sord"<?php echo (isset($select['sord']) ? $select['sord'] : ''); ?>>Sgeord.
-        <tr><td><input type=checkbox name="smask"<?php echo (isset($select['smask']) ? $select['smask'] : ''); ?>>Sgemaskiner.
+                <td><input type=checkbox name="sord"<?php echo (isset($select['sord']) ? $select['sord'] : ''); ?>>Søgeord.
+        <tr><td><input type=checkbox name="smask"<?php echo (isset($select['smask']) ? $select['smask'] : ''); ?>>Søgemaskiner.
                 <td><input type=checkbox name="zipklik"<?php echo (isset($select['zipklik']) ? $select['zipklik'] : ''); ?>>Viser hvilke links (angivet i &quot;Adresser&quot;) der er klikket p.
         <tr><td><input type=checkbox name="bev"<?php echo (isset($select['bev']) ? $select['bev'] : ''); ?>>Bevgelser.
                 <td>
@@ -882,7 +882,7 @@ function gen_statpanel(&$utils, &$siteContext) {
         }
 
         $utils->echoSiteHead("", 0);
-        echo "<div class=forside><h1>Ministatistik kode</h1>\nHer er koden til din ministatistik. Kopier den, og st den ind p din hjemmeside hvor ministatistikken skal vre.";
+        echo "<div class=forside><h1>Ministatistik kode</h1>\nHer er koden til din ministatistik. Kopier den, og st den ind på din hjemmeside hvor ministatistikken skal være.";
 
         echo "<form><textarea cols=60 rows=15>\n";
 
@@ -904,13 +904,13 @@ function gen_statpanel(&$utils, &$siteContext) {
 
         //require "panellib.cgi";.
 
-        echo "&lt;!-- Start p JS stats kode til ministatistik --&gt;\n";
+        echo "&lt;!-- Start på JS stats kode til ministatistik --&gt;\n";
         echo "&lt;script language=&quot;JavaScript&quot;  type=&quot;text/javascript&quot; src=&quot;"
                                 .htmlentities($siteContext->getOption('cgiURL')).'/'
                                 .htmlentities($siteContext->getPath('jsvarsCgi'))."?brugernavn="
                                 .htmlentities($in['username'])."&amp;amp;type=ministatistik&quot;&gt;\n";
         echo "&lt;/script&gt;\n";
-        echo "&lt;!-- Slut p JS stats kode til ministatistik --&gt;\n\n";
+        echo "&lt;!-- Slut på JS stats kode til ministatistik --&gt;\n\n";
 
         $show = vis($in);
 
@@ -939,10 +939,10 @@ function vis_sp_gen(&$utils, &$siteContext) {
         <form action="<?php echo htmlentities($siteContext->getOption('urlUserAreaCodegen')); ?>" method="POST">
 
         <div class=forside>
-        <h1>Generer sprgsmlskode</h1>
+        <h1>Generer spørgsmålskode</h1>
         <input type=hidden name=type value="gen_sp">
         <input type=hidden name=username value="<?php echo (isset($in['username']) ? $in['username'] : ''); ?>">
-        <h3>St kryds ud for de sprgsml koden skal vise</h3>
+        <h3>St kryds ud for de spørgsmål koden skal vise</h3>
 
         <?php
 
@@ -950,9 +950,13 @@ function vis_sp_gen(&$utils, &$siteContext) {
 
         $question = explode('::', $datafile2->getLine(41));
         for ($i = 0; $i < $pro_max_questions; $i++) {
-                $k = $i+1;
-                print "<a href=\"JAVAscript: alert('Hvis dette sprgsml skal vises hvor du stter\\nkoden ind p din hjemmeside, skal du\\\nstte kryds i boksen.\\\n\\\nVises der ikke noget sprgsml, skal du indtaste det\\np \\\"Rediger sprgsml\\\" siden');\"><img src=".htmlentities($siteContext->getOption('ZSHomePage'))." width=9 height=14 border=0 alt=\"Hjlp til sprgsml...\"></a>";
-                print "<input type=checkbox name=sp$k>$question[$i]<BR>\n";
+          $k = $i+1;
+          print "<a href=\"JAVAscript: alert('Hvis dette spørgsmål skal vises hvor du sætter\\nkoden ind på din hjemmeside, skal du\\\nsætte kryds i boksen.\\\n\\\nVises der ikke noget spørgsmål, skal du indtaste det\\np \\\"Rediger spørgsmål\\\" siden');\"><img src=".htmlentities($siteContext->getOption('ZSHomePage'))." width=9 height=14 border=0 alt=\"Hjlp til spørgsmål...\"></a>";
+          if (isset($question[$i]) and trim(strlen($question[$i]) > 0)) {
+            print "<input type=checkbox name=sp$k>$question[$i]<BR>\n";
+          } else {
+            print "<input type=checkbox name=sp$k>Spørgsmål $k<br>\n";
+          }
         }
 
         ?>
@@ -984,7 +988,7 @@ function vis_zipklik_gen(&$utils, &$siteContext) {
         $urls = explode('::', $datafile2->getLine(71));
 
         $utils->echoSiteHead("", 0);
-        echo "<div class=forside><h1>Klikt&aelig;llere</h1>Istedet for at benytte de links du har angivet p&aring; siden &quot;Adresser&quot;, p&aring; din hjemmeside, skal du benytte de nedenstende links, der svarer til dem. S&aring; vil der blive registreret hvor mange der klikker p&aring; de enkelte links.</div>";
+        echo "<div class=forside><h1>Klikt&aelig;llere</h1>Istedet for at benytte de links du har angivet p&aring; siden &quot;Adresser&quot;, p&aring; din hjemmeside, skal du benytte de nedenstående links, der svarer til dem. S&aring; vil der blive registreret hvor mange der klikker p&aring; de enkelte links.</div>";
 
         $pro_max_moments = $lib->pro(10);
 
@@ -1021,11 +1025,11 @@ function gen_sp_kode(&$utils, &$siteContext) {
 
         $utils->echoSiteHead("", 0);
         ?>
-        <div class=forside>Kopier koden ind p din hjemmeside hvor folk skal kunne svare p dine sprgsml. Hvis du ndre et sprgsml via ZIP stat, blive det automatisk ndret p din hjemmeside.<br>
+        <div class=forside>Kopier koden ind på din hjemmeside hvor folk skal kunne svare på dine spørgsmål. Hvis du ændrer et spørgsmål via ZIP stat, blive det automatisk ændret på din hjemmeside.<br>
         <pre>
-        &lt;!-- Start p sprgsmlskode --&gt;
+        &lt;!-- Start på spørgsmålskode --&gt;
         &lt;SCRIPT language=&quot;JAVAscript&quot; SRC=&quot;<?php echo htmlentities($siteContext->getOption('cgiURL')); ?>/pollSiteScript.php?<?php echo htmlentities(htmlentities($qstring)); ?>&quot;&gt;&lt/SCRIPT&gt;
-        &lt;!-- Slut  p sprgsmlskode --&gt;
+        &lt;!-- Slut  på spørgsmålskode --&gt;
         </pre>
         </div>
         <?php
@@ -1095,7 +1099,7 @@ function oblkode(&$siteContext, $in, $hw, $codeType, $count, $show) {
         $mandatory[0] = "&lt;!-- Start på ZIP Stat kode --&gt;\n";
         $mandatory[0] .= "&lt;script language=&quot;JavaScript&quot; type=&quot;text/javascript&quot;&gt;\n";
         $mandatory[0] .= "&lt;!--\n";
-        $mandatory[0] .= "far=&quot;Andre&quot;; jav=&quot;Ved ikke&quot;; skh=&quot;Andre&quot;; jav=navigator.javaEnabled(); \n";
+        $mandatory[0] .= "far=&quot;Aændre&quot;; jav=&quot;Ved ikke&quot;; skh=&quot;Aændre&quot;; jav=navigator.javaEnabled(); \n";
         $mandatory[0] .= "ref=&quot;&quot;+escape(".$topDocReferer."); nav=navigator.appName;\n";
         $mandatory[0] .= "if (navigator.appName == &quot;Netscape&quot; &amp;&amp; (navigator.appVersion.charAt(0) == &quot;2&quot; || navigator.appVersion.charAt(0) == &quot;3&quot;)) {skriv=false;} else {skriv=true;}\n";
         $mandatory[0] .= "if (skriv==true) { skh=screen.width + &quot;x&quot; + screen.height;\n";
@@ -1114,7 +1118,7 @@ function oblkode(&$siteContext, $in, $hw, $codeType, $count, $show) {
 
         $mandatory[7] = "&lt;img $hwnosc border=&quot;0&quot; src=&quot;".$siteContext->getOption('cgiURL').'/'.$siteContext->getPath('zipstatCgi')."?brugernavn=".$in['username']."&amp;amp;js=false".$count."&quot; alt=&quot;&quot; align=left&gt;";
         $mandatory[8] = "&lt;/a&gt;\n";
-        $mandatory[9] = "&lt;/noscript&gt;\n&lt;!-- Slut p ZIP Stat kode --&gt;";
+        $mandatory[9] = "&lt;/noscript&gt;\n&lt;!-- Slut på ZIP Stat kode --&gt;";
 
         if (isset($in['firewallsikker']) and strlen($in['firewallsikker']) > 0 and $codeType === 'fuld') {
                 $return = "<div class=forside>\n";

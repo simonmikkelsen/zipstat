@@ -56,8 +56,8 @@ $ind = Html::setPostOrGetVars(array(), array());
 Html::outputNoCacheHeaders();
 
 //Shall this user be ignored?
-if (isset($ind['brugernavn']) and isset($HTTP_COOKIE_VARS[$ind['brugernavn']])
-	and $HTTP_COOKIE_VARS[$ind['brugernavn']] === 'ikkeop')
+if (isset($ind['brugernavn']) and isset($_COOKIE[$ind['brugernavn']])
+	and $_COOKIE[$ind['brugernavn']] === 'ikkeop')
 {
 	$ind['taelop'] = "nej";
 	$timeAdjusted = Html::getTimeAdjusted(NULL, $stier);

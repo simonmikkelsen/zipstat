@@ -109,7 +109,7 @@ class Html
 			$this->siteContext = &$siteContext;
 		else
 		{
-			echo "<b>Error:</b> Param <code>\$siteContext</code> to contrusctor <code>StatSite()</code> must be an instance of the class <code>SiteContext</code>.";
+			echo "<b>Error 893:</b> Param <code>\$siteContext</code> to contrusctor <code>StatSite()</code> must be an instance of the class <code>SiteContext</code>.";
 			exit;
 		}
 	}
@@ -619,9 +619,9 @@ function kortdato()
 	elseif($wday == 5)
 		$uge="fre";
 	elseif($wday == 6)
-		$uge="lr";
+		$uge="lør";
 	else
-		$uge="sn";
+		$uge="søn";
 
 	return "$uge d. $mday/$mon-$year kl. $hour:$min";
 }
@@ -5818,7 +5818,7 @@ class PersistenceMgr extends DataSource {
 	 *  @return if the users data have been loaded.
 	 */
 	function isDataLoaded() {
-		return (count($this->dataArray) > 0);
+		return (is_array($this->dataArray) and count($this->dataArray) > 0);
 	}
 
 	/**
@@ -5840,13 +5840,12 @@ class PersistenceMgr extends DataSource {
 				$this->sourceWrite = &$this->createDataSourceByKey($sourceWriteStr, $this->brugernavn, $this->path);
 
 				//If the username does not exist in the writer: Create it.
-				if (! $this->sourceWrite->findesBrugernavn() and $this->isDataLoaded()) {
+				if (! $this->sourceWrite->findesBrugernavn()) {
 				
 					$createRes = $this->sourceWrite->createUser();
 					if ($createRes === FALSE) {
 						//Todo: An error occured
-						echo "Could not create user $this->brugernavn";
-						exit;
+						die("Could not create user $this->brugernavn");
 					}
 				}
 				

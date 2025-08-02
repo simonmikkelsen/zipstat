@@ -35,7 +35,7 @@
 
 <hr>
 <p align=center>Administrator: <a href="mailto:%service_email%">%admin_name%</A><br />
-<a href="http://mikkelsen.tv/simon/">Simon Mikkelsen</a> &copy; 1998-2018</p>
+<a href="http://mikkelsen.tv/simon/">Simon Mikkelsen</a> &copy; 1998-2025</p>
 
 </body>
 </html>

@@ -134,6 +134,10 @@ class SiteContext
 		return $this->options->getOption($option);
 	}
 
+  function setOptions(&$options) {
+    $this->options = &$options;
+  }
+
 	/**
 	 * Returns the path corresponding to the given key.
 	 * See the class {@link Stier} for specifications.

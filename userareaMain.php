@@ -116,7 +116,7 @@ if ($gotoSite === 'rtaellere') {
 } else if ($gotoSite === 'dlbackup') {
 	download_backup($utils, $siteContext); //ok
 } else {
-	$utils->showMessage("V&aelig;lg funktion","Vælg funktion i menuen til venstre. Husk at benytte Gem-knapperne i bunden af siderne for at gemme de ndringer. De bliver ikke gemt hvis du forladerne siderne via menuerne eller hvis du skifter mellem simpelt og avanceret brug.");
+	$utils->showMessage("V&aelig;lg funktion","Vælg funktion i menuen til venstre. Husk at benytte Gem-knapperne i bunden af siderne for at gemme de ændringer. De bliver ikke gemt hvis du forladerne siderne via menuerne eller hvis du skifter mellem simpelt og avanceret brug.");
 }
 exit(0);
 
@@ -153,8 +153,8 @@ function show_backup(&$utils, &$siteContext) {
 <div class=forside>
 <p><cite>Rigtige m&aelig;nd tager ikke backup...</cite></p>
 <h2>Intro</h2>
-<p>ZIP Stat tager ikke dine data som gidsel: Du kan når som helst <a target="_blank" href="http://zipstat.org/">downloade ZIP Stat</a> og k&oslash;re det hos dig selv. Du kan endda starte en konkurerende service!</p>
-<p>ZIP Stat benytter databasen MySQL (eller de frie alternativer s&aring;som MariaDB) og de data du kan downloade er formateret til at blive brugt af den. Benyt kun disse data til nyeste version af ZIP Stat. ZIP Stat kan nogle gange automatisk opgradere et ældre dataformat, men en gammel version af ZIP Satat kan ikke bruge nyere data.</p>
+<p>ZIP Stat tager ikke dine data som gidsel: Du kan når som helst <a target="_blank" href="https://zipstat.org/">downloade ZIP Stat</a> og k&oslash;re det hos dig selv. Du kan endda starte en konkurerende service!</p>
+<p>ZIP Stat benytter databasen MySQL (eller de frie alternativer s&aring;som MariaDB) og de data du kan downloade er formateret til at blive brugt af den. Benyt kun disse data til nyeste version af ZIP Stat. ZIP Stat kan nogle gange automatisk opgradere et ældre dataformat, men en gammel version af ZIP Stat kan ikke bruge nyere data.</p>
 <h2>Download dine data</h2>
 <p><a href="<?php
 	echo htmlentities($_SERVER["SCRIPT_NAME"])
@@ -194,7 +194,7 @@ function r_taellere(&$utils, &$siteContext) {
 	$thits  = explode('::', $datafile->getLine(37));
 	$tnavne = explode('::', $datafile->getLine(38));
 
-	$utils->echoSiteHead("Rediger tllere", 0);
+	$utils->echoSiteHead("Rediger tællere", 0);
 
 	echo "<form action=\"".$siteContext->getOption('urlUserAreaMain')."\" method=post><input type=hidden name=type value=\"gem_taellere\">";
 
@@ -204,25 +204,25 @@ function r_taellere(&$utils, &$siteContext) {
 		#$qs =~ s/\&navneloese\=vis//ig;
 		$qs = "username=".$ind['username']."&amp;type=rtaellere";
 
-		#$pro_tekst = "<p>Du kan forge eller formindse antallet af tllere p siden &quot;Indstillinger&quot; (brug linket i menuen til hjre)</P>.\n";
+		#$pro_tekst = "<p>Du kan forge eller formindse antallet af tællere på siden &quot;Indstillinger&quot; (brug linket i menuen til hjre)</P>.\n";
 		if ($ind['navneloese'] === "skjul")
-			$pro_tekst = "<a href=\"".$siteContext->getOption('urlUserAreaMain')."?$qs&amp;navneloese=vis\">Vis navnelse tllere...</A><br>\n";
+			$pro_tekst = "<a href=\"".$siteContext->getOption('urlUserAreaMain')."?$qs&amp;navneloese=vis\">Vis navnelse tællere...</A><br>\n";
 		else
-			$pro_tekst = "<a href=\"".$siteContext->getOption('urlUserAreaMain')."?$qs&amp;navneloese=skjul\">Skjul navnelse tllere...</A><br>\n";
+			$pro_tekst = "<a href=\"".$siteContext->getOption('urlUserAreaMain')."?$qs&amp;navneloese=skjul\">Skjul navnelse tællere...</A><br>\n";
 
 		$pro_tekst .= "Antal tællere <input type=text name=\"pro_taellere\" value=\"".$lib->pro(5)."\" size=3>\n";
-		$pro_tekst .= "<a href=\"JAVAscript: alert('Som standard har du 50 tællere, men hvis du har brug for flere ellere ?rre, kan du indtaste antallet her. Du bør dog ikke stte tallet til mere end nogle hundrede, da mange ?llere dels vil gøre din statistik mere uoverskuelig, men selve statistikken bliver o? langsommere, når der skal holder styr ? store mængder data.');\"><img src=\"".$siteContext->getPath('zipstat_icons')."/stegn2.gif\" width=9 height=14 border=0 alt=\"?lp til antal tællere...\"></a><br>\n";
+		$pro_tekst .= "<a href=\"JAVAscript: alert('Som standard har du 50 tællere, men hvis du har brug for flere ellere ?rre, kan du indtaste antallet her. Du bør dog ikke sætte tallet til mere end nogle hundrede, da mange ?llere dels vil gøre din statistik mere uoverskuelig, men selve statistikken bliver o? langsommere, når der skal holder styr ? store mængder data.');\"><img src=\"".$siteContext->getPath('zipstat_icons')."/stegn2.gif\" width=9 height=14 border=0 alt=\"?lp til antal tællere...\"></a><br>\n";
 	} else {
 		$pro_tekst = '';
 	}
 
 ?>
 <div class=forside>
-<p>Hvis du vil ændre eller slette dens navn, ? gør det i kassen ud for ?lleren. Hvis du vil nulstille en tæller, ? sæt kryds i kassen ud for den espektive tæller.</p>
+<p>Hvis du vil ændre eller slette dens navn, så gør det i kassen ud for tælleren. Hvis du vil nulstille en tæller, så sæt kryds i kassen ud for den espektive tæller.</p>
 <?php echo $pro_tekst; ?>
 <form action="<?php echo $siteContext->getOption('urlUserAreaMain'); ?>" method=POST>
 <table border=1>
-<tr><td>Nr.</td><td>Navn</td><td>Nulstil</td><td>Hits</td></tr>
+<tr><td>Når.</td><td>Navn</td><td>Nulstil</td><td>Hits</td></tr>
 <?php
 
 	$pro_max_taellere = $lib->pro(5);
@@ -337,7 +337,7 @@ function r_spoer(&$utils, &$siteContext) {
 	for ($i = 0;$i < $visAntalSp; $i++) {
 		$dy = $i + 1;
 		?>
-		<a href="JAVAscript: alert('Hvis du vil ændre et spørgsmål, skal du skrive ændringen i den vnrsre boks.\nHvis du vil ændre svarene, skal du skrive ændringerne i de\nmindre bokse.\nDu kan nulstille antal svar (hits) hvert svar har fet, ved at\nsætte kryds i den lille kasse.\nHvis du ikke skriver noget i et svarfelt, vil svaret ikke blive givet som svarmulighed.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="?lp til rediger sp?rgsmål..."></a>
+		<a href="JAVAscript: alert('Hvis du vil ændre et spørgsmål, skal du skrive ændringen i den tilsvarende boks.\nHvis du vil ændre svarene, skal du skrive ændringerne i de\nmindre bokse.\nDu kan nulstille antal svar (hits) hvert svar har fået, ved at\nsætte kryds i den lille kasse.\nHvis du ikke skriver noget i et svarfelt, vil svaret ikke blive givet som svarmulighed.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjælp til rediger spørgsmål..."></a>
 		<p align=center><table border=1 class=forside><caption>Hvis du ikke skriver noget i et svarfelt, vil svaret ikke blive vist.</caption>
 		<tr><td colspan=3>
 		<big align=center>Sprgsm&aring;l <?php echo $dy; ?></big>
@@ -411,50 +411,51 @@ function r_indstillinger(&$utils, &$siteContext) {
 		$pro_inst = explode('::', $datafile->getLine(58));
 
 		if ($utils->getUAType() === $utils->UA_TYPE_SIMPLE) {
-			$pro_kode .= "<div class=forside><h2>Pro indstillinger</h2>\n<p>Nr du har valgt den simple udgave af ZIP Stat, har du ikke mulighed for at ndre p dine pro-indstillinger. For at gre dette skal du skifte til avanceret, hvilket du kan gre via linket &quot;Skift til avanceret brug&quot; i menuen til venstre.</div>";
+			$pro_kode .= "<div class=forside><h2>Pro indstillinger</h2>\n<p>Når du har valgt den simple udgave af ZIP Stat, har du ikke mulighed for at ndre på dine pro-indstillinger. For at gøre dette skal du skifte til avanceret, hvilket du kan gøre via linket &quot;Skift til avanceret brug&quot; i menuen til venstre.</div>";
 		} else {
-			$pro_kode .= "<div class=forside><h3>Pro indstillinger</h3>\n<p>Hvis der ikke str noget i en boks benyttes standardvrdien. ";
+			$pro_kode .= "<div class=forside><h3>Pro indstillinger</h3>\n<p>Hvis der ikke str noget i en boks benyttes standardværdien. ";
 			if ($siteContext->getOption('always_pro') !== 1)
 				$pro_kode .= "Du har ZIP Stat Pro.</p>";
 			else
-				$pro_kode .= "Du har ZIP Stat Pro p ubestemt tid.</p>";
+				$pro_kode .= "Du har ZIP Stat Pro på ubestemt tid.</p>";
 
 			$pro_kode .= "<table border=0>\n";
 			$pro_kode .= "<tr><td>Overskrift til statistiksiden</td><td><input type=text name=\"pro_overskrift\" value=\"".htmlentities($datafile->getLine(59))."\">";
-					$pro_kode .= "<a href=\"JAVAscript: alert('Hvis du vil have en anden overskrift p statistiksiden, end den der er der i forvejen, skal du skrive den her. Hvis du vil have den overskrift der benyttes p den normale ZIP Stat, skal du ikke skrive noget.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til overskrift p statistiksiden...\"></a></td></tr>\n";
+					$pro_kode .= "<a href=\"JAVAscript: alert('Hvis du vil have en anden overskrift på statistiksiden, end den der er der i forvejen, skal du skrive den her. Hvis du vil have den overskrift der benyttes på den normale ZIP Stat, skal du ikke skrive noget.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til overskrift på statistiksiden...\"></a></td></tr>\n";
 		$pro_kode .= "<tr><td>Indhold af body-tag</td><td><tt>&lt;BODY&nbsp;</tt><input type=text name=\"pro_body\" value=\"".htmlentities($datafile->getLine(56))."\"><tt>&gt;</tt>\n";
-					$pro_kode .= "<a href=\"JAVAscript: alert('Hvis du vil have andre farver p din statistikside, end dem der er nu, skal du skrive attributterne der skal vre i sidens BODY tag. Hvis du vil have farverne p den normale ZIP Stat, skal du ikke skrive noget.\\nVrd opmrksom p, at visse farver p siden er sat via CSS (StyleSheets). Disse farver mm. skal derfor ndres via CSS (se hjlpen til det nste punkt).');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til BODY tagget...\"></a></td></tr>\n";
+					$pro_kode .= "<a href=\"JAVAscript: alert('Hvis du vil have andre farver på din statistikside, end dem der er nu, skal du skrive attributterne der skal være i sidens BODY tag. Hvis du vil have farverne på den normale ZIP Stat, skal du ikke skrive noget.\\nVær opmrksom på, at visse farver på siden er sat via CSS (StyleSheets). Disse farver mm. skal derfor ændres via CSS (se hjlpen til det nste punkt).');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til BODY tagget...\"></a></td></tr>\n";
 		$pro_kode .= "<tr><td>Link til CSS-fil</td><td><input type=text name=\"pro_css\" value=\"".htmlentities($datafile->getLine(60))."\">\n";
-					$pro_kode .= "<a href=\"JAVAscript: alert('Hvis du vil benytte et CSS (StyleSheet) til at ndre farver ol. p statistiksiden, s skal du angive adressen til CSS filen her. Husk http:// foran!\\nDer er benyttet class tags til at specificere udseendet af forskellige tags - kig i HTML\\'en eller se oversigten p hjlpesiden.\\nHvis du vil bruge det CSS der er p den normale ZIP Stat, s lad feltet vre tomt.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til CSS...\"></a></td></tr>\n";
+					$pro_kode .= "<a href=\"JAVAscript: alert('Hvis du vil benytte et CSS (StyleSheet) til at ndre farver ol. på statistiksiden, så skal du angive adressen til CSS filen her. Husk http:// foran!\\nDer er benyttet class tags til at specificere udseendet af forskellige tags - kig i HTML\\'en eller se oversigten på hjlpesiden.\\nHvis du vil bruge det CSS der er på den normale ZIP Stat, så lad feltet være tomt.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til CSS...\"></a></td></tr>\n";
 		$pro_kode .= "<tr><td>Max antal referencesider</td><td><input type=text name=\"pro_maxref\" value=\"".(isset($pro_inst[0]) ? $pro_inst[0] : '')."\" size=3>\n";
-					$pro_kode .= "<a href=\"JAVAscript: alert('P den normale ZIP Stat bliver der hjest registreret de seneste 50 referencesider. Hvis du vil have registreret flere, s skriv antallet her. Det anbefales dog at antallet holder under 100, da man normalt ikke kan bruge resten til noget.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til max antal referencesider...\"></a></td></tr>\n";
+					$pro_kode .= "<a href=\"JAVAscript: alert('På den normale ZIP Stat bliver der højest registreret de seneste 50 referencesider. Hvis du vil have registreret flere, så skriv antallet her. Det anbefales dog at antallet holder under 100, da man normalt ikke kan bruge resten til noget.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til max antal referencesider...\"></a></td></tr>\n";
 
 		$pro_kode .= "<tr><td>Max antal indgangssider</td><td><input type=text name=\"pro_maxindgang\" value=\"".(isset($pro_inst[16]) ? $pro_inst[16] : '')."\" size=3>\n";
-					$pro_kode .= "<a href=\"JAVAscript: alert('P den normale ZIP Stat bliver der hjest registreret de seneste 50 indgangssider. Hvis du vil have registreret flere, s skriv antallet her. Det anbefales dog at antallet holder under 100, da man normalt ikke kan bruge resten til noget.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til max antal indgangssider...\"></a></td></tr>\n";
+					$pro_kode .= "<a href=\"JAVAscript: alert('På den normale ZIP Stat bliver der højest registreret de seneste 50 indgangssider. Hvis du vil have registreret flere, så skriv antallet her. Det anbefales dog at antallet holder under 100, da man normalt ikke kan bruge resten til noget.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til max antal indgangssider...\"></a></td></tr>\n";
 		$pro_kode .= "<tr><td>Max antal udgangssider</td><td><input type=text name=\"pro_maxudgang\" value=\"".(isset($pro_inst[17]) ? $pro_inst[17] : '')."\" size=3>\n";
-					$pro_kode .= "<a href=\"JAVAscript: alert('P den normale ZIP Stat bliver der hjest registreret de seneste 50 udgangssider. Hvis du vil have registreret flere, s skriv antallet her. Det anbefales dog at antallet holder under 100, da man normalt ikke kan bruge resten til noget.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til max antal udgangssider...\"></a></td></tr>\n";
+					$pro_kode .= "<a href=\"JAVAscript: alert('På den normale ZIP Stat bliver der højest registreret de seneste 50 udgangssider. Hvis du vil have registreret flere, så skriv antallet her. Det anbefales dog at antallet holder under 100, da man normalt ikke kan bruge resten til noget.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til max antal udgangssider...\"></a></td></tr>\n";
 
 		$pro_kode .= "<tr><td>Max antal IP-adresser (til unikke hits)</td><td><input type=text name=\"pro_maxipadr\" value=\"".(isset($pro_inst[1]) ? $pro_inst[1] : '')."\" size=3>\n";
-					$pro_kode .= "<a href=\"JAVAscript: alert('Nr der registreres unikke besgende foregr det ved at gemme en unik adresse hver besgende har (IP-adressen), og kun tlle op hvis denne ikke er registreret. Normalt bliver de seneste 50 IP-adresser registreret, hvilket er rigeligt er mere end rigeligt for de fleste sider. Men hvis man har mere end ca. 500 hits pr. dag er 50 IP-adresser ikke altid nok, og man br derfor stte tallet op.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til antal IP-adresser...\"></a></td></tr>\n";
+					$pro_kode .= "<a href=\"JAVAscript: alert('Når der registreres unikke besøgende foregår det ved at gemme en unik adresse hver besøgende har (IP-adressen), og kun tælle op hvis denne ikke er registreret. Normalt bliver de seneste 50 IP-adresser registreret, hvilket er rigeligt er mere end rigeligt for de fleste sider. Men hvis man har mere end ca. 500 hits pr. dag er 50 IP-adresser ikke altid nok, og man bør derfor sætte tallet op.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til antal IP-adresser...\"></a></td></tr>\n";
 		$pro_kode .= "<tr><td>Oplysninger om max</td><td><input type=text name=\"pro_maxbrugere\" value=\"".(isset($pro_inst[2]) ? $pro_inst[2] : '')."\" size=3> antal brugere\n";
-					$pro_kode .= "<a href=\"JAVAscript: alert('Som standard gemmes der detaljerede oplysninger om de seneste 20 besgende - dette kan du stte op (eller ned) her. Du br dog ikke stte tallet til mere end ca. 100, da dette dels vil betyde din statistikside er lnge om at blive indlst, men registreringen af din statistik vil ogs blive langsommere, hvis der er for mange data at holde styr p. Endelig kan man slet ikke overskue ret mange af disse, og pga. de store mngder data er denne statistik noget der fylder meget i datafilen - og jeg har ikke ret meget plads til disse!');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til oplysninger om X antal besgende...\"></a></td></tr>\n";
-		$pro_kode .= "<tr><td>Antal forskellige domner</td><td><input type=text name=\"pro_maxdom\" value=\"".(isset($pro_inst[7]) ? $pro_inst[7] : '')."\" size=3>";
-					$pro_kode .= "<a href=\"JAVAscript: alert('Som standard registreres der 100 forskellige domner. Hvis du nsker der registreres flere (hvis de nederste p listen har fet mindre end 10 hits p en mned, anbefales det ikke at f registreret), kan du stte dette tal op. Du kan ogs stte det ned, hvis det kun er fx. de 20 verste p statistiksiden der reelt bliver talt op i lbet af en uges tid.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til max antal forskellige domner...\"></a></td></tr>\n";
-		$pro_kode .= "<tr><td>Antal forskellige sgeord</td><td><input type=text name=\"pro_maxsoegeord\" value=\"".(isset($pro_inst[8]) ? $pro_inst[8] : '')."\" size=3>";
-					$pro_kode .= "<a href=\"JAVAscript: alert('Som standard registreres der 100 forskellige sgeord. Hvis du nsker der registreres flere (hvis de nederste p listen har fet mindre end 10 hits p en mned, anbefales det ikke at f registreret), kan du stte dette tal op. Du kan ogs stte det ned, hvis det kun er fx. de 20 verste p statistiksiden der reelt bliver talt op i lbet af en uges tid.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til max antal forskellige sgeord...\"></a></td></tr>\n";
-		$pro_kode .= "<tr><td>Hits pr. besgende beregnes over </td><td><input type=text name=\"pro_hpbover\" value=\"".(isset($pro_inst[6]) ? $pro_inst[6] : '')."\" size=3> uger\n";
-					$pro_kode .= "<a href=\"JAVAscript: alert('Som standard beregnes hits pr. besgende over 3 uger, men sider med meget f hits vil med fordel kunne stte dette tal i vejret. Fr ens side mange hits kan godt stte tallet ned, hvis man nsker det mest mulige aktuelle resultat.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til antal svar pr. sprgsml...\"></a></td></tr>\n";
+					$pro_kode .= "<a href=\"JAVAscript: alert('Som standard gemmes der detaljerede oplysninger om de seneste 20 besøgende - dette kan du sætte op (eller ned) her. Du bør dog ikke sætte tallet til mere end ca. 100, da dette dels vil betyde din statistikside er lnge om at blive indlst, men registreringen af din statistik vil ogs blive langsommere, hvis der er for mange data at holde styr på. Endelig kan man slet ikke overskue ret mange af disse, og pga. de store mngder data er denne statistik noget der fylder meget i datafilen - og jeg har ikke ret meget plads til disse!');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til oplysninger om X antal besøgende...\"></a></td></tr>\n";
+		$pro_kode .= "<tr><td>Antal forskellige domæner</td><td><input type=text name=\"pro_maxdom\" value=\"".(isset($pro_inst[7]) ? $pro_inst[7] : '')."\" size=3>";
+					$pro_kode .= "<a href=\"JAVAscript: alert('Som standard registreres der 100 forskellige domæner. Hvis du ønsker der registreres flere (hvis de nederste på listen har fået mindre end 10 hits på en måned, anbefales det ikke at få registreret), kan du sætte dette tal op. Du kan ogs sætte det ned, hvis det kun er fx. de 20 verste på statistiksiden der reelt bliver talt op i løbet af en uges tid.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til max antal forskellige domæner...\"></a></td></tr>\n";
+		$pro_kode .= "<tr><td>Antal forskellige søgeord</td><td><input type=text name=\"pro_maxsoegeord\" value=\"".(isset($pro_inst[8]) ? $pro_inst[8] : '')."\" size=3>";
+					$pro_kode .= "<a href=\"JAVAscript: alert('Som standard registreres der 100 forskellige søgeord. Hvis du ønsker der registreres flere (hvis de nederste på listen har fået mindre end 10 hits på en måned, anbefales det ikke at få registreret), kan du sætte dette tal op. Du kan ogs sætte det ned, hvis det kun er fx. de 20 verste på statistiksiden der reelt bliver talt op i løbet af en uges tid.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til max antal forskellige søgeord...\"></a></td></tr>\n";
+		$pro_kode .= "<tr><td>Hits pr. besøgende beregnes over </td><td><input type=text name=\"pro_hpbover\" value=\"".(isset($pro_inst[6]) ? $pro_inst[6] : '')."\" size=3> uger\n";
+					$pro_kode .= "<a href=\"JAVAscript: alert('Som standard beregnes hits pr. besøgende over 3 uger, men sider med meget få hits vil med fordel kunne sætte dette tal i vejret. Får ens side mange hits kan godt sætte tallet ned, hvis man ønsker det mest mulige aktuelle resultat.');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til antal svar pr. spørgsmål...\"></a></td></tr>\n";
 		$pro_kode .= "<tr><td>Antal forskellige bevgelser </td><td><input type=text name=\"pro_bevaeg\" value=\"".(isset($pro_inst[11]) ? $pro_inst[11] : '')."\" size=3>\n";
-					$pro_kode .= "<a href=\"JAVAscript: alert('Som standard har du mulighed for 50 forskellige bevgelser. Dem kan du bruge til at se hvilke sider folk bevger sig imellem. ');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjlp til antal bevgelser...\"></a></td></tr>\n";
-			$pro_kode .= "</table>\nAntal tllere, kliktllere samt sprgsml og svar kan ndres p deres respektive redigeringssider.</div>\n";
-		}#Slut p if simpel else
+					$pro_kode .= "<a href=\"JAVAscript: alert('Som standard har du mulighed for 50 forskellige bevgelser. Dem kan du bruge til at se hvilke sider folk bevger sig imellem. ');\"><img src=\"".htmlentities($siteContext->getPath('zipstat_icons'))."/stegn2.gif\" width=9 height=14 border=0 alt=\"Hjælp til antal bevgelser...\"></a></td></tr>\n";
+			$pro_kode .= "</table>\nAntal tællere, kliktællere samt spørgsmål og svar kan ændres på deres respektive redigeringssider.</div>\n";
+		}#Slut på if simpel else
 	}
 else #Hvis man ikke har pro
 	{
 	$pro_kode = '';
-	$faa_pro = "<hr>\n<div class=forside><h2>F ZIP Stat Pro</h2>";
-	$faa_pro .= "<p>Du kan f ZIP Stat Pro gratis i ca. 1 r. Den njagtige dato vil fremg verst p denne side, nr du har ZIP Stat Pro. Det eneste du skal gre er at skrive et pro-kodeord i kassen forneden, og trykke p &quot;Gem&quot; knapper lidt hjere oppe. Lige nu fungere flgende pro-kodeord:<br><code>intpro</code></p>";
-	$faa_pro .= "<p>Indtast pro-kodeord for at f gratis ZIP Stat Pro: <input type=text name=prokodeord size=8></p>\n<p>Nr din gratis pro-periode er ved at udlbe, vil du f nogle f e-mails med besked om dette. Du vil s mod et mindre belb (nok ca. 200 kr.) f mulighed for at forlnge din pro-periode med 2 r. nsker du ikke at forlnge pro-perioden til den tid, skal du bare ignorere e-mailsne, og nr perioden er endeligt udlbet, vil du helt automatisk skifte til den gratis udgave af ZIP Stat.</div>";
+	$faa_pro = "<hr>\n<div class=forside><h2>Få ZIP Stat Pro</h2>";
+	//$faa_pro .= "<p>Du kan få ZIP Stat Pro gratis i ca. 1 r. Den njagtige dato vil fremg verst på denne side, når du har ZIP Stat Pro. Det eneste du skal gøre er at skrive et pro-kodeord i kassen forneden, og trykke på &quot;Gem&quot; knapper lidt hjere oppe. Lige nu fungere følgende pro-kodeord:<br><code>intpro</code></p>";
+	$faa_pro .= "<p>Du kan gratis få ZIP Stat Pro uden nogen hager. Engang var tanken at tage penge for det, men så ændrede verden sig</p>";
+	$faa_pro .= "<p>Indtast pro-kodeord for at få gratis ZIP Stat Pro: <input type=text name=prokodeord size=8></p></p>";
 	}
 
 	//Ignore the owner of the website?
@@ -493,7 +494,7 @@ else #Hvis man ikke har pro
 	<?php
 	if (isset($faa_pro))
 		echo $faa_pro;
-	} #Slut p if simpel
+	} #Slut på if simpel
 else
 	{
 	if (isset($pro_kode))
@@ -501,9 +502,9 @@ else
 
 	?>
 	<div class=forside>
-	<h2>St tllerens startvrdi</h2>
-	<p>Du har her mulighed for at forge den tller der tller antal hits p hele siden seneste nulstilning. Hvis du gr det, vil det st p statistiksiden, og det vil ikke pvirke tlletallet p toplisten. Du kan skrive et negativt tal, ved at stte et &quot;-&quot; (minus) foran tallet.</p>
-	<p>Tl op med <input type=text name=standardop value="<?php echo htmlentities($datafile->getLine(82)); ?>"> hits.</p>
+	<h2>Sæt tællerens startværdi</h2>
+	<p>Du har her mulighed for at forge den tæller der tæller antal hits på hele siden seneste nulstilning. Hvis du gør det, vil det st på statistiksiden, og det vil ikke påvirke tælletallet på toplisten. Du kan skrive et negativt tal, ved at sætte et &quot;-&quot; (minus) foran tallet.</p>
+	<p>Tælop med <input type=text name=standardop value="<?php echo htmlentities($datafile->getLine(82)); ?>"> hits.</p>
 	</div>
 	<?php
 
@@ -517,15 +518,15 @@ else
         echo "  <option value=\"false\"".((! $statsitePublic) ? ' SELECTED' : '').">lukket for offentligheden</option>\n";
         echo "</select>";
 
-        echo "<p>&Oslash;nsker du at udvalgte personer skal kunne se statistiksiden uden at &aelig;ndre i resten af indstillingerne, kan du angive en r&aelig;kke kodeord herunder. Angiv 1 kodeord pr. linie.</p>\n";
+        echo "<p>Ønsker du at udvalgte personer skal kunne se statistiksiden uden at &aelig;ndre i resten af indstillingerne, kan du angive en r&aelig;kke kodeord herunder. Angiv 1 kodeord pr. linie.</p>\n";
         echo "<p><b>OBS</b>: Disse kodeord opbevares i klar tekst - skulle nogen f&aring; adgang til ZIP Stats database vil angriberen f&aring; adgang til disse kodeord. Derfor b&oslash;r disse kodeord under ingen omst&aelig;ndigheder genbruges p&aring; andre sider! (dette g&aelig;lder i &oslash;vrigt for alle kodeord)</p>";
 	print "<TEXTAREA NAME=\"brugerkodeord\" ROWS=\"5\" COLS=\"10\">";
 	echo htmlentities(str_replace("::", "\n", $datafile->getLine(57)));
 	print "</TEXTAREA>Kun 1 kodeord pr. linie";
-        echo "<p><b>OBS</b>: Selvom der st&aring;r kodeord herover, er statistiksiden altid offentlig hvis dette er valgt - der skal alts&aring; st&aring: &quot;Statistiksiden er: lukket for offentligheden&quot; for at den IKKE er offentlig.</p>";
+        echo "<p><b>OBS</b>: Selvom der st&aring;r kodeord herover, er statistiksiden altid offentlig hvis dette er valgt - der skal altså&aring; st&aring: &quot;Statistiksiden er: lukket for offentligheden&quot; for at den IKKE er offentlig.</p>";
 	print "</div><br>\n";
 
-	#Sprringer
+	#Spærringer
 	$tillad = explode('::', $datafile->getLine(106));
 	for ($i = 0;$i <= 2;$i++) {
 		if ($tillad[$i])
@@ -536,11 +537,11 @@ else
 
 	?>
 	<div class=forside>
-	<h2>Sprringer</h2>
-	<p>Du kan her sprre eller tillade visning af statistikker p forskellige mder.</p>
-	<input type=checkbox name="tillad0"<?php echo $tillad[0]; ?>> Vis siden p toplisten<br>
+	<h2>Spærringer</h2>
+	<p>Du kan her spærre eller tillade visning af statistikker på forskellige måder.</p>
+	<input type=checkbox name="tillad0"<?php echo $tillad[0]; ?>> Vis siden på toplisten<br>
 	<input type=checkbox name="tillad1"<?php echo $tillad[1]; ?>> Tillad visning af statistikker via javascriptstats og ministatistik<br>
-	<input type=checkbox name="tillad2"<?php echo $tillad[2]; ?>> Tillad visning af tlletal med tllerbilleder<br>
+	<input type=checkbox name="tillad2"<?php echo $tillad[2]; ?>> Tillad visning af tælletal med tællerbilleder<br>
 	</div>
 	<?php
 
@@ -555,13 +556,13 @@ else
 	?>
 	<div class=forside>
 	<h2>Nyhedsbreve</h2>
-	<p>Du kan her bestemme hvilke typer e-mail du nsker at modtage fra ZIP Stat.<br>
-	Send mig e-mails med besked om flgende:</p>
-	<input type=checkbox name="nyhedsbrev0"<?php echo $nyhedsbrev[0]; ?>> Strre opdateringer af ZIP Stat (anbefales)<br>
+	<p>Du kan her bestemme hvilke typer e-mail du ønsker at modtage fra ZIP Stat. De kommer ikke så tit. Har ikke sendt nogen ud de seneste 15 år...<br>
+	Send mig e-mails med besked om følgende:</p>
+	<input type=checkbox name="nyhedsbrev0"<?php echo $nyhedsbrev[0]; ?>> Større opdateringer af ZIP Stat (anbefales)<br>
 	<input type=checkbox name="nyhedsbrev1"<?php echo $nyhedsbrev[1]; ?>> Mindre opdateringer af ZIP Stat<br>
-	<input type=checkbox name="nyhedsbrev2"<?php echo $nyhedsbrev[2]; ?>> Nr en fejl er konstateret, inkl. et gt p hvornr den er rettet<br>
-	<input type=checkbox name="nyhedsbrev3"<?php echo $nyhedsbrev[3]; ?>> Nr en strre fejl er rettet (anbefales)<br>
-	<input type=checkbox name="nyhedsbrev4"<?php echo $nyhedsbrev[4]; ?>> Nr en mindre fejl er rettet<br>
+	<input type=checkbox name="nyhedsbrev2"<?php echo $nyhedsbrev[2]; ?>> Når en fejl er konstateret, inkl. et gæt på hvornår den er rettet<br>
+	<input type=checkbox name="nyhedsbrev3"<?php echo $nyhedsbrev[3]; ?>> Når en større fejl er rettet (anbefales)<br>
+	<input type=checkbox name="nyhedsbrev4"<?php echo $nyhedsbrev[4]; ?>> Når en mindre fejl er rettet<br>
 	<input type=checkbox name="nyhedsbrev5"<?php echo $nyhedsbrev[5]; ?>> Andre nyhedsbreve om ZIP Stat<br>
 	<input type=checkbox name="nyhedsbrev6"<?php echo $nyhedsbrev[6]; ?>> Andre nyhedsbreve om andre services fra <?php echo htmlentities($siteContext->getOption('adminName').' og '.$siteContext->getOption('domain')); ?><br>
 	</div>
@@ -574,16 +575,16 @@ else
 		
 		?>
 	<div class=forside>
-	<h2>Tllere</h2>
+	<h2>Tællere</h2>
 		<label>
 			<input type="checkbox" name="ignoreQuery"<?php echo $ignoreQueryChecked;?> />
-			Fjern en eventuel &quot;query string&quot; adresserne i tllere.
+			Fjern en eventuel &quot;query string&quot; adresserne i tællere.
 		</label>
-		<p>En <b>query string</b> er den del af en web-adresse der kommer efter et sprgsmlstegn, fx i <code>http://zipstat.dk/userarea.php?username=zip</code> er det &quot;<code>?username=zip</code>&quot; som er query string. Hvis du er i tvivl, s st kryds i denne boks.</p>
+		<p>En <b>query string</b> er den del af en web-adresse der kommer efter et spørgsmålstegn, fx i <code>http://zipstat.dk/userarea.php?username=zip</code> er det &quot;<code>?username=zip</code>&quot; som er query string. Hvis du er i tvivl, så st kryds i denne boks.</p>
 	</div>
 		<?php
 
-		#Tl kun hits p disse sider
+		#Tæl kun hits på disse sider
 		$okSider = explode('::', $datafile->getLine(111));
 		$okSideHtml = '';
 
@@ -594,7 +595,7 @@ else
 				$okSideHtml .= $okSider[$i];
 			$okSideHtml .= "\" size=45><br>\n";
 		}
-		$okSideHtml .= "Nr du trykker p &quot;Gem&quot;-knappen og gr ind p siden, kommer der 2 nye, tomme bokse.<br>\n";
+		$okSideHtml .= "Når du trykker på &quot;Gem&quot;-knappen og går ind på siden, kommer der 2 nye, tomme bokse.<br>\n";
 		$okSideHtml .= "<input type=hidden name=okSiderAntal value=".((count($okSider))+2).">\n";
 	} else {
 		for ($i = 0; $i < $lib->pro(15) +2; $i++) {
@@ -609,9 +610,9 @@ else
 	?>
 	<p>
 	<div class=forside>
-	<h2>Registrer kun hits p disse sider</h2>
-	<p>Hvis en anden person benytter din obligatoriske kode, sprgsml/svar-kode eller dine kliktllere, kan du her vlge, at der kun m registreres hits p de sider, du angiver her. Skriver du ikke noget, vil der blive registreret hits p alle sider.</p>
-	<p>Starter du en adresse med <code>http://</code> eller <code>https://</code>, skal adressen, til den side der m registreres hits p, <em>starte</em> med denne adresse. Skriver du ikke <code>http://</code> eller <code>https://</code>, vil der blive registreret hits fra alle sider, hvis adresse blot <em>indeholder</em> det du har skrevet.</p>
+	<h2>Registrer kun hits på disse sider</h2>
+	<p>Hvis en anden person benytter din obligatoriske kode, spørgsmål/svar-kode eller dine kliktællere, kan du her vælge, at der kun må registreres hits på de sider, du angiver her. Skriver du ikke noget, vil der blive registreret hits på alle sider.</p>
+	<p>Starter du en adresse med <code>http://</code> eller <code>https://</code>, skal adressen, til den side der må registreres hits på, <em>starte</em> med denne adresse. Skriver du ikke <code>http://</code> eller <code>https://</code>, vil der blive registreret hits fra alle sider, hvis adresse blot <em>indeholder</em> det du har skrevet.</p>
 	<?php echo $okSideHtml; ?>
 	</div>
 	<?php
@@ -622,19 +623,19 @@ else
 	<div class=forside>
 	<h2>Bliv ikke selv talt med</h2>
 	<h3>Via cookies</h3>
-	<p>Vil du hellere benytte en lsning hvor der benyttes cookies, s st kryds i nste kasse og tryk p &quot;Gem&quot;. Du fjerner cookien ved at fjerne krydset og trykke p &quot;Gem&quot;.</p>
+	<p>Vil du hellere benytte en lsning hvor der benyttes cookies, så st kryds i nste kasse og tryk på &quot;Gem&quot;. Du fjerner cookien ved at fjerne krydset og trykke på &quot;Gem&quot;.</p>
 
-	<p><input type=checkbox name="ikkeop"<?php echo $ikopchek; ?>> Tl aldrig mig (denne browser p denne computer) med i statistikken
+	<p><input type=checkbox name="ikkeop"<?php echo $ikopchek; ?>> Tæl aldrig mig (denne browser på denne computer) med i statistikken
 	</P>
 
 	<h3>Via IP-adresse</h3>
 	Hvis du henter siden <a href="<?php echo $siteContext->getOption('urlIgnore').'?'.$ind['username']; ?>" target="_top"><?php echo $siteContext->getOption('urlIgnore').'?'.$ind['username']; ?></A>
-	i din browser, vil du ikke selv blive registreret af ZIP Stat nr du besger dine egne sider. Dette krver dog at du henter 
-	adressen <b>hver</b> gang du gr p Internettet (dvs. hver gang du ringer op med dit modem - hvis du har fast IP-adresse <small>[hvis du har det, ved du det helt sikkert]</small>).
-	Den letteste mde at gre dette p er, at du stter adressen som din startside (se her under for en instruktion). Den side din browser normalt starter med, skal du s skrive i kassen herunder. S vil du nsten ikke opdage denne funktion.<BR>
+	i din browser, vil du ikke selv blive registreret af ZIP Stat når du besøger dine egne sider. Dette krver dog at du henter 
+	adressen <b>hver</b> gang du går på Internettet (dvs. hver gang du ringer op med dit modem - hvis du har fast IP-adresse <small>[hvis du har det, ved du det helt sikkert]</small>).
+	Den letteste måde at gøre dette på er, at du sætter adressen som din startside (se her under for en instruktion). Den side din browser normalt starter med, skal du så skrive i kassen herunder. S vil du nsten ikke opdage denne funktion.<BR>
 
 	Send-videre adresse: <br><input type=text name="taelopredirect" value="<?php echo htmlentities($datafile->getLine(53)); ?>" size="35"><br>
-	Slet IP-adresse: <input type=checkbox name=sletipadr> Har du en fast IP-adresse, og ikke nsker at benytte denne funktion lngere, kan du slette den sidst registrerede IP-adresse, s du igen bliver talt med i din statistik.
+	Slet IP-adresse: <input type=checkbox name=sletipadr> Har du en fast IP-adresse, og ikke ønsker at benytte denne funktion lngere, kan du slette den sidst registrerede IP-adresse, så du igen bliver talt med i din statistik.
 	</p>
 
 	</div>
@@ -647,34 +648,34 @@ else
 	<div class=forside>
 	<h3>Sdan ndrer du din startside</h3>
 	<h4>I Netscape</h4>
-	<P>I selve browseren vlger du menuen Rediger/Edit. Her vlge du punktet Prferencer/Preferences. S vlger du kategorien Navigator. Hvis der str noget i feltet Adresse/Adress, skal du skrive det i kassen mrket &quot;Send-videre&quot; adresse (her p siden). Nu skriver du <tt><?php echo $siteContext->getOption('urlIgnore').'?'.$ind['username']; ?></tt> i kassen Adresse/Adress (i Netscape), og trykker OK. S trykker p Gem-knappen her p siden, og s virker det!</P>
+	<P>I selve browseren vælger du menuen Rediger/Edit. Her vælge du punktet Prferencer/Preferences. S vælger du kategorien Navigator. Hvis der str noget i feltet Adresse/Adress, skal du skrive det i kassen mrket &quot;Send-videre&quot; adresse (her på siden). Nu skriver du <tt><?php echo $siteContext->getOption('urlIgnore').'?'.$ind['username']; ?></tt> i kassen Adresse/Adress (i Netscape), og trykker OK. S trykker på Gem-knappen her på siden, og så virker det!</P>
 
 	<h4>I Internet Eksplorer</h4>
-	<P>I selve browseren vlger du menuen Vis/View. Her vlger du punktet Internet-indstillinger/Intenret-options. Derefter vlger du fanen Generet/General. Hvis der str noget i feltet Adresse/Adress, skal du skrive det i kassen mrket Send-videre adresse (her p siden). Nu skriver du <tt><?php echo $siteContext->getOption('urlIgnore').'?'.$ind['username']; ?></tt> i kassen Adresse/Adress (i IE), og trykker OK. S trykker p Gem-knappen her p siden, og s virker det!</P>
+	<P>I selve browseren vælger du menuen Vis/View. Her vælger du punktet Internet-indstillinger/Intenret-options. Derefter vælger du fanen Generet/General. Hvis der str noget i feltet Adresse/Adress, skal du skrive det i kassen mrket Send-videre adresse (her på siden). Nu skriver du <tt><?php echo $siteContext->getOption('urlIgnore').'?'.$ind['username']; ?></tt> i kassen Adresse/Adress (i IE), og trykker OK. S trykker på Gem-knappen her på siden, og så virker det!</P>
 	</div>
 
 	<?php echo $faa_pro; ?>
 
 	<?php
-		} #Slut p if simpel else
+		} #Slut på if simpel else
 	echo  "</form>";
 
 	if ($utils->getUAType() === $utils->UA_TYPE_SIMPLE) {
 		?>
 	<h2>I avanceret visning</h2>
-	<p>Hvis du skifter til avanceret visning (benyt linket &quot;Skift til avanceret visning&quot;i menuen til venstre), kan du ogs gre flgende p denne side:
+	<p>Hvis du skifter til avanceret visning (benyt linket &quot;Skift til avanceret visning&quot;i menuen til venstre), kan du ogs gøre følgende på denne side:
 	<ul>
-		<li>Stter den overordnede tllers startvrdi. Dette er nyttigt hvis du nsker at &quot;tage gamle hits med&quot; fra en anden tller eller statistik.
+		<li>Sætter den overordnede tællers startværdi. Dette er nyttigt hvis du ønsker at &quot;tage gamle hits med&quot; fra en anden tæller eller statistik.
 		<li>Angive selvvalgte kodeord til statistiksiden. Disse kodeord kan f.eks. gives til andre, da de kun giver adgang til statistiksiden.
-		<li>Foretage sprringer, s du selv kan vlge om
+		<li>Foretage sprringer, så du selv kan vælge om
 		<ul>
-			<li>din side skal med p toplisten.
-			<li>nogle af dine statistikker skal vre tilgngelige gennem javascript-stats og ministatistikken.
-			<li>antal hits for hele siden, samt for de enkelte tllere, skal kunne vises via en grafisk tller.
+			<li>din side skal med på toplisten.
+			<li>nogle af dine statistikker skal være tilgængelige gennem javascript-stats og ministatistikken.
+			<li>antal hits for hele siden, samt for de enkelte tællere, skal kunne vises via en grafisk tæller.
 		</ul>
-		<li>Selv vlge hvilke typer nyhedsbreve du nsker at modtage fra ZIP Stat - du kan fx. vlge alle fra.
-		<li>Vlge at en bestemt IP-adresse ikke skal tlles med i statistikken. Dette er praktisk hvis du har en fast internetforbindelse med fast IP-adresse.
-		<li>Vlge at du kun vil have registreret statistikker fra nogle bestemte sider.
+		<li>Selv vælge hvilke typer nyhedsbreve du ønsker at modtage fra ZIP Stat - du kan fx. vælge alle fra.
+		<li>Vælge at en bestemt IP-adresse ikke skal tælles med i statistikken. Dette er praktisk hvis du har en fast internetforbindelse med fast IP-adresse.
+		<li>Vælge at du kun vil have registreret statistikker fra nogle bestemte sider.
 	</ul>
 
 	<?php
@@ -712,7 +713,7 @@ function r_oplysninger(&$utils, &$siteContext) {
 	if ($siteContext->getOption['use_index'] == 1)
 	{
 		$pro_max_kategorier = $lib->pro(14); #<11-Antal mulige kategorier i indekset>
-		$pro_max_tegn_sord = $lib->pro(12); #<12-Max antal tegn til sgeord>
+		$pro_max_tegn_sord = $lib->pro(12); #<12-Max antal tegn til søgeord>
 		$pro_max_tegn_besk = $lib->pro(13); #<13-Max antal tegn i beskrivelse>
 
 		$kategorier = '';
@@ -724,7 +725,7 @@ function r_oplysninger(&$utils, &$siteContext) {
 		for ($i = 1;$i <= $pro_max_kategorier;$i++)
 			{ $kategorier .= "Kategori nr. $i ".&getMuligeKategorier("kategorier$i",$kate_stier[$i-1],$kun_over_18_aar)."<br>\n"; }
 
-		$kategorier .= "<p>Hvis ZIP Stats administrator vurderer at en side passer bedre i en anden kategori, kan han flytte siden. Dette sker dog typisk kun i forbindelse med oprettelse af nye underkategorier.</p>\n<p>Sider med indhold der ikke br ses af brn og unge under 18 r, m kun placeres i kategorien &quot;Kun over 18 r&quot; samt dennes underkategorier.</p>\n<p>Sider med indhold der, efter den danske lovligning, kan karakteriseres som ulovligt, m ikke tilfjes til indekset!</p>";
+		$kategorier .= "<p>Hvis ZIP Stats administrator vurderer at en side passer bedre i en anden kategori, kan han flytte siden. Dette sker dog typisk kun i forbindelse med oprettelse af nye underkategorier.</p>\n<p>Sider med indhold der ikke bør ses af brn og unge under 18 r, må kun placeres i kategorien &quot;Kun over 18 r&quot; samt dennes underkategorier.</p>\n<p>Sider med indhold der, efter den daønske lovligning, kan karakteriseres som ulovligt, må ikke tilfjes til indekset!</p>";
 	} #End of if $options{'use_index'} - use index or not
 
 	#84-Beskrivelse
@@ -736,13 +737,13 @@ function r_oplysninger(&$utils, &$siteContext) {
 	<form action="<?php echo $siteContext->getOption('urlUserAreaMain'); ?>" method=POST>
 	<input type=hidden name=type value="gem_oplysninger">
 	<table>
-	<tr><td>Navn</td><td><a href="JAVAscript: alert('Hvis du vil ndre dit navn, s skriv ndringen i boksen.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til navn..."></a>
+	<tr><td>Navn</td><td><a href="JAVAscript: alert('Hvis du vil ndre dit navn, så skriv ændringen i boksen.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjælp til navn..."></a>
 		<input type=text name="navn" value="<?php echo htmlentities($datafile->getLine(1)); ?>"></td></tr>
-	<tr><td>E-mail</td><td><a href="JAVAscript: alert('Hvis du vil ndre din e-mail adresse, s skriv ndringen i boksen.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til e-mail..."></a>
+	<tr><td>E-mail</td><td><a href="JAVAscript: alert('Hvis du vil ndre din e-mail adresse, så skriv ændringen i boksen.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjælp til e-mail..."></a>
 		<input type=text name="e-mail" value="<?php echo htmlentities($datafile->getLine(2)); ?>"></td></tr>
-	<tr><td>Siden adresse</td><td><a href="JAVAscript: alert('Hvis du vil ndre din hjemmesides adresse, skal du skrive ndringen her.\nDet er vigtigt den er korrekt, fordi den bruges til at sortere dine egne sider\nfra, p listen over referencesider.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til sidens adresse..."></a>
+	<tr><td>Siden adresse</td><td><a href="JAVAscript: alert('Hvis du vil ndre din hjemmesides adresse, skal du skrive ændringen her.\nDet er vigtigt den er korrekt, fordi den bruges til at sortere dine egne sider\nfra, på listen over referencesider.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjælp til sidens adresse..."></a>
 		<input type=text name="url" value="<?php echo htmlentities($datafile->getLine(3)); ?>"></td></tr>
-	<tr><td>Sidens titel</td><td><a href="JAVAscript: alert('Hvis du vil ndre sidens titel, s skriv ndringen i boksen.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til sidens titel..."></a>
+	<tr><td>Sidens titel</td><td><a href="JAVAscript: alert('Hvis du vil ndre sidens titel, så skriv ændringen i boksen.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjælp til sidens titel..."></a>
 		<input type=text name="titel" value="<?php echo htmlentities($datafile->getLine(4)); ?>"></td></tr>
 	</table>
 	</div>
@@ -750,14 +751,14 @@ function r_oplysninger(&$utils, &$siteContext) {
 	/*
 	<div class=forside>
 		<p>
-		Sgeord <input type=text name=sord value="<?php echo htmlentities($datafile->getLine(85)); ?>" maxlength=$pro_max_tegn_sord> max. $pro_max_tegn_sord tegn, adskildt af komma (, ).<br>
+		Søgeord <input type=text name=sord value="<?php echo htmlentities($datafile->getLine(85)); ?>" maxlength=$pro_max_tegn_sord> max. $pro_max_tegn_sord tegn, adskildt af komma (, ).<br>
 		Beskrivelse <input type=text name=beskrivelse value="<?php echo htmlentities($datafile->getLine(84)); ?>" maxlength=$pro_max_tegn_besk> max $pro_max_tegn_besk tegn, skal beskrive sidens <em>indhold</em>.<br>
 		Overdrevent brug af udrbstegn, store bogstaver ol. vil automatisk blive rettet, samt trkke ned i rangeringen ved sgninger.<br>
 		</p>
 		$kategorier
 	*/
 	?>
-	<p>Indeholder siden erotisk, pornografisk materiale eller andet der ikke br ses af brn under og unge 18 r?<br>
+	<p>Indeholder siden erotisk, pornografisk materiale eller andet der ikke bør ses af børn under og unge 18 år?<br>
 	<select size=1 name=under18ok>
 	<option value="">-vlg-
 	<option value="Ja"<?php echo $sel['erotik']; ?>>Ja
@@ -766,7 +767,7 @@ function r_oplysninger(&$utils, &$siteContext) {
 	</p>
 	<?php
 	/*
-	<p>Sider med erotisk indhold ol. vil p toplisten blive nedtonet, og man fr en advarsel fr man gr ind p statistiksiden.</p>
+	<p>Sider med erotisk indhold ol. vil på toplisten blive nedtonet, og man fr en advarsel fr man går ind på statistiksiden.</p>
 	*/
 	?>
 	</div>
@@ -778,14 +779,14 @@ function r_oplysninger(&$utils, &$siteContext) {
 	<hr>
 	<div class=forside>
 	<h1>Slette konto</h1>
-        <p>Hvis du &oslash;nsker at slette denne ZIP Stat konto, skal du udfylde nedenstående skema og trykke på den meget lange knap.</p>
-	<p>Når kontoen er slettet kan du <em>ikke</em> fortryd!</p>
+        <p>Hvis du ønsker at slette denne ZIP Stat konto, skal du udfylde nedenstående skema og trykke på den meget lange knap.</p>
+	<p>Når kontoen er slettet kan du <em>ikke</em> fortryde!</p>
 	<h2>Sletning af konto</h2>
 
 	<form action="<?php echo $siteContext->getOption('urlUserAreaMain'); ?>" method=POST target="_top">
 	Brugernavn: <input type=text name="brugernavn_slet"><br>
 	Kodeord: <input type=password name="kodeord_slet"><br>
-	<input type=checkbox name=sletvirkelig> Jeg ønsker at slette min ZIP Stat konto, og ved atnår jeg har trykket på knappen &quot;Slet denne ZIP Stat konto - alle mine statistikker bliver slettet!&quot; er mine statistikker slettet for altid.<br>
+	<input type=checkbox name=sletvirkelig> Jeg ønsker at slette min ZIP Stat konto, og ved at når jeg har trykket på knappen &quot;Slet denne ZIP Stat konto - alle mine statistikker bliver slettet!&quot; er mine statistikker slettet for altid.<br>
 
 	<input type="hidden" name="type" value="slet_konto">
 	<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
@@ -857,8 +858,8 @@ function r_nulstil(&$utils, &$siteContext) {
 		<p><input type=checkbox name="nulalt">Nulstil alt.</p>
 
 		<p>Sæt kryds i kassen &quot;Nulstil alt&quot; oven for og tryk ? &quot;Gem&quot;, for at nulstille alle dine
-			statistikker. Ved tællerene er det kun hitsne der bliver nulstillet - de enkelte ætllere og klikætllere kan
-			nulles seperat på ?llersiden (brug linket i menuen venstre).</p>
+			statistikker. Ved tællerene er det kun hitsne der bliver nulstillet - de enkelte tællere og kliktællere kan
+			nulles seperat på tællersiden (brug linket i menuen venstre).</p>
 		<p>I den avancerede ZIP Stat kan du nulstille de enkelte statistikker seperat.</p>
 
 		<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
@@ -871,31 +872,31 @@ function r_nulstil(&$utils, &$siteContext) {
 		<div class=forside>
 		<h3>Nulstil</h3>
 
-		<input type=checkbox name="nulalt"> <a href="JAVAscript: alert('Hvis du krydser af her, vil alt p din statistikside blive nulstillet.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til nulstil alt..."></a>
+		<input type=checkbox name="nulalt"> <a href="JAVAscript: alert('Hvis du krydser af her, vil alt på din statistikside blive nulstillet.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjælp til nulstil alt..."></a>
 		Nulstil alt (svarer til at afkrydse alle bokse).<p>
 		</div>
 
 		<table class=forside border=1>
-		<caption>* Hvis du nulstiller n statistik der er markeret med *, br du nulstille dem alle tre.<br>Disse benyttes nemlig i prognosen, som forudstter at de dkker samme tidsrum.</caption>
+		<caption>* Hvis du nulstiller én statistik der er markeret med *, bør du nulstille dem alle tre.<br>Disse benyttes nemlig i prognosen, som forudstter at de dækker samme tidsrum.</caption>
 		<tr>
 		<td>
 		 <input type=checkbox name="nul7"> Samlet antal hits.<br>
-		<input type=checkbox name="nul44"> Antal unikke besgende.<br>
-		<input type=checkbox name="nul64"> Hits pr. besgende.<br>
-		<input type=checkbox name="nul16"> Max besgende p en dag.<br>
-		<input type=checkbox name="nul18"> Max besgende p en mned.<br>
-		<input type=checkbox name="nul77"> Max unikke hits p en dag<br>
-		<input type=checkbox name="nul80"> Max unikke hits p en mned<br>
+		<input type=checkbox name="nul44"> Antal unikke besøgende.<br>
+		<input type=checkbox name="nul64"> Hits pr. besøgende.<br>
+		<input type=checkbox name="nul16"> Max besøgende på en dag.<br>
+		<input type=checkbox name="nul18"> Max besøgende på en måned.<br>
+		<input type=checkbox name="nul77"> Max unikke hits på en dag<br>
+		<input type=checkbox name="nul80"> Max unikke hits på en måned<br>
 		<input type=checkbox name="nul76"> Antal unikke hits i dag<br>
-		<input type=checkbox name="nul79"> Antal unikke hits denne mned<br>
+		<input type=checkbox name="nul79"> Antal unikke hits denne måned<br>
 		<input type=checkbox name="nul14"> Hits pr. time.<br>
-		<input type=checkbox name="nul73"> Tid p siden<br>
-		 <input type=checkbox name="nul9"> *Hits pr. mned.<br>
+		<input type=checkbox name="nul73"> Tid på siden<br>
+		 <input type=checkbox name="nul9"> *Hits pr. måned.<br>
 		<input type=checkbox name="nul11"> *Hits 31 dage tilbage.<br>
 		<input type=checkbox name="nul15"> *Hits pr. ugedag.<br>
-		<input type=checkbox name="nul37"> Alle tllere.<br>
+		<input type=checkbox name="nul37"> Alle tællere.<br>
 		<td>
-		<input type=checkbox name="nul22"> Topdomner.<br>
+		<input type=checkbox name="nul22"> Topdomæner.<br>
 		<input type=checkbox name="nul20"> Domner.<br>
 		<input type=checkbox name="nul24"> Browsere.<br>
 		<input type=checkbox name="nul31"> Oplsning.<br>
@@ -905,22 +906,22 @@ function r_nulstil(&$utils, &$siteContext) {
 		<input type=checkbox name="nul46"> Referencesider.<br>
 		<input type=checkbox name="nul112"> Indgangssider.<br>
 		<input type=checkbox name="nul114"> Udgangssider.<br>
-		<input type=checkbox name="nul74"> Bevgelser<br>
-		<input type=checkbox name="nul69"> Alle kliktllere.<br>
-		<input type=checkbox name="nul47"> Sgeord.<br>
-		<input type=checkbox name="nul49"> Sgemaskiner.<br>
-		<input type=checkbox name="nul43"> Alle sprgsml.<br>
-		<input type=checkbox name="nul28"> Info om de seneste 20 besgende.
+		<input type=checkbox name="nul74"> Bevægelser<br>
+		<input type=checkbox name="nul69"> Alle kliktællere.<br>
+		<input type=checkbox name="nul47"> Søgeord.<br>
+		<input type=checkbox name="nul49"> Søgemaskiner.<br>
+		<input type=checkbox name="nul43"> Alle spørgsmål.<br>
+		<input type=checkbox name="nul28"> Info om de seneste 20 besøgende.
 		</table>
 
-		Hos tllere, sprgsml og kliktllere nulstilles kun hitsne. Disse kan envidere nulstilles fra de sider hvor de redigeres.
+		Hos tællere, spørgsmål og kliktællere nulstilles kun hitsne. Disse kan envidere nulstilles fra de sider hvor de redigeres.
 		</P>
 		<p>
 		<input type="hidden" value="<?php echo htmlentities($ind['username']); ?>" name="username">
 		<input type="submit" value="   Nulstil valgte   "> <input type="reset" value="Nulstil formular">
 
 		<?php
-	} #Slut p if simpel else
+	} #Slut på if simpel else
 	echo "</form>";
 	$utils->echoSiteEnd();
 }
@@ -949,7 +950,7 @@ function r_emailstats_simpel(&$utils, &$siteContext) {
 	$visAntal = visAntal($lib, count($viser), 9);
 	$pro_mx_tidspunkter = $visAntal;
 
-	#Tller antal dage angivet, og antal datoer angivet
+	#Tæller antal dage angivet, og antal datoer angivet
 	$ant_dage = 0;
 	$ant_datoer = 0;
 	$sidste_dag = 0;
@@ -982,7 +983,7 @@ function r_emailstats_simpel(&$utils, &$siteContext) {
 		$mail_om_ugen = ' SELECTED';
 	} else if (($ant_dage > 0) or ($ant_datoer >= 15)) {#n mail om dagen
 		$mail_om_dagen = ' SELECTED';
-	} else if (($ant_datoer > 0) and ($ant_datoer <= 2)) {#n mail om mneden
+	} else if (($ant_datoer > 0) and ($ant_datoer <= 2)) {#n mail om måneden
 		$mail_maaned = ' SELECTED';
 	}
 
@@ -994,10 +995,10 @@ function r_emailstats_simpel(&$utils, &$siteContext) {
 		<option>aldrig
 		<option value=hver_dag<?php echo $mail_om_dagen; ?>>hver dag
 		<option value=hver_uge<?php echo $mail_om_ugen; ?>>hver uge
-		<option value=hver_maaned<?php echo $mail_maaned; ?>>hver mned
+		<option value=hver_maaned<?php echo $mail_maaned; ?>>hver måned
 	</select> en e-mail med mine statistikker.</p>
-	<p>Vlger du at f mailen hver dag, vil den kommer umiddelbart efter kl. 20. Vlger du at f en mail
-	om ugen, vil den komme sndag umiddelbart efter kl. 20. Vlger du at f en mail om mneden, vil den komme
+	<p>Vælger du at få mailen hver dag, vil den kommer umiddelbart efter kl. 20. Vælger du at få en mail
+	om ugen, vil den komme søndag umiddelbart efter kl. 20. Vælger du at få en mail om måneden, vil den komme
 	d. 1. umiddelbart efter kl. 20.</p>
 	</div>
 
@@ -1043,48 +1044,48 @@ function r_emailstats(&$utils, &$siteContext) {
 				else
 					$check[$statKeys[$i]] = '';
 			}
-	} #Slut p inddata[68] =~/alle=vis/...
+	} #Slut på inddata[68] =~/alle=vis/...
 
 	echo "<form action=\"".$siteContext->getOption('urlUserAreaMain')."\" method=post><input type=hidden name=type value=\"gem_mailstats\">";
 	?>
 	<div class=forside>
 	<h3>Mail stat</h3>
 
-	<h4>Send flgende statistikker</h4>
-	<a href="JAVAscript: alert('Hvis du krydser af her, vil alt p din statistikside nulstillet.\nHvis du vil nulstille noget, atbefaler jeg kraftigt, at du kun\nbenytter denne mulighed for at nulstille, da\nprognoserne p statistiksiden ellers ikke vil vre korrekte.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til nulstil alt..."></a>
+	<h4>Send følgende statistikker</h4>
+	<a href="JAVAscript: alert('Hvis du krydser af her, vil alt på din statistikside nulstillet.\nHvis du vil nulstille noget, atbefaler jeg kraftigt, at du kun\nbenytter denne mulighed for at nulstille, da\nprognoserne på statistiksiden ellers ikke vil være korrekte.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjælp til nulstil alt..."></a>
 
 	<label><input type=checkbox name="alle"<?php echo $check['alle']; ?>> Alle statistikker (anbefales!)</label><BR>
-	<a href="JAVAscript: alert('Hvis du har valgt ikke at stte kryds i ovenstende boks,\\nskal du stte kryds i en eller flere af de nedenstende.\\nDu vil s p de valgte tidspunkter, f sendt de\\nvalgte statistikker til din e-mail adresse.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjlp til resten..."></a>
-	Hvis du ikke har valgt at stte kryds i ovenstende boks, skal du stte kryds i en eller flere af nedenstende.
+	<a href="JAVAscript: alert('Hvis du har valgt ikke at sætte kryds i ovenstende boks,\\nskal du sætte kryds i en eller flere af de nedenstende.\\nDu vil så på de valgte tidspunkter, få sendt de\\nvalgte statistikker til din e-mail adresse.');"><img src="<?php echo $siteContext->getPath('zipstat_icons'); ?>/stegn2.gif" width=9 height=14 border=0 alt="Hjælp til resten..."></a>
+	Hvis du ikke har valgt at sætte kryds i ovenstende boks, skal du sætte kryds i en eller flere af nedenstende.
 
 	<table border="1">
 	<tr><td><label><input type=checkbox name="enkeltstat"<?php echo $check['enkeltstat']; ?>>Enkeltstende stastikker.</label>
 		<td><label><input type=checkbox name="prognoser"<?php echo $check['prognoser']; ?>>Prognoser.</label>
-	<tr><td><label><input type=checkbox name="maaned_i_aar"<?php echo $check['maaned_i_aar']; ?>>Hits for de seneste 12 mneder.</label>
+	<tr><td><label><input type=checkbox name="maaned_i_aar"<?php echo $check['maaned_i_aar']; ?>>Hits for de seneste 12 måneder.</label>
 		<td><label><input type=checkbox name="sidste_31_dage"<?php echo $check['sidste_31_dage']; ?>>Hits for de seneste 31 dage.</label>
 	<tr><td><label><input type=checkbox name="timer_hits"<?php echo $check['timer_hits']; ?>>Hits pr. time.</label>
 		<td><label><input type=checkbox name="ugedag_hits"<?php echo $check['ugedag_hits']; ?>>Hits pr. ugedag.</label>
-	<tr><td><label><input type=checkbox name="top_domain"<?php echo $check['top_domain']; ?>>Hits pr. topdomne (.dk, .com osv.)</label>
-		<td><label><input type=checkbox name="domaene_hits"<?php echo $check['domaene_hits']; ?>>Hits pr. domne.</label>
-	<tr><td><label><input type=checkbox name="info20"<?php echo $check['info20']; ?>>Info om seneste besgende.</label>
+	<tr><td><label><input type=checkbox name="top_domain"<?php echo $check['top_domain']; ?>>Hits pr. topdomæne (.dk, .com osv.)</label>
+		<td><label><input type=checkbox name="domaene_hits"<?php echo $check['domaene_hits']; ?>>Hits pr. domæne.</label>
+	<tr><td><label><input type=checkbox name="info20"<?php echo $check['info20']; ?>>Info om seneste besøgende.</label>
 		<td><label><input type=checkbox name="hits_browser"<?php echo $check['hits_browser']; ?>>Hits pr. browser.</label>
 	<tr><td><label><input type=checkbox name="hits_os"<?php echo $check['hits_os']; ?>>Hits pr. styresystem.</label>
 		<td><label><input type=checkbox name="hits_sprog"<?php echo $check['hits_sprog']; ?>>Hits pr. sprog.</label>
-	<tr><td><label><input type=checkbox name="hits_opl"<?php echo $check['hits_opl']; ?>>Hits pr. skrmoplsning.</label>
-		<td><label><input type=checkbox name="hits_farver"<?php echo $check['hits_farver']; ?>>Hits pr. antal understttede farver (i bits).</label>
+	<tr><td><label><input type=checkbox name="hits_opl"<?php echo $check['hits_opl']; ?>>Hits pr. skærmopløsning.</label>
+		<td><label><input type=checkbox name="hits_farver"<?php echo $check['hits_farver']; ?>>Hits pr. antal understøttede farver (i bits).</label>
 	<tr><td><label><input type=checkbox name="java_support"<?php echo $check['java_support']; ?>>JAVA support.</label>
 		<td><label><input type=checkbox name="js"<?php echo $check['js']; ?>>JAVA-script support.</label>
-	<tr><td><label><input type=checkbox name="taellere"<?php echo $check['taellere']; ?>>Tllere.</label>
-		<td><label><input type=checkbox name="spoergs"<?php echo $check['spoergs']; ?>>Sprgsml og svar.</label>
+	<tr><td><label><input type=checkbox name="taellere"<?php echo $check['taellere']; ?>>Tællere.</label>
+		<td><label><input type=checkbox name="spoergs"<?php echo $check['spoergs']; ?>>Spørgsmål og svar.</label>
 	<tr><td><label><input type=checkbox name="ref"<?php echo $check['ref']; ?>>Referencesider.</label>
-		<td><label><input type=checkbox name="sord"<?php echo $check['sord']; ?>>Sgeord.</label>
-	<tr><td><label><input type=checkbox name="smask"<?php echo $check['smask']; ?>>Sgemaskiner.</label>
+		<td><label><input type=checkbox name="sord"<?php echo $check['sord']; ?>>Søgeord.</label>
+	<tr><td><label><input type=checkbox name="smask"<?php echo $check['smask']; ?>>Søgemaskiner.</label>
 		<td><label><input type=checkbox name="zipklik"<?php echo $check['zipklik']; ?>>Klikt&aelig;llere</label>
-	<tr><td><label><input type=checkbox name="bev"<?php echo $check['bev']; ?>>Bevgelser.</label>
+	<tr><td><label><input type=checkbox name="bev"<?php echo $check['bev']; ?>>Bevægelser.</label>
 		<td>
 	</table>
 
-	<h4>Send statistik med e-mail p flgende tidspunkter</h4>
+	<h4>Send statistik med e-mail på følgende tidspunkter</h4>
 	<?php
 
 	//Format of this line:
@@ -1112,10 +1113,10 @@ function r_emailstats(&$utils, &$siteContext) {
 		if (isset($viser[$i]) and strpos($viser[$i], 'tor;;') === 0)	{ $selected = ' SELECTED'; } echo "<option value=\"tor\"$selected>Hver torsdag\n"; $selected = '';
 		if (isset($viser[$i]) and strpos($viser[$i], 'fre;;') === 0)	{ $selected = ' SELECTED'; } echo "<option value=\"fre\"$selected>Hver fredag\n"; $selected = '';
 		if (isset($viser[$i]) and strpos($viser[$i], 'lor;;') === 0)	{ $selected = ' SELECTED'; } echo "<option value=\"lor\"$selected>Hver lrdag\n"; $selected = '';
-		if (isset($viser[$i]) and strpos($viser[$i], 'son;;') === 0)	{ $selected = ' SELECTED'; } echo "<option value=\"son\"$selected>Hver sndag\n"; $selected = '';
+		if (isset($viser[$i]) and strpos($viser[$i], 'son;;') === 0)	{ $selected = ' SELECTED'; } echo "<option value=\"son\"$selected>Hver søndag\n"; $selected = '';
 		for ($n = 1; $n <= 31; $n++) {
 			if (isset($viser[$i]) and strpos($viser[$i], "$n;;") === 0) { $selected = ' SELECTED'; }
-			echo "<option value=\"$n\"$selected>D. $n. i hver mned\n";
+			echo "<option value=\"$n\"$selected>D. $n. i hver måned\n";
 			$selected = '';
 		}
 		echo "</SELECT></label>\n";
@@ -1157,7 +1158,7 @@ function r_zipklik(&$utils, &$siteContext) {
 	$ind = $lib->getHTTPVars();
 	$datafile = &$lib->getDatafil();
 
-	$utils->echoSiteHead("Rediger kliktllere", 0);
+	$utils->echoSiteHead("Rediger kliktællere", 0);
 	
 	$pro_max_adresser = $lib->pro(10);
 
@@ -1191,7 +1192,7 @@ function r_zipklik(&$utils, &$siteContext) {
 
 
 	echo "<form action=\"".$siteContext->getOption('urlUserAreaMain')."\" method=POST>\n<table border=1 class=forside>";
-	echo "<tr><td>Nr.</td><td>Navn</td><td>Hits</td><td><small>Nulstil</small></td><td>Link</td></tr>";
+	echo "<tr><td>Når.</td><td>Navn</td><td>Hits</td><td><small>Nulstil</small></td><td>Link</td></tr>";
 
 	for ($i = 0; $i < $visAntal; $i++) {
 		if (! isset($navne[$i]))
@@ -1278,7 +1279,7 @@ function gem_indstillinger(&$utils, &$siteContext) {
 
 	$datafile->setLine(58, implode('::', $pro_inst));
 
-	}#Slut p if pro
+	}#Slut på if pro
 
 	$tillad = array();
 	for ($i = 0; $i <= 2; $i++) {
@@ -1326,19 +1327,19 @@ function gem_indstillinger(&$utils, &$siteContext) {
 
 	if ($utils->getUAType() !== $utils->UA_TYPE_SIMPLE) {
 		$fej = '';
-		#Forger standardtlleren med denne vrdi.
+		#Forger standardtælleren med denne værdi.
 		$datafile->setLine(82, (isset($ind['standardop']) ? $ind['standardop'] : ''));
 
 		#Sletter evt. den registrerede ip-adresse
 		if (isset($ind['sletipadr']))
 			$datafile->setLine(52, '');
 
-		#Stter send-videre adressen
+		#Sætter send-videre adressen
 		if (!isset($ind['taelopredirect']) or strlen($ind['taelopredirect']) === 0 or $utils->validateUrl($ind['taelopredirect'])) {
 			$datafile->setLine(53, isset($ind['taelopredirect']) ? $ind['taelopredirect'] : '');
-		} else if ($utils->validateUrl('http://'.$ind['taelopredirect'])) {
-			$datafile->setLine(53, 'http://'.$ind['taelopredirect']);
-			$fej .= "Der blev automatisk indsat <code>http://</code> i starten af din adresse, fordi en korrekt internetadresse starter med dette.";
+		} else if ($utils->validateUrl('https://'.$ind['taelopredirect'])) {
+			$datafile->setLine(53, 'https://'.$ind['taelopredirect']);
+			$fej .= "Der blev automatisk indsat <code>https://</code> i starten af din adresse, fordi en korrekt internetadresse starter med dette. Starter din med http? Se at få TLS på.";
 		}	else {
 			$fej .= "Din send-videreadresse blev ikke opdateret, fordi den ikke har den korrekte syntax for en internetadresse.";
 		}
@@ -1353,7 +1354,7 @@ function gem_indstillinger(&$utils, &$siteContext) {
 		for ($i = 0; $i < $okSiderAntal; $i++)
 			$okSider[$i] = isset($ind['okSider'.$i]) ? $ind['okSider'.$i] : '';
 		$datafile->setLine(111, implode('::', $okSider));
-	} #Slut p if not simpel
+	} #Slut på if not simpel
 
 	if (isset($ind['ikkeop'])) {
 		if (isset($ind['username']))
@@ -1372,12 +1373,12 @@ function gem_indstillinger(&$utils, &$siteContext) {
 		for ($i = 0; $i < count($prokodeord); $i++) {
 			if ($ind['prokodeord'] == $prokodeord[$i]) {
 				$datafile->setLine(61, 1034310769);
-				$add = "<li>Du har nu ZIP Stat Pro, gratis indtil ".localtime(1034310769).". God fornjelse!<br>Vlg menupunktet &quot;Indstillinger&quot; i menuen til venstre, for at foretage de nye indstillinger du har mulighed for med ZIP Stat Pro. <b>OBS</b> Dette fremgr som en fejl, men det er det <em>ikke</em>.";
+				$add = "<li>Du har nu ZIP Stat Pro, gratis indtil ".localtime(1034310769).". God fornøjelse!<br>Vælg menupunktet &quot;Indstillinger&quot; i menuen til venstre, for at foretage de nye indstillinger du har mulighed for med ZIP Stat Pro. <b>OBS</b> Dette fremgår som en fejl, men det er det <em>ikke</em>.";
 			}
 		}
 
 		if (! isset($add)) {
-			$add = "<li>Det pro-kodeord du angav er forkert. Tryk p din browsers &quot;Tilbage&quot; knap, og se efter om du har tastet <em>helt</em> rigtigt. Husk at der er forskel p store og sm bogstaver! Virker kodeordret stadig ikke efter det, s skriv til <a href=\"mailto:".$siteContext->getOption('errorEMail')."\">".$siteContext->getOption('errorEMail')."</a>. Skriv pro-kodeordret, samt hvor du har fet det fra. Hvis et magarsin har lavet en trykfejl opretter jeg et pro-kodeord der svarer til trykfejlen.";
+			$add = "<li>Det pro-kodeord du angav er forkert. Tryk på din browsers &quot;Tilbage&quot; knap, og se efter om du har tastet <em>helt</em> rigtigt. Husk at der er forskel på store og små bogstaver! Virker kodeordret stadig ikke efter det, så skriv til <a href=\"mailto:".$siteContext->getOption('errorEMail')."\">".$siteContext->getOption('errorEMail')."</a>. Skriv pro-kodeordret, samt hvor du har fået det fra. Hvis et magarsin har lavet en trykfejl opretter jeg et pro-kodeord der svarer til trykfejlen.";
 		}
 	}
 
@@ -1417,7 +1418,7 @@ function gem_oplysninger(&$utils, &$siteContext) {
 
 	#Gemmer oplysninger til indekset
 	$pro_max_kategorier = $lib->pro(14); #<11-Antal mulige kategorier i indekset>
-	$pro_max_tegn_sord =  $lib->pro(12); #<12-Max antal tegn til sgeord>
+	$pro_max_tegn_sord =  $lib->pro(12); #<12-Max antal tegn til søgeord>
 	$pro_max_tegn_besk =  $lib->pro(13); #<13-Max antal tegn i beskrivelse>
 
 #-------------
@@ -1430,7 +1431,7 @@ if ($options{'use_index'} == 1) {
 	@kategorier = explode(/::/,$inddata[86]);
 	@placeringer = explode(/::/,$inddata[87]);
 
-	#Tager hjde for at samme kategori kan vre valgt i flere felter.
+	#Tager hjde for at samme kategori kan være valgt i flere felter.
 	#Tjekker ogs om man har valgt at siden ikke er ok for folk under 18,
 	#men at man har valgt en kategori hvor dette ikke er tilladt.
 	my @opdater = ();
@@ -1474,10 +1475,10 @@ if ($options{'use_index'} == 1) {
 	$inddata[86] = join("::",@kategorier)."\n";
 	$inddata[87] = join("::",@placeringer)."\n";
 	
-	#Tjekker om man har skrevet for mange sgeord.
+	#Tjekker om man har skrevet for mange søgeord.
 		#Den brokker sig dog kun hvis der er mere end 5 tegn for meget
 	if (length($ind{'sord'}) > $pro_max_tegn_sord + 5)
-		{ $opdateret .= "	<p>Dine sgeord fylder ".length($ind{'sord'})."tegn, men de m kun fylde $pro_max_tegn_sord tegn, s derfor er de ikke blevet opdateret.</p>\n"; }
+		{ $opdateret .= "	<p>Dine søgeord fylder ".length($ind{'sord'})."tegn, men de må kun fylde $pro_max_tegn_sord tegn, så derfor er de ikke blevet opdateret.</p>\n"; }
 	else
 		{
 		$ind{'sord'} =~ s/\n\r//g;
@@ -1488,7 +1489,7 @@ if ($options{'use_index'} == 1) {
 		#Den brokker sig dog kun hvis der er mere end 5 tegn for meget
 	if (length($ind{'beskrivelse'}) > $pro_max_tegn_besk + 5)
 		{
-		$opdateret .= "	<p>Din beskrivelse fylder ".length($ind{'beskrivelse'})." tegn, men den m kun fylde $pro_max_tegn_besk tegn, s derfor er den ikke blevet opdateret.</p>\n";
+		$opdateret .= "	<p>Din beskrivelse fylder ".length($ind{'beskrivelse'})." tegn, men den må kun fylde $pro_max_tegn_besk tegn, så derfor er den ikke blevet opdateret.</p>\n";
 		}
 		else
 		{
@@ -1543,14 +1544,14 @@ function slet_konto(&$utils, &$siteContext) {
 	
 	if (!isset($ind['kodeord_slet']) or strlen($ind['kodeord_slet']) === 0) {
 		$utils->echoSiteHead("Intet kodeord");
-		echo "<div class=forside>\n<h1>Intet kodeord</h1>\n<p>Du indtastede <em>ikke</em> dit kodeord. Det skal du gre for at du ikke kommer til at slette din konto ved et uheld. Tryk p din browsers &quot;tilbage&quot;-knap og indtast det.</p></div>";
+		echo "<div class=forside>\n<h1>Intet kodeord</h1>\n<p>Du indtastede <em>ikke</em> dit kodeord. Det skal du gøre for at du ikke kommer til at slette din konto ved et uheld. Tryk på din browsers &quot;tilbage&quot;-knap og indtast det.</p></div>";
 		$utils->echoSiteEnd();
 		exit;
 	}
 
 	if (!isset($ind['brugernavn_slet']) or strlen($ind['brugernavn_slet']) === 0) {
 		$utils->echoSiteHead("Intet brugernavn");
-		echo "<div class=forside>\n<h1>Intet brugernavn</h1>\n<p>Du indtastede <em>ikke</em> dit brugernavn. Det skal du gre for at du ikke kommer til at slette din konto ved et uheld. Tryk p din browsers &quot;tilbage&quot;-knap og indtast det.</p></div>";
+		echo "<div class=forside>\n<h1>Intet brugernavn</h1>\n<p>Du indtastede <em>ikke</em> dit brugernavn. Det skal du gøre for at du ikke kommer til at slette din konto ved et uheld. Tryk på din browsers &quot;tilbage&quot;-knap og indtast det.</p></div>";
 		$utils->echoSiteEnd();
 		exit;
 	}
@@ -1559,21 +1560,21 @@ function slet_konto(&$utils, &$siteContext) {
         $auth = $authFactory->create();
         if (! $auth->doAuthenticate($ind['username'], $ind['kodeord_slet'])) {
 		$utils->echoSiteHead("Forkert kodeord");
-		echo "<div class=forside>\n<h1>Forkert kodeord</h1>\n<p>Det kodeord du indtastede er forkert. Tryk p din browsers &quot;tilbage&quot;-knap og ret det.</p></div>";
+		echo "<div class=forside>\n<h1>Forkert kodeord</h1>\n<p>Det kodeord du indtastede er forkert. Tryk på din browsers &quot;tilbage&quot;-knap og ret det.</p></div>";
 		$utils->echoSiteEnd();
 		exit;
 	}
 
 	if ($ind['username'] !== $ind['brugernavn_slet']) {
 		$utils->echoSiteHead("Forkert brugernavn");
-		echo "<div class=forside>\n<h1>Forkert brugernavn</h1>\n<p>Det brugernavn du indtastede er forkert. Tryk p din browsers &quot;tilbage&quot;-knap og ret det.</p></div>";
+		echo "<div class=forside>\n<h1>Forkert brugernavn</h1>\n<p>Det brugernavn du indtastede er forkert. Tryk på din browsers &quot;tilbage&quot;-knap og ret det.</p></div>";
 		$utils->echoSiteEnd();
 		exit;
 	}
 
 	if (!isset($ind['sletvirkelig']) or strlen($ind['sletvirkelig']) === 0) {
 		$utils->echoSiteHead("Du satte ikke hak");
-		echo "<div class=forside>\n<h1>Du satte ikke hak</h1>\n<p>Du skal s&aelig;tte hak i kassen <i>Jeg &oslash;nsker at slette min ZIP Stat konto, og ved at n&aring;r jeg har trykket p&aring; knappen &quot;Slet denne ZIP Stat konto - alle mine statistikker bliver slettet!&quot; er mine statistikker slettet for altid.</i>. Dette er for at sikre, at du ikke kommer til at slette din ZIP Stat konto ved et uheld. Tryk p din browsers &quot;tilbage&quot;-knap og st hak.</p></div>";
+		echo "<div class=forside>\n<h1>Du satte ikke hak</h1>\n<p>Du skal s&aelig;tte hak i kassen <i>Jeg ønsker at slette min ZIP Stat konto, og ved at n&aring;r jeg har trykket p&aring; knappen &quot;Slet denne ZIP Stat konto - alle mine statistikker bliver slettet!&quot; er mine statistikker slettet for altid.</i>. Dette er for at sikre, at du ikke kommer til at slette din ZIP Stat konto ved et uheld. Tryk på din browsers &quot;tilbage&quot;-knap og st hak.</p></div>";
 		$utils->echoSiteEnd();
 		exit;
 	}
@@ -1801,7 +1802,7 @@ function gem_nulstil(&$utils, &$siteContext) {
 
 	$datafile->setLine(51, implode('::',$nul));
 
-	$utils->saveData($datafile, "<p>De nskede statistikker er nu nulstillet.</p>\n", '', 'kunHvisProblemer');
+	$utils->saveData($datafile, "<p>De ønskede statistikker er nu nulstillet.</p>\n", '', 'kunHvisProblemer');
 	r_nulstil($utils, $siteContext);
 	exit;
 }
@@ -1831,7 +1832,7 @@ function gem_kodeord(&$utils, &$siteContext) {
 		exit;
 	} else {
 		$utils->echoSiteHead("Intet kodeord");
-		echo "Du skrev intet kodeord i nogle af boksene - du er <em>n&oslash;d</em> til at have et kodeord. Du skal alts fortsat bruge dit gamle kodeord! Tryk p&aring; din browsers &quot;Tilbage&quot;-knap, for at &aelig;ndre dit kodeord, eller for at benytte brugeromrdet.";
+		echo "Du skrev intet kodeord i nogle af boksene - du er <em>n&oslash;d</em> til at have et kodeord. Du skal altså fortsat bruge dit gamle kodeord! Tryk p&aring; din browsers &quot;Tilbage&quot;-knap, for at &aelig;ndre dit kodeord, eller for at benytte brugerområdet.";
 		$utils->echoSiteEnd();
 		exit;
 	}
@@ -1873,8 +1874,8 @@ function gem_spoergs(&$utils, &$siteContext) {
 	$antalVistSp = (isset($ind['antalVistSp']) ? $ind['antalVistSp'] : 0);
 	$antalVistSv = (isset($ind['antalVistSv']) ? $ind['antalVistSv'] : 0);
 
-	#Udregner hvor mange svar og sprgsml der er brugt
-	#Hvis der er et svar i et sprgsml, men ikke noget sprgsml, skal det alligevel medtages.
+	#Udregner hvor mange svar og spørgsmål der er brugt
+	#Hvis der er et svar i et spørgsmål, men ikke noget spørgsmål, skal det alligevel medtages.
 	for ($i = 0; $i < $antalVistSp; $i++) {
 		$udfyldteSv = 0;
 		for ($n = 0; $n < $antalVistSv; $n++) {
@@ -1891,7 +1892,7 @@ function gem_spoergs(&$utils, &$siteContext) {
 	$noQuestions = $maxNrSp+1;
 	$noAnswers = $maxNrSv+1;
 
-	if ($lib->pro()) { #Stter antallet, hvis man har pro
+	if ($lib->pro()) { #Sætter antallet, hvis man har pro
 		$lib->setPro(3, $noQuestions);
 		$lib->setPro(4, $noAnswers);
 	} else {
@@ -1940,14 +1941,14 @@ function gem_spoergs(&$utils, &$siteContext) {
 
 	if (isset($nulst) and strlen($nulst) > 0) {
 		$nulst = substr($nulst, 0, -2);
-		$nulst = "<p>Sprgsmlene $nulst blev nulstillet.</p>\n";
+		$nulst = "<p>Spørgsmålene $nulst blev nulstillet.</p>\n";
 	} else {
 		$nulst = '';
 	}
 	if (!isset($problemer))
 		$problemer = '';
 
-	$utils->saveData($datafile, "<p>Dine sprgsml er gemt</p>$nulst\n", $problemer, 'kunHvisProblemer');
+	$utils->saveData($datafile, "<p>Dine spørgsmål er gemt</p>$nulst\n", $problemer, 'kunHvisProblemer');
 	r_spoer($utils, $siteContext);
 }
 
@@ -1984,7 +1985,7 @@ function gem_taellere(&$utils, &$siteContext) {
 
 	if (isset($nulst)) {
 		$nulst = substr($nulst, 0, -2);
-		$nulst = "<p>Tllerene $nulst blev nulstillet.</p>\n";
+		$nulst = "<p>Tællerene $nulst blev nulstillet.</p>\n";
 	}
 
 	$datafile->setLine(37, implode('::',$hits));
@@ -1992,7 +1993,7 @@ function gem_taellere(&$utils, &$siteContext) {
 
 	if (!isset($problemer))
 		$problemer = '';
-	$utils->saveData($datafile, "<p>Dine tllere er gemt</p>$nulst\n", $problemer, 'kunHvisProblemer');
+	$utils->saveData($datafile, "<p>Dine tællere er gemt</p>$nulst\n", $problemer, 'kunHvisProblemer');
 	r_taellere($utils, $siteContext);
 }
 
@@ -2013,7 +2014,7 @@ function gem_mailstats(&$utils, &$siteContext) {
 	#<select name=simpel_mailstat size=1>
 	#	<option value=hver_dag>en gang om dagen
 	#	<option value=hver_uge>en gang om ugen
-	#	<option value=hver_maaned>en gang om mneden
+	#	<option value=hver_maaned>en gang om måneden
 
 	if (isset($ind['simpel']) and $ind['simpel'] === 'ja') {
 		if (isset($ind['simpel_mailstat'] ) and $ind['simpel_mailstat'] === 'hver_dag') {
@@ -2033,7 +2034,7 @@ function gem_mailstats(&$utils, &$siteContext) {
 			$ind["tidspunkt1"] = 1;
 			$ind["klokken1"] = 20;
 		}
-	} #Slut p if simpel
+	} #Slut på if simpel
 
 	if (isset($ind['alle']) or isset($ind['simpel']) and $ind['simpel'] === "ja")
 		$vis = "alle=vis";
@@ -2086,7 +2087,7 @@ function gem_mailstats(&$utils, &$siteContext) {
 			}
 		}
 
-	if ($lib->pro()) #Stter antallet, hvis man har pro
+	if ($lib->pro()) #Sætter antallet, hvis man har pro
 		$lib->setPro(9, $maxNr+1);
 	else if ($maxNr > $lib->pro(9)) #Srger for at der ikke gemmes flere end man m, hvis ikke pro
 		$maxNr = &pro(9);
@@ -2110,8 +2111,8 @@ function gem_mailstats(&$utils, &$siteContext) {
 				$mdato = $ind["tidspunkt$i"];
 			} else if (($ind["tidspunkt$i"] > 0) and ($ind["tidspunkt$i"] <= 31)) {
 				$mdato = $ind["tidspunkt$i"]*1;
-			}	#Slut p if $ind["klokken$i"] ne intet elsif $ind{"klokken$i"}> 0 and $ind{"klokken$i"}<= 23
-		}	else {	#Slut p if ind klokken$i
+			}	#Slut på if $ind["klokken$i"] ne intet elsif $ind{"klokken$i"}> 0 and $ind{"klokken$i"}<= 23
+		}	else {	#Slut på if ind klokken$i
 			$mdato = "";
 		}
 
@@ -2158,7 +2159,7 @@ function gem_zipklik(&$utils, &$siteContext) {
 	$maxNr = 0;
 	$antalVist = isset($ind['antalVist']) ? $ind['antalVist'] : 0;
 
-	#Udregner hvor mange kliktllere der er brugt
+	#Udregner hvor mange kliktællere der er brugt
 	for ($i = 0; $i < $antalVist; $i++) {
 	if (
 			(
@@ -2172,7 +2173,7 @@ function gem_zipklik(&$utils, &$siteContext) {
 		}
 	}
 
-	if ($lib->pro()) #Stter antallet, hvis man har pro
+	if ($lib->pro()) #Sætter antallet, hvis man har pro
 		$lib->setPro(10, $maxNr+1);
 	else if ($maxNr > $lib->pro(10)) #Srger for at der ikke gemmes flere end man m, hvis ikke pro
 		$maxNr = $lib->pro(10);
@@ -2197,7 +2198,7 @@ function gem_zipklik(&$utils, &$siteContext) {
 				$adr = $ind["url$i"];
 				$problemer .= "<li>Klikt&aelig;ller nr. $i ($adr) er ikke en gyldig internetadresse, og blev derfor ikke gemt.\n";
 			}
-		} #Slut p if okurl or not ind url else
+		} #Slut på if okurl or not ind url else
 		if (isset($ind["nulstil$i"])) {
 			$hits[$i] = 0;
 		}

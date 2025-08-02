@@ -465,11 +465,14 @@ class GraphStatGenerator extends StatGenerator
 					if (strpos(strtolower($txt[$i]), $schema[$c][$b]) !== FALSE) {
 						//We got a match!
 						$sums[$c] += $num[$i];
+            // Note to 25 years yunger self: Do not code like this!
 						continue 3; //NOTE: Continue on the 3nd level!
 					}
 				} //for each browser.
 			} //for each maker.
-			$others += $num[$i];
+      if (is_numeric($num[$i])) {
+			  $others += $num[$i];
+      }
 		} //for each data.
 
 		//Make new numbers and texts.
@@ -854,7 +857,7 @@ class BasicStatsGenerator extends StatGenerator
 		
 		//Hits since start
 		if ($countUp > 0) {
-			$totalHits = $this->getHitsSinceStart() + $countUp;
+			$totalHits = $this->getHitsSinceStart() . $countUp;
 			$totalText = $locale->getLocale('basicSHitsSStart')
 			                                               . " (+ ".$countUp.")";
 		} else {
@@ -869,11 +872,11 @@ class BasicStatsGenerator extends StatGenerator
 
 		//Hits since
 		if ($countUp > 0) {
-			$totalHits = $this->getHitsSince() + $countUp;
+			$totalHits = $this->getHitsSince() . $countUp;
 			$totalText = $locale->getLocale('basicSHitsS')
 			                                               . " (+ ".$countUp.")";
 		} else {
-			$totalHits = $this->getHitsSince() + $countUp;
+			$totalHits = $this->getHitsSince() . $countUp;
 			$totalText = $locale->getLocale('basicSHitsS');
 		}
 		$table->addRow(array(
@@ -3118,6 +3121,9 @@ class HitsReferer extends StatGenerator
 		$hitArray = array();
 		for ($i = 0; $i < sizeof($refMixed); $i++)
 		{
+      if (! isset($refMixed[$i]) or strlen($refMixed[$i]) == 0) {
+        continue; //Skip empty entries
+      }
 			list($urlArray[$i], $hitArray[$i]) = explode(";;", $refMixed[$i]);
 		}
 
@@ -3188,10 +3194,10 @@ class UrlGraphStatGenerator extends GraphStatGenerator
 	 */
 	function setUrlArray($urlArray)
 	{
-		if (sizeof($this->getTextArray()) > 0)
-			$textArray = $this->getTextArray();
-		else
+    $textArray = $this->getTextArray();
+    if (! is_array($textArray) or sizeof($textArray) == 0) {
 			$textArray = $urlArray;
+    }
 
 		//Create wrapper and text objects to use for all the entries to process.
 		$urlCutWrapper = new UrlCutWrapper($this->siteContext);
@@ -4081,7 +4087,7 @@ class HitsLatestsVisits extends StatGenerator
 			if (!isset($column[0]) or $column[0] === "Andre browsere")
 				$column[0] = $locale->getLocale('sgLatestNA');
 		
-			if (! $urlForViewing) {
+			if (! $urlForViewing and isset($column[3])) {
 				//For cutting
 				$domainText->setText($column[3]);
 				

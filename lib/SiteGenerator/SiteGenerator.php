@@ -2861,7 +2861,7 @@ class SiteList extends SiteElement
 	 * @private
 	 * @since 0.0.1
 	 */
-	var $list;
+	var $list = array();
 
 	/**
 	 * Adds an <code>element</code> to the list; which must be an instance

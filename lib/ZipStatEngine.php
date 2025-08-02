@@ -604,8 +604,8 @@ class ZipStatEngine
 		{
 			//$tmp3 = array(0,$tmp3[0],$tmp3[1]);
 			//$tmp4 = array(0,$tmp4[0],$tmp4[1]);
-      $tmp3 = array_unshift($tmp3, 0);
-      $tmp4 = array_unshift($tmp4, 0);
+      array_unshift($tmp3, 0);
+      array_unshift($tmp4, 0);
 			$this->datafil->setLine(66,$genr);
 		}
 		$tmp4[0]++;

@@ -28,6 +28,7 @@ $lib->setStier($options);
 
 //Sets the code lib in the site context.
 $siteContext->setCodeLib($lib);
+$errMsg = "";
 
 if ($res === -2)
 	$errMsg .= "Din datafil er desvrre blevet beskadiet, og der kan derfor ikke registreres statistikker. Kontakt ".$options->getOption('name_of_service')."'s administrator via e-mail-adressen nederst p siden.";
@@ -38,6 +39,7 @@ if (strlen($errMsg) !== 0)
 {
 	$errMsg = $lib->problemer($errMsg);
 	include "view.php";
+	require_once "lib/SiteGenerator/SiteGenerator.php";
 	$site = new HtmlSite($siteContext, "Fejl");
 	$site->addHtml($errMsg);
 	echo $site->getSite();
@@ -112,7 +114,7 @@ if ((getenv('REMOTE_ADDR') === $datafile->getLine(52)) and ($datafile->getLine(5
 	$in['taelop'] = "nej";
 }
 
-if (strpos($HTTP_COOKIE_VARS[$in['brugernavn']], "ikkeop") !== false)
+if (strpos($_COOKIE[$in['brugernavn']], "ikkeop") !== false)
 {
 	$in['taelop'] = "nej";
 }

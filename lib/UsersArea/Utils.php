@@ -348,14 +348,11 @@ class UsersAreaUtils {
 	 * @return if the $url is valid.
 	 */
 	function validateUrl($url) {
-		if (preg_match("/\Ahttp:\/\/[a-z0-9_\-\.]*\.[a-z0-9_\-\.\~\#\/=\?\+\&]*/i", $url))
-			return 1;
-		else if (preg_match("/\Ahttps:\/\/[a-z0-9_\-\.]*\.[a-z0-9_\-\.\~\#\/=\?\+\&]*/i", $url))
-			return 1;
-		else if (preg_match("/\Amailto:/i", $url))
-			return $this->validateEmail($url);
-		else
-			return 0;
+    // Starts with http, https or mailto.
+    $url = trim(strtolower($url));
+    return strpos($url, 'http://') === 0
+        or strpos($url, 'https://') === 0
+        or strpos($url, 'mailto:') === 0;
 	}
 
 	/**
@@ -444,7 +441,7 @@ class UsersAreaUtils {
 	function getShortDate($timeStamp = -1) {
 		if ($timeStamp === -1)
 			$timeStamp = time();
-		$days = array('sn', 'man', 'tir', 'ons', 'tor', 'fre', 'lr');
+		$days = array('søn', 'man', 'tir', 'ons', 'tor', 'fre', 'lør');
 		
 		$fmt = $this->siteContext->getOption('dateformat_shortdate');
 		
