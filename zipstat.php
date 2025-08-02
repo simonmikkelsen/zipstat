@@ -322,6 +322,13 @@ if ($stier->getOption('collective') === 1) {
 
 ///////////////////
 
+function numberOrZero($str) {
+  if (is_numeric(trim($str))) {
+    return trim($str);
+  } else {
+    return 0;
+  }
+}
 
 /**
  * Generates and displays a counter image.
@@ -342,9 +349,9 @@ function zipcount($coltype,$stier,$ind,$datafil) {
 		$counter = $tmp[$ind['taelnr']] + 1;
 	}
 	elseif (isset($ind['etael']))
-		$counter = $datafil->getLine(13) + 1 + $datafil->getLine(82);
+		$counter = numberOrZero($datafil->getLine(13)) + 1 + numberOrZero($datafil->getLine(82));
 	elseif (isset($ind['ntael']))
-		$counter = $datafil->getLine(7) + 1 + $datafil->getLine(82);
+		$counter = numberOrZero($datafil->getLine(7)) + 1 + numberOrZero($datafil->getLine(82));
 	elseif (isset($ind['taelnavn']))
 	{
 		$tmp = explode("::",$datafil->getLine(38));
@@ -358,7 +365,7 @@ function zipcount($coltype,$stier,$ind,$datafil) {
 	else
 	{	//If nothing is given and the file name of the page does not exist in
 		//any of the counters
-		$counter = $datafil->getLine(7) + 1 + $datafil->getLine(82);
+		$counter = numberOrZero($datafil->getLine(7)) + 1 + numberOrZero($datafil->getLine(82));
 	}
 
 	$tillad = explode("::",$datafil->getLine(106));

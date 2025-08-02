@@ -82,6 +82,11 @@ class EventCalculator {
 	 */
 	function dateTime($date, $timeOnDay)
 	{
+    $timeOnDay = trim($timeOnDay);
+    if (! is_numeric($timeOnDay)) {
+      $timeOnDay = 0;
+    }
+
 		$dates = getDate($this->calcTime);
 		$mday = $dates['mday'];
 		$hour = $dates['hours'];

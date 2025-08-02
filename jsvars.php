@@ -176,10 +176,18 @@ echo "var hits_pr_time = '$ht';$nl";
 	{
 		$tpb = $lib->afrund($tmp[0]/$tmp[1]);
 	}
-	//tid pr. bruger p siden
+	//tid pr. bruger på siden
 echo "var tid_paa_hver_side = '$tpb';$nl";
 
-//Personer p siden lige nu: $hps
+function numberOrZero($str) {
+  if (is_numeric(trim($str))) {
+    return trim($str);
+  } else {
+    return 0;
+  }
+}
+
+//Personer på siden lige nu: $hps
 	$hps = 0;
 	$iper = ":";
 	$ut = explode(":",$datafil->getLine(72));
@@ -187,7 +195,7 @@ echo "var tid_paa_hver_side = '$tpb';$nl";
 
 	for ($i = 0;$i < sizeof($ut);$i++)
 	{
-		if (($ut[$i] + $tpb > time()) and (! preg_match("/:$ip[$i]:/",$iper)))
+		if ((numberOrZero($ut[$i]) + numberOrZero($tpb) > time()) and (! preg_match("/:$ip[$i]:/",$iper)))
 		{
 			$hps++;
 			$iper .= $ip[$i].":";
