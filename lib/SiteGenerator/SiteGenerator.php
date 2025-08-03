@@ -869,9 +869,9 @@ class Wrapper extends SiteElement
 	 * @return void
 	 * @param $wrapped the {@link SiteElement} or {@link Wrapper} which is wrapped.
 	 */
-	function setWrapped(&$wrapped)
+	function setWrapped($wrapped)
 	{
-		$this->wrapped = &$wrapped;
+		$this->wrapped = $wrapped;
 	}
 
 	/**

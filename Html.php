@@ -2916,7 +2916,7 @@ class DatabaseMysqlSource extends DataSource
         function getWriteFieldValue($name) {
           array_key_exists($name, $this->fieldsWhitelist) or die("Unknown field (1): '$name'.");
           if ($this->fieldsWhitelist[$name] === 'boolean') {
-            return $this->fieldsValues[$name] === TRUE ? '1' : '0';
+            return ($name !== NULL and isset($this->fieldsValues[$name]) and $this->fieldsValues[$name] === TRUE ? '1' : '0');
           } else {
             die("Field with unsupported type: '$name'.");
           }

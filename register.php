@@ -199,9 +199,9 @@ class Registrer
 		$datasource->setLine(82, "0");
 
 		#Registrere om siden er erotisk eller ej
-		if ($in['under18ok'] === "Ja") {
+		if (isset($in['under18ok']) and $in['under18ok'] === "Ja") {
 			$datasource->setLine(83, "erotik");
-		} else if ($in['under18ok'] === "Nej") {
+		} else if (isset($in['under18ok']) and $in['under18ok'] === "Nej") {
 			$datasource->setLine(83, "okunder18");
 		} else {
 			$datasource->setLine(83, "");
