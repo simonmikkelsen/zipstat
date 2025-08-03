@@ -1617,7 +1617,7 @@ hvilket bringer siden op p i alt %6$s i denne mned.*/
 			}
 		}
 		if ($sumWeekHits != 0)
-			$percentWeekDay = 1 - ( ($sumWeekHits - $hitsInWeek[$wday - 1]) /$sumWeekHits);
+			$percentWeekDay = 1 - ( ($sumWeekHits - $hitsInWeek[$wday]) /$sumWeekHits);
 		else
 			$percentWeekDay = 0;
 

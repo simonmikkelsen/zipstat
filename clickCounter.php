@@ -114,12 +114,12 @@ if ((getenv('REMOTE_ADDR') === $datafile->getLine(52)) and ($datafile->getLine(5
 	$in['taelop'] = "nej";
 }
 
-if (strpos($_COOKIE[$in['brugernavn']], "ikkeop") !== false)
+if (isset($in['brugernavn']) and isset($_COOKIE[$in['brugernavn']]) and strpos($_COOKIE[$in['brugernavn']], "ikkeop") !== false)
 {
 	$in['taelop'] = "nej";
 }
 
-if ($in['taelop'] !== "nej")
+if (! isset($in['taelop']) or $in['taelop'] !== "nej")
 	{
 		$datafile->gemFil();
 	}

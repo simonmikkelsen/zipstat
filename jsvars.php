@@ -258,7 +258,7 @@ echo "var personer_paa_siden_nu = '$hps';$nl";
 		}
 		
 		if ($thiu != 0)
-			$pu = 1 - ( ($thiu - $tmp[$wday - 1]) /$thiu);
+			$pu = 1 - ( ($thiu - $tmp[$wday]) /$thiu);
 		else
 			$pu = 0;
 		
