@@ -790,8 +790,12 @@ static function taelnummer_url2name($url) {
 	if (strpos($filename,'#') > 0)
 		$filename = substr($filename,0,strpos($filename,'#'));
 
-	$filenameArray = explode("/",$filename);
-	$domain = $filenameArray[2];
+  $filenameArray = explode("/",$filename);
+  if (count($filenameArray) < 3) {
+    $domain = $filenameArray[2];
+  } else {
+    $domain = "";
+  }
 	$filenameArray = array_reverse($filenameArray);
 	//Use index 0 (folder name) or index 1 (file name)?
 	if (strlen($filenameArray[0]) == 0)

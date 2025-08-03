@@ -383,8 +383,10 @@ echo "var antal_i_kategori=new Array;$nl";
 $tHits = explode("::",$datafil->getLine(37)); /*Tllerhist*/
 $tNavne = explode("::",$datafil->getLine(38)); /*Tllernavne*/
 $proMaxAntTaellere = $lib->pro(5);
-
-$filnavne = explode("/",$_SERVER['HTTP_REFERER']);
+$filnavne = "";
+if (isset($_SERVER['HTTP_REFERER'])) {
+  $filnavne = explode("/",$_SERVER['HTTP_REFERER']);
+}
 $filnavne = array_reverse($filnavne);
 $filnavn = $filnavne[0];
 
@@ -453,6 +455,9 @@ if (! $minimal)
 
 		for ($n = 0;$n < $pro_max_sv; $n++)
 		{
+      if (! isset(svar[$n])) {
+        $svar[$n] = "";
+      }
 			$svar[$n] = addslashes($svar[$n]);
 			echo "sv[$svnr] = '$svar[$n]';$nl";
 			echo "sv_hits[$svnr] = '$hits[$n]';$nl";

@@ -32,7 +32,7 @@ if (isset($_POST["safeurl"]) and strlen($_SERVER["QUERY_STRING"]) === 0) {
 	$url = $_REQUEST["url"];
         $prefixes = array('http://zipstat.dk/', 'http://www.zipstat.dk/', 'https://zipstat.dk/', 'https://www.zipstat.dk/');
 
-	if (! matchesPrefix($_SERVER['HTTP_REFERER'], $prefixes)) {
+	if (isset($_SERVER['HTTP_REFERER']) and ! matchesPrefix($_SERVER['HTTP_REFERER'], $prefixes)) {
               die($_SERVER['HTTP_REFERER']."$host Fejlet sikkerhedstjek: Referer svarer ikke til zipstat.dk. P&aring; dansk: Hvis alt er godt kan du kun komme til denne side fra adressen zipstat.dk. Det ser ikke ud til at v&aelig; tilf&aelig;det og derfor kan det link du har klikket p&aring; v&aelig;re lavet til at franarre dig og misbruge personlige oplysninger. Hvad skal du g&oslash;re nu? Luk dit browservindue og kom aldrig tilbage til den side du var p&aring;. S&aring; b&oslash;r du v&aelig;re sikker.<br>Failed safety check: The website that sent you here may try to perform a phishing attach in order to gain and abuse your personal or financial information. What should you do? Close you web browser and never go back to that site. Then you are probably safe this time.");
 	}
 	//This is UNSAFE - redirect to the safe page.

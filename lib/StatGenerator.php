@@ -4097,7 +4097,11 @@ class HitsLatestsVisits extends StatGenerator
 				$column[3] = $domainLabel->getCode();
 			}
 			
-			$column[4] = $dateParser->parseToView($column[4], $dateFormatter);
+      if (isset($column[4])) {
+			  $column[4] = $dateParser->parseToView($column[4], $dateFormatter);
+      } else {
+        $column[4] = $locale->getLocale('sgLatestNA');
+      }
 			
 			$column[1] = str_replace("Windows", "Win", $column[1]);
 			if (!isset($column[1]) or $column[1] === "Andre styresystemer")
@@ -4113,7 +4117,7 @@ class HitsLatestsVisits extends StatGenerator
 
 			for ($m = 8; $m <= 9; $m++)
 			{
-				if (strlen($column[$m]) > 0)
+				if (isset($column[$m]) and strlen($column[$m]) > 0)
 				{
 					//Convert urls to links
 					if ($this->lib->okUrl($column[$m]))
