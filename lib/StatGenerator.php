@@ -389,7 +389,7 @@ class GraphStatGenerator extends StatGenerator
 		$locale = &$this->siteContext->getLocalizer();
 
 		//Create graph
-		$table = &$this->siteGenerator->newElement("graphTable");
+		$table = $this->siteGenerator->newElement("graphTable");
 		$table->setElementClass("stattabel");
 		//If a table width is given, set it.
 		if ($this->tableWith !== -1) {
@@ -397,13 +397,13 @@ class GraphStatGenerator extends StatGenerator
 		}
 
 		//Create the headline
-		$headline = &$this->siteGenerator->newElement("headline");
+		$headline = $this->siteGenerator->newElement("headline");
 		$headline->setSize(2);
 		$headline->setHeadline($this->getMainHeadline());
 		$table->addHeadElement($headline);
 
 		//Create the description
-		$desc = &$this->siteGenerator->newElement("text");
+		$desc = $this->siteGenerator->newElement("text");
 
 		$desc->addText($this->getDescription());
 		$table->addHeadElement($desc);
@@ -831,9 +831,9 @@ class BasicStatsGenerator extends StatGenerator
 		$locale = &$this->siteContext->getLocalizer();
 
 		//Create a table
-		$table = &$this->siteGenerator->newElement("table");
+		$table = $this->siteGenerator->newElement("table");
 
-		$tableHeadline = &$this->siteGenerator->newElement("headline");
+		$tableHeadline = $this->siteGenerator->newElement("headline");
 		$tableHeadline->setSize(2);
 		$tableHeadline->setHeadline($locale->getLocale($this->getHeadlineKey()));
 
@@ -1447,9 +1447,9 @@ class Projection extends StatGenerator
 		$locale = &$this->siteContext->getLocalizer();
 
 		//Create a table
-		$text = &$this->siteGenerator->newElement("text");
+		$text = $this->siteGenerator->newElement("text");
 
-		$headline = &$this->siteGenerator->newElement("headline");
+		$headline = $this->siteGenerator->newElement("headline");
 		$headline->setSize(2);
 		$headline->setHeadline($locale->getLocale($this->getHeadlineKey()));
 
@@ -3104,14 +3104,14 @@ class HitsReferer extends StatGenerator
 		$locale = &$this->siteContext->getLocalizer();
 
 		//Create a table
-		$list = &$this->siteGenerator->newElement("list");
+		$list = $this->siteGenerator->newElement("list");
 
-		$headline = &$this->siteGenerator->newElement("headline");
+		$headline = $this->siteGenerator->newElement("headline");
 		$headline->setSize(2);
 		$headline->setHeadline($locale->getLocale($this->getHeadlineKey()));
 		$list->addHeadElement($headline);
 
-		$description = &$this->siteGenerator->newElement("text");
+		$description = $this->siteGenerator->newElement("text");
 		$description->addText($locale->getLocale("sgRefererDesc"));
 		$list->addHeadElement($description);
 
@@ -3131,7 +3131,7 @@ class HitsReferer extends StatGenerator
 
 		for ($i = 0; $i < sizeof($hitArray); $i++)
 		{
-			$hiturl = &$this->siteGenerator->newElement("hiturl");
+			$hiturl = $this->siteGenerator->newElement("hiturl");
 			$hiturl->setHits($hitArray[$i]);
 			$hiturl->setUrl("http://".$urlArray[$i]);
 
@@ -3207,10 +3207,10 @@ class UrlGraphStatGenerator extends GraphStatGenerator
 		$urlCutWrapper->setCutSearch(2);
 		$urlCutWrapper->setCutUrl(2);
 
-		$text = &$this->siteGenerator->newElement("text");
+		$text = $this->siteGenerator->newElement("text");
 		$text->setParagraph(0); /*Don't put the text in a paragraph*/
 
-		$urlWrapper = &$this->siteGenerator->newElement("urlWrapper");
+		$urlWrapper = $this->siteGenerator->newElement("urlWrapper");
 		$urlWrapper->setWrapped($urlCutWrapper);
 		$urlCutWrapper->setWrapped($text);
 
@@ -3703,10 +3703,10 @@ class HitsSearchEngines extends GraphStatGenerator
 	{
 		$engines = new SearchEngines();
 
-		$text = &$this->siteGenerator->newElement("text");
+		$text = $this->siteGenerator->newElement("text");
 		$text->setParagraph(0); /*Don't put the text in a paragraphw*/
 
-		$urlWrapper = &$this->siteGenerator->newElement("urlWrapper");
+		$urlWrapper = $this->siteGenerator->newElement("urlWrapper");
 
 		//Translate the engine ids to urls and names.
 		$urlForViewing = $this->siteGenerator->isUrlsForViewing();
@@ -3821,11 +3821,11 @@ class HitsVotes extends StatGenerator
 		*/
 
 		//The main container it all is put in
-		$mainContainer = &$this->siteGenerator->newElement("text");
+		$mainContainer = $this->siteGenerator->newElement("text");
 		$mainContainer->setParagraph(0); /*Don't put the text in a paragraph*/
 
 		//Create the headline
-		$headline = &$this->siteGenerator->newElement("headline");
+		$headline = $this->siteGenerator->newElement("headline");
 		$headline->setSize(2);
 		$headline->setHeadline($locale->getLocale($this->getHeadlineKey()));
 		$mainContainer->addHeadElement($headline);
@@ -3839,7 +3839,7 @@ class HitsVotes extends StatGenerator
 
 		if (sizeof($qtnArr) === 0 or (sizeof($qtnArr) === 1 and strlen($qtnArr[0]) === 0))
 		{
-			$noPolls = &$this->siteGenerator->newElement("text");
+			$noPolls = $this->siteGenerator->newElement("text");
 			$noPolls->addText($locale->getLocale('sgNoVotes'));
 			$mainContainer->addHeadElement($noPolls);
 		}
@@ -3847,7 +3847,7 @@ class HitsVotes extends StatGenerator
 
 		for ($i = 0; $i < sizeof($qtnArr); $i++)
 		{
-			$table = &$this->createTable($locale, $qtnArr[$i], $ansArr[$i], $hitArr[$i]);
+			$table = $this->createTable($locale, $qtnArr[$i], $ansArr[$i], $hitArr[$i]);
 			$table->setElementName($this->getName());
 			$mainContainer->addHeadElement($table);
 		} /*End for i (all questions)*/
@@ -3874,22 +3874,22 @@ class HitsVotes extends StatGenerator
 		//	continue;
 
 		//Create graph
-		$table = &$this->siteGenerator->newElement("graphTable");
+		$table = $this->siteGenerator->newElement("graphTable");
 		$table->setElementClass("stattabel");
 		//Create the description
-		$question = &$this->siteGenerator->newElement("text");
+		$question = $this->siteGenerator->newElement("text");
 		$question->setParagraph(1);
 		$question->addText($questionStr);
 		$table->addHeadElement($question);
 		//Create the question list
-		$aList = &$this->siteGenerator->newElement("list");
+		$aList = $this->siteGenerator->newElement("list");
 		$aSiteElements = array();
 		$aStrs = explode("::", $answers);
 		$cutWrapper = new CutWrapper($this->siteContext);
 		$cutWrapper->setMaxLength(25);
 		for ($n = 0; $n < sizeof($aStrs); $n++)
 		{
-			$aSiteElements[$n] = &$this->siteGenerator->newElement("text");
+			$aSiteElements[$n] = $this->siteGenerator->newElement("text");
 			$aSiteElements[$n]->setParagraph(0);
 			$aSiteElements[$n]->setText(($n+1)." ".$aStrs[$n]);
 			$cutWrapper->setWrapped($aSiteElements[$n]);
@@ -3987,17 +3987,17 @@ class HitsLatestsVisits extends StatGenerator
 		$locale = &$this->locale;
 
 		//Create the table
-		$table = &$this->siteGenerator->newElement("table");
+		$table = $this->siteGenerator->newElement("table");
 		$table->setHeadersAre(1); /*The top row is headers.*/
 		$table->setHeaderClass('sinfo');
 
 		//Create headline and description
-		$headline = &$this->siteGenerator->newElement("headline");
+		$headline = $this->siteGenerator->newElement("headline");
 		$headline->setSize(2);
 		$headline->setHeadline($locale->getLocale('sgLatestStat'));
 		$table->addHeadElement($headline);
 
-		$desc = &$this->siteGenerator->newElement("text");
+		$desc = $this->siteGenerator->newElement("text");
 		$desc->setParagraph(1);
 		$desc->setText($locale->getLocale('sgLatestDesc'));
 		$table->addHeadElement($desc);
@@ -4055,19 +4055,19 @@ class HitsLatestsVisits extends StatGenerator
 		$urlCutWrapper->setCutSearch(2);
 		$urlCutWrapper->setCutUrl(2);
 
-		$text = &$this->siteGenerator->newElement("text");
+		$text = $this->siteGenerator->newElement("text");
 		$text->setParagraph(0); /*Don't put the text in a paragraph*/
 
-		$urlWrapper = &$this->siteGenerator->newElement("urlWrapper");
+		$urlWrapper = $this->siteGenerator->newElement("urlWrapper");
 		$urlWrapper->setWrapped($urlCutWrapper);
 		$urlCutWrapper->setWrapped($text);
 		
 		//Set up cutting and presentation of domain
 		$domainCutWrapper = new CutWrapper($this->siteContext);
 		$domainCutWrapper->setMaxLength(15);
-		$domainText = &$this->siteGenerator->newElement("text");
+		$domainText = $this->siteGenerator->newElement("text");
 		$domainText->setParagraph(0);
-		$domainLabel = &$this->siteGenerator->newElement("text");
+		$domainLabel = $this->siteGenerator->newElement("text");
 		$domainLabel->setParagraph(-1);
 		$domainCutWrapper->setWrapped($domainText);
 		$domainCutWrapper->setCutFrom(1);

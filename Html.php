@@ -5009,12 +5009,12 @@ class Resets
 	 * @param $locale a locale to use, if given.
 	 * @return String the corresponding index.
 	 */
-	function getDateString($index, $locale = -1)
+	function getDateString($index, $locale = NULL)
 	{
 		if (! isset($this->resets) or ! isset($this->resets[$index]))
 			return '';
 
-		if ($locale != -1 and strtolower(get_class($locale)) === "localizer") {
+		if ($locale !== NULL and strtolower(get_class($locale)) === "localizer") {
 			return $locale->localizeDate($this->resets[$index]);
 		} else {
 			return $this->resets[$index];

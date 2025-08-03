@@ -3689,7 +3689,7 @@ class StatSelector extends SiteElement
 		}
 
 		//All
-		$allStatUrlBuilder = &$this->siteContext->getUrlBuilder("statsite");
+		$allStatUrlBuilder = $this->siteContext->getUrlBuilder("statsite");
 		$this->addPassThroughParamsUrlBuilder($allStatUrlBuilder);
 		//$allStatUrlBuilder->setParameter('brugernavn', $username);
 		//$allStatUrlBuilder->setParameter('brugerkodeord', $userPassword);
@@ -3704,7 +3704,7 @@ class StatSelector extends SiteElement
 		$headArray[] = $allStatUrl->getCode();
 
 		//The rest
-		$restStatUrlBuilder = &$this->siteContext->getUrlBuilder("statsite");
+		$restStatUrlBuilder = $this->siteContext->getUrlBuilder("statsite");
 		$this->addPassThroughParamsUrlBuilder($restStatUrlBuilder);
 		//$restStatUrlBuilder->setParameter('brugernavn', $username);
 		//$restStatUrlBuilder->setParameter('brugerkodeord', $userPassword);
