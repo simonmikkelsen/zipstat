@@ -791,7 +791,7 @@ static function taelnummer_url2name($url) {
 		$filename = substr($filename,0,strpos($filename,'#'));
 
   $filenameArray = explode("/",$filename);
-  if (count($filenameArray) < 3) {
+  if (isset($filenameArray[2])) {
     $domain = $filenameArray[2];
   } else {
     $domain = "";
@@ -803,12 +803,16 @@ static function taelnummer_url2name($url) {
 	else
 		$useIndex = 0;
 
-	if ($filenameArray[$useIndex] == $domain)
-		$filename = strtolower($filenameArray[$useIndex]);
-	else
-		$filename = $filenameArray[$useIndex];
-		
-	return $filename;
+  if (isset($filenameArray[$useIndex])) {
+    if ($filenameArray[$useIndex] == $domain)
+      $filename = strtolower($filenameArray[$useIndex]);
+    else
+      $filename = $filenameArray[$useIndex];
+  } else {
+    $filename = "";;
+  }
+
+  return $filename;
 }
 
 /**

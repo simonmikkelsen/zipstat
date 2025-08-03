@@ -391,9 +391,11 @@ $filnavne = array_reverse($filnavne);
 $filnavn = $filnavne[0];
 
 $taelNr = 0;
-for ($i = 0; $i <= $proMaxAntTaellere;$i++)
-	if (($filnavn == $tNavne[$i]) and ($filnavn != "") and ($tHits[$i] > 0))
+for ($i = 0; $i <= $proMaxAntTaellere;$i++) {
+	if (isset($tNavne[$i]) and ($filnavn == $tNavne[$i]) and ($filnavn != "") and isset($tHits[$i]) and ($tHits[$i] > 0)) {
 		$taelNr = $i;
+  }
+}
 
 echo "var denne_taellers_nr = '$taelNr';$nl";
 

@@ -105,7 +105,9 @@ require_once "lib/SiteContext.php";
 require_once "lib/Localizer.php";
 
 //Loads the data file
-
+if (! isset($ind['brugernavn'])) {
+  $ind['brugernavn'] = "";
+}
 $datafil = DataSource::createInstance($ind['brugernavn'],$stier);
 
 $res = $datafil->hentFil();
