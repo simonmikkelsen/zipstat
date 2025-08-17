@@ -2108,8 +2108,8 @@ class SiteGraph extends SiteElement
 		if ($sum > 0 and $max > 0)
 			for ($i = 0;$i < sizeof($numArray);$i++)
 			{
-				$percents[] = $numArray[$i]/$sum;
-				$relativePercents[] = $numArray[$i]/$max;
+				$percents[] = intval($numArray[$i])/intval($sum);
+				$relativePercents[] = intval($numArray[$i])/intval($max);
 			}
 		return array($percents,$relativePercents);
 	}
@@ -3653,7 +3653,7 @@ class StatSelector extends SiteElement
 		}
 */
 		//Find the username of the user
-		$codelib = &$this->siteContext->getCodeLib();
+		$codelib = $this->siteContext->getCodeLib();
 		$dataSource = &$codelib->getDataSource();
 
 		//Only parse on username and pwd if given - and that requires a data source.
@@ -3669,7 +3669,7 @@ class StatSelector extends SiteElement
 		if ($prevStat != -1)
 		{
 			$prevStatElement = $this->getStat($prevStat);
-			$prevStatUrlBuilder = &$this->siteContext->getUrlBuilder("statsite");
+			$prevStatUrlBuilder = $this->siteContext->getUrlBuilder("statsite");
 			$this->addPassThroughParamsUrlBuilder($prevStatUrlBuilder);
 			//$prevStatUrlBuilder->setParameter('brugernavn', $username);
 			//$prevStatUrlBuilder->setParameter('brugerkodeord', $userPassword);
@@ -3728,7 +3728,7 @@ class StatSelector extends SiteElement
 		if ($nextStat !== -1)
 		{
 			$nextStatElement = $this->getStat($nextStat);
-			$nextStatUrlBuilder = &$this->siteContext->getUrlBuilder("statsite");
+			$nextStatUrlBuilder = $this->siteContext->getUrlBuilder("statsite");
 			$this->addPassThroughParamsUrlBuilder($nextStatUrlBuilder);
 			//$nextStatUrlBuilder->setParameter('brugernavn', $username);
 			//$nextStatUrlBuilder->setParameter('brugerkodeord', $userPassword);

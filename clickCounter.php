@@ -73,6 +73,9 @@ if ($in['urlnavn'] and in_array($in['urlnavn'],$cnameArr))
 } //End of if $in['urlnavn'].
 elseif (($in['urlnr'] <= sizeof($cnameArr)) and ($in['urlnr'] >= 0) and ($in['urlnr'] <= $pro_max_clickcounters))
 {
+  if (! isset($cclicksArr[$in['urlnr']])) {
+    $cclicksArr[$in['urlnr']] = 0;
+  }
 	$cclicksArr[$in['urlnr']]++;
 	$fun = $in['urlnr'];
 }

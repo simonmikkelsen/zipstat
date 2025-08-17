@@ -401,8 +401,12 @@ echo "var denne_taellers_nr = '$taelNr';$nl";
 
 $taelUd = "var taellere=new Array(";
 
-for ($i = 0;$i <= $proMaxAntTaellere;$i++)
+for ($i = 0;$i <= $proMaxAntTaellere;$i++) {
+  if (! isset($tHits[$i])) {
+    $tHits[$i] = 'n/a';
+  }
 	$taelUd .= "'$tHits[$i]',";
+}
 
 $taelUd = substr($taelUd,0,strlen($taelUd)-1);
 $taelUd .= ");$nl";
