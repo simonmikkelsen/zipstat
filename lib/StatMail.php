@@ -125,6 +125,11 @@ class EventCalculator {
 	 * @return int something i seconds.
 	 */
 	function weekTime($week, $hourInDay) {
+    if (! is_numeric($hourInDay)) {
+      $hourInDay = 0;
+    } else {
+      $hourInDay = intval($hourInDay);
+    }
 		//Simons note: The perl version was named ugetid
 		$dates = getDate($this->calcTime);
 		$mday = $dates['mday'];

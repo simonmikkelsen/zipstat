@@ -281,7 +281,9 @@ echo "var personer_paa_siden_nu = '$hps';$nl";
 			$tialt += $tmp[$i];
 		}
 		
-		$tinu += $tmp[$hour]*(1-((60-$min)/60));
+    if (isset($tmp[$hour])) {
+		  $tinu += $tmp[$hour]*(1-((60-$min)/60));
+    }
 
 
 		//Beregner % timer tilbage idag $ptt og timer indtil nu $ptn
@@ -449,20 +451,40 @@ if (! $minimal)
 	$svnr = 0;
 	for ($isse = 0;$isse < $pro_max_sp; $isse++)
 	{
-		$hits = explode("::",$hi[$isse]);
-		$svar = explode("::",$sv[$isse]);
+    if (isset($hi[$isse])) {
+		  $hits = explode("::",$hi[$isse]);
+    } else {
+      $hits = array();
+    }
+
+    if (isset($sv[$isse])) {
+  		$svar = explode("::",$sv[$isse]);
+    } else {
+      $svar = array();
+    }
+
+    if (! isset($sp[$isse])) {
+      $sp[$isse] = "";
+    }
 		$sp[$isse] = addslashes($sp[$isse]);
 
 		echo "sp[$isse] = '$sp[$isse]';$nl";
-		if ($cookie[$ind['brugernavn']."sp".$isse] == strlen($sp[$isse]))
+		if (isset($ind['brugernavn']) and isset($cookie[$ind['brugernavn']."sp".$isse]) 
+        and $cookie[$ind['brugernavn']."sp".$isse] == strlen($sp[$isse]))
+    {
 			echo "spsv[$isse] = 1;$nl";
-		else
+    } else {
 			echo "spsv[$isse] = 0;$nl";
+    }
+
 
 		for ($n = 0;$n < $pro_max_sv; $n++)
 		{
       if (! isset($svar[$n])) {
         $svar[$n] = "";
+      }
+      if (! isset($hits[$n])) {
+        $hits[$n] = 0;
       }
 			$svar[$n] = addslashes($svar[$n]);
 			echo "sv[$svnr] = '$svar[$n]';$nl";
